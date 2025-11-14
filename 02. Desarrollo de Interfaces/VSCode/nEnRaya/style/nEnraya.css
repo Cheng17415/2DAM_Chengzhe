@@ -1,0 +1,239 @@
+/* RESET */
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    background: linear-gradient(90deg, #0ed2da 0%, #5f29c7 100%);
+    display: flex;
+    align-items: stretch;
+}
+
+/* CONTAINER */
+/* https://uiverse.io/kencode7/perfect-puma-86 */
+.container {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    background: linear-gradient(to bottom,
+            #fff 0%,
+            #fff 40%,
+            rgba(255, 255, 255, 0) 100%);
+    background-blend-mode: overlay;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+
+}
+
+/* TABLERO */
+#tablero {
+    margin: 20px;
+    border: none;
+    display: block; 
+    max-width: 90vw;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* MARCO */
+.marco {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin: 10px 0 30px;
+    flex-wrap: nowrap;
+}
+
+/* LADOS */
+.lado {
+    display: flex;
+    flex-direction: column; /* apilar imagen y texto */
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: auto;
+    border: none;
+}
+
+.lado-izq {
+    margin-right: 36px;
+}
+
+.lado-der {
+    margin-left: 36px;
+}
+
+/* IMÁGENES */
+img {
+    width: 75px;
+    height: 75px;
+    display: block;
+    object-fit: contain;
+}
+
+.imgJug {
+    height: 150px;
+    width: 150px;
+}
+
+/* TEXTO */
+.jugador {
+    font-weight: bold;
+    font-size: 27px;
+    color: #222;
+    text-align: center;
+    line-height: 1;
+}
+
+p {
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+#js-ganador{
+    height: 10px;
+    font-weight: bold;
+}
+
+.turno{
+    font-weight: bold;
+}
+
+/* SELECT */
+/* https://codepen.io/utilitybend/pen/xbGmBQr */
+
+select {
+  appearance: none;
+  @supports (appearance: base-select) {
+    @media (hover: hover) {
+      &,
+      &::picker(select) {
+        appearance: base-select;
+      }
+    }
+  }
+}
+
+select {
+    transition: all 0.5s;
+  justify-content: space-between;
+  min-width: 300px;
+  align-items: center;
+  color: white;
+  padding-block: 10px;
+  border-radius: 30px;
+  border: 2px solid rgb(0, 23, 128);
+  cursor: pointer;
+  font-weight: 700;
+  background: rgb(109, 190, 217) right 10px center / 20px no-repeat;
+  @media (hover: hover) {
+    @supports (appearance: base-select) {
+      padding-inline: 20px;
+      background-image: none;
+      &::picker-icon {
+        content: "";
+        width: 20px;
+        height: 20px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%23FFF' class='size-6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m19.5 8.25-7.5 7.5-7.5-7.5' /%3E%3C/svg%3E%0A");
+        transition: rotate 0.2s ease-out;
+      }
+      &:open::picker-icon {
+        rotate: 180deg;
+      }
+      &::picker(select) {
+        padding: 0;
+        margin-top: 5px;
+        border: 2px solid rgb(0, 23, 128);
+        background: white;
+        border-radius: 20px;
+        font-weight: 400;
+
+        opacity: 0;
+        height: 0;
+        overflow: clip;
+        transition: height 0.5s ease-out, opacity 0.5s ease-out, overlay 0.5s,
+          display 0.5s;
+
+        transition-behavior: allow-discrete;
+      }
+      &:open::picker(select) {
+        opacity: 1;
+        height: calc-size(auto, size);
+        overflow: auto;
+        @starting-style {
+          opacity: 0;
+          height: 0;
+        }
+      }
+      option {
+        padding: 10px 15px;
+        border-top: 2px solid rgb(0, 23, 128);
+        cursor: pointer;
+        transition-property: color;
+        transition-duration: 0.2s;
+        transition-timing-function: ease-out;
+        &:where(:hover, :focus, :active) {
+          background: rgb(109, 190, 217);
+          color: white;
+        }
+        &:checked {
+          background: dodgerblue;
+          color: white;
+        }
+        &::checkmark {
+          display: none;
+        }
+        &:first-child {
+          border: 0;
+        }
+      }
+    }
+  }
+}
+
+
+/* BOTONES */
+/* https://uiverse.io/SteveBloX/dangerous-warthog-85 */
+button {
+    background-color: rgb(109, 190, 217);
+    border: 2px solid transparent;
+    border-radius: 10px;
+    font-size: 20px;
+    transition: all 0.5s;
+}
+
+button:hover,select:hover {
+    background-color: lightgreen;
+    border: 2px solid rgb(0, 23, 128);
+    transform: scale(1.05);
+}
+
+.modoJuego {
+    border-radius: 5px;
+    width: 150px;
+    height: 45px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.isClicked {
+    background-color: lightgreen;
+    border: 2px solid rgb(0, 23, 128);
+}
+

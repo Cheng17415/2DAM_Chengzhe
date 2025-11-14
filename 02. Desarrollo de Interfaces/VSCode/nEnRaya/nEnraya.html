@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>N-Raya</title>
+    <link rel="stylesheet" href="style/nEnraya.css">
+    <link rel="shortcut icon" href="imagenes/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="titulo"></h1>
+        <p>
+            <select id="opciones"></select>
+        </p>
+        <p>
+            <button class="modoJuego js-unJugador">Un jugador</button>
+            <button class="modoJuego js-dosJugadores">Dos jugadores</button>
+            <button class="modoJuego js-resetear">Resetear</button>
+        </p>
+        <p id="js-ganador"></p>
+
+        <div class="marco">
+            <div class="lado lado-izq">
+                <div class="js-turno turno"></div>
+                <img class="imgJug" src="imagenes/sun.png">
+                <div class="jugador">Jugador 1</div>
+                <div id="scoreP1"></div>
+            </div>
+
+            <div id="tablero"></div>
+
+            <div class="lado lado-der">
+                <div class="js-turno turno"></div>
+                <img class="imgJug" src="imagenes/moon.png">
+                <div class="jugador" id="jugador2"></div>
+                <div id="scoreP2"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script/nEnraya.js"></script>
+</body>
+
+</html>
