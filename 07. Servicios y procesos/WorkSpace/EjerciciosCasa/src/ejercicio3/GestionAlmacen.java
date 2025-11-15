@@ -171,5 +171,4 @@ public class GestionAlmacen {
 		}
 		System.out.println("La nueva cantidad es de " + ar.getStock());
 	}
-
 }

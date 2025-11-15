@@ -1,0 +1,50 @@
+Carmen, Castro: Fisica:2 Quimica:8 Matematica:8
+Carlos,Lopez: Fisica:5 Quimica:7 Matematica:8
+Sara,Ramirez: Fisica:5 Quimica:3 Matematica:1
+Carmen, Castro: Fisica:9 Quimica:1 Matematica:9
+Pedro,Diaz: Fisica:3 Quimica:1 Matematica:1
+Miguel,Sanchez: Fisica:5 Quimica:5 Matematica:2
+Luis,Perez: Fisica:6 Quimica:7 Matematica:6
+Sara,Ramirez: Fisica:3 Quimica:5 Matematica:5
+Sara,Ramirez: Fisica:1 Quimica:10 Matematica:10
+Pedro,Diaz: Fisica:7 Quimica:2 Matematica:6
+Lucía,Rodriguez: Fisica:9 Quimica:9 Matematica:6
+Sara,Ramirez: Fisica:3 Quimica:5 Matematica:4
+Ana,Garcia: Fisica:2 Quimica:7 Matematica:4
+Jorge,Flores: Fisica:3 Quimica:3 Matematica:5
+Pedro,Diaz: Fisica:8 Quimica:6 Matematica:8
+Ana,Garcia: Fisica:8 Quimica:6 Matematica:10
+Lucía,Rodriguez: Fisica:2 Quimica:1 Matematica:3
+Sara,Ramirez: Fisica:5 Quimica:5 Matematica:7
+Sara,Ramirez: Fisica:10 Quimica:3 Matematica:1
+Carmen, Castro: Fisica:10 Quimica:5 Matematica:1
+Carmen, Castro: Fisica:2 Quimica:2 Matematica:3
+Miguel,Sanchez: Fisica:6 Quimica:4 Matematica:9
+nombres,apellidos: Fisica:4 Quimica:8 Matematica:6
+Sara,Ramirez: Fisica:10 Quimica:1 Matematica:7
+Laura,Torres: Fisica:9 Quimica:2 Matematica:4
+Jorge,Flores: Fisica:8 Quimica:2 Matematica:8
+Carlos,Lopez: Fisica:4 Quimica:3 Matematica:4
+nombres,apellidos: Fisica:9 Quimica:3 Matematica:7
+Luis,Perez: Fisica:4 Quimica:1 Matematica:4
+Carmen, Castro: Fisica:9 Quimica:10 Matematica:5
+nombres,apellidos: Fisica:10 Quimica:6 Matematica:1
+Carmen, Castro: Fisica:6 Quimica:2 Matematica:8
+Sara,Ramirez: Fisica:5 Quimica:4 Matematica:3
+Ana,Garcia: Fisica:8 Quimica:9 Matematica:10
+Carmen, Castro: Fisica:8 Quimica:9 Matematica:3
+Luis,Perez: Fisica:8 Quimica:3 Matematica:9
+nombres,apellidos: Fisica:3 Quimica:3 Matematica:6
+nombres,apellidos: Fisica:10 Quimica:3 Matematica:4
+Pedro,Diaz: Fisica:1 Quimica:2 Matematica:10
+Miguel,Sanchez: Fisica:2 Quimica:7 Matematica:9
+Luis,Perez: Fisica:6 Quimica:9 Matematica:8
+Carmen, Castro: Fisica:3 Quimica:5 Matematica:8
+Miguel,Sanchez: Fisica:10 Quimica:5 Matematica:5
+Carlos,Lopez: Fisica:4 Quimica:7 Matematica:3
+nombres,apellidos: Fisica:1 Quimica:8 Matematica:1
+Lucía,Rodriguez: Fisica:7 Quimica:3 Matematica:7
+Carlos,Lopez: Fisica:10 Quimica:8 Matematica:7
+Luis,Perez: Fisica:4 Quimica:4 Matematica:9
+Luis,Perez: Fisica:1 Quimica:8 Matematica:3
+Sara,Ramirez: Fisica:1 Quimica:6 Matematica:7

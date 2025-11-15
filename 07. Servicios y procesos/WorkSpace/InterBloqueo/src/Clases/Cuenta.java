@@ -4,7 +4,7 @@ public class Cuenta {
 	private int saldo;
 	private String numCuenta;
 	
-	public Cuenta( String numCuenta, int saldo) {
+	public Cuenta(String numCuenta, int saldo) {
 		super();
 		this.saldo = saldo;
 		this.numCuenta = numCuenta;

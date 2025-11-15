@@ -1,4 +1,4 @@
-package ejercicio1;
+package ejercicioElectrodomesticos;
 
 public class Lavadora extends Electrodomestico {
 	//Atributos

@@ -6,7 +6,6 @@ public class Articulo {
 	private double precioCompra;
 	private double precioVenta;
 	private int stock;
-	
 	private static int contador = 1;
 	
 	public Articulo(String descripcion, double precioCompra, double precioVenta, int stock) {
@@ -62,7 +61,4 @@ public class Articulo {
 		return "Articulo [codigo=" + codigo + ", descripcion=" + descripcion + ", precioCompra=" + precioCompra
 				+ ", precioVenta=" + precioVenta + ", stock=" + stock + "]";
 	}
-
-	
-	
 }

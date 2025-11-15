@@ -46,28 +46,48 @@ public class Combinacion {
         return combSecreto;
     }
     
-    public char[] EvaluacionCombinacion(char[] combi, char[] resultado) {
-        HashMap<Character, Integer> hm = new HashMap<>();
-        Arrays.fill(resultado, '_');
-        //Con este método, obtengo en la array resultado los colores que estén en la posición correcta con una 'R'(rojo)
-       
-        resultado = obtenerCorrectas(resultado,combi);
-        
-        for (int i = 0; i < combi.length; i++) {
-            if(resultado[i]== 'R') break;
-            /*En el HashMap añado la letra que aparece en el intento como key, 
-            y el value son las ocurrencias que aparece en la combinacion secreta (que no sean los colores en la posición correcta)*/
-            hm.put(combi[i], aparicion(combi[i],combSecreto));
-            
-            //La primera aparición de un color que esté en una posición equivocada se marca con el color blanco('B')  
-            if(hm.get(combi[i]) > 0){
-                resultado[i] = 'B';
-                hm.replace(combi[i], hm.get(combi[i]--));
-            }
-        }
+	public char[] EvaluacionCombinacion(char[] combi) {
+	    char[] resultado = new char[NumColoresCombinacion];
 
-        return resultado;
-    }
+	    // Copias para no modificar los originales
+	    char[] secretoTemp = combSecreto.clone();
+	    char[] intentoTemp = combi.clone();
+
+	    int r = 0; // rojos
+	    int b = 0; // blancos
+
+	    // ===== 1ª PASADA: ROJOS =====
+	    for (int i = 0; i < NumColoresCombinacion; i++) {
+	        if (intentoTemp[i] == secretoTemp[i]) {
+	            r++;
+	            // Marcamos como usados
+	            secretoTemp[i] = '-';
+	            intentoTemp[i] = '*';
+	        }
+	    }
+
+	    // ===== 2ª PASADA: BLANCOS =====
+	    for (int i = 0; i < NumColoresCombinacion; i++) {
+	        if (intentoTemp[i] == '*') continue; // ya contado como rojo
+
+	        for (int j = 0; j < NumColoresCombinacion; j++) {
+	            if (intentoTemp[i] == secretoTemp[j]) {
+	                b++;
+	                secretoTemp[j] = '-'; // marcamos como usado
+	                break;
+	            }
+	        }
+	    }
+
+	    // Llenamos el resultado
+	    int pos = 0;
+	    for (int i = 0; i < r; i++) resultado[pos++] = 'R';
+	    for (int i = 0; i < b; i++) resultado[pos++] = 'B';
+	    while (pos < resultado.length) resultado[pos++] = '_';
+
+	    return resultado;
+	}
+
 
     private int aparicion(char c, char[] letras) {
         int apa = 0;
