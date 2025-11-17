@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Conversor de monedas</string>
+    <string name="button_plus">+</string>
+    <string name="button_minus">-</string>
+    <string name="input_dollar">0.00</string>
+    <string name="input_euro">0.00</string>
+    <string name="title_converter">Conversor</string>
+    <string name="input_current_change">Cambio actual</string>
+    <string name="info_dollar">Dolar</string>
+    <string name="info_euro">Euro</string>
+</resources>

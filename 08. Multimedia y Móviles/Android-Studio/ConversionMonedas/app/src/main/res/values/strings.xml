@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ConversionMonedas</string>
+    <string name="dolar">DÓLAR</string>
+    <string name="euro">EURO</string>
+    <string name="yen">YEN</string>
+    <string name="libra">LIBRA</string>
+</resources>

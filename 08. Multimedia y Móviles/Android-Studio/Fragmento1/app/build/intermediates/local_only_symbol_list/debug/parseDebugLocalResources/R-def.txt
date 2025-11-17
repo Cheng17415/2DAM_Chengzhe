@@ -1,0 +1,22 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color white
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+id boton
+id contador
+id fragmentox
+id frase
+id main
+id procesar
+layout activity_main
+layout fragment_contador
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+string hello_blank_fragment
+style Base.Theme.Fragmento0
+style Theme.Fragmento0
+xml backup_rules
+xml data_extraction_rules

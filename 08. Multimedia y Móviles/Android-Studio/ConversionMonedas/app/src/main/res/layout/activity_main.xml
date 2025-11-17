@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/main"
+    style="@style/Grid"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:columnCount="5"
+    android:rowCount="6"
+    android:padding="16dp"
+    android:layout_marginTop="50dp"
+    >
+
+    <!-- Primera fila: Banderas -->
+    <TextView android:layout_columnWeight="1"/>
+
+    <ImageView
+        style="@style/imagen"
+        android:id="@+id/imageView3"
+        app:srcCompat="@drawable/usa"
+        android:layout_columnWeight="1"
+        />
+
+    <ImageView
+        style="@style/imagen"
+        android:id="@+id/imageView2"
+        app:srcCompat="@drawable/cee"
+        android:layout_columnWeight="1"
+        />
+
+    <ImageView
+        style="@style/imagen"
+        android:id="@+id/imageView4"
+        app:srcCompat="@drawable/japon"
+        android:layout_columnWeight="1"
+        />
+    <ImageView
+        style="@style/imagen"
+        android:id="@+id/imageView5"
+        app:srcCompat="@drawable/ingla"
+        android:layout_columnWeight="1"
+        />
+
+    <!-- Segunda fila: Nombres -->
+    <TextView
+        android:layout_columnWeight="1"
+        />
+    <TextView
+        style="@style/TextView"
+        android:text="@string/dolar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:gravity="center"/>
+
+    <TextView
+        style="@style/TextView"
+        android:text="@string/euro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:gravity="center"/>
+
+    <TextView
+        style="@style/TextView"
+        android:text="@string/yen"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:gravity="center"/>
+
+    <TextView
+        style="@style/TextView"
+        android:text="@string/libra"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:gravity="center"/>
+
+    <!-- Tercera fila (DÓLAR) -->
+    <TextView
+        style="@style/TextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:gravity="center"
+        android:text="@string/dolar" />
+
+    <TextView
+        style="@style/Vacio"
+        android:layout_columnWeight="1"
+        />
+
+    <EditText
+        android:id="@+id/dolareuro"
+        style="@style/EditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:gravity="center"
+        android:text="0.719"
+        android:textSize="14sp"
+        android:inputType="numberDecimal"/>
+
+    <EditText
+        android:id="@+id/dolaryen"
+        style="@style/EditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="101.615"
+        android:gravity="center"
+        android:layout_columnWeight="1"
+        android:textSize="14sp"
+        android:inputType="numberDecimal"/>
+
+    <EditText
+        android:id="@+id/dolarlibra"
+        style="@style/EditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="0.596"
+        android:gravity="center"
+        android:layout_columnWeight="1"
+        android:textSize="14sp"
+        android:inputType="numberDecimal"/>
+
+    <!-- Cuarta fila (EURO) -->
+    <TextView
+        style="@style/TextView"
+        android:text="@string/euro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:gravity="center"/>
+
+    <TextView
+        style="@style/TextView"
+
+        android:id="@+id/eurodolar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="1.390820"
+        android:gravity="center"
+        android:layout_columnWeight="1"/>
+
+    <TextView
+        style="@style/Vacio"
+        android:layout_columnWeight="1" />
+
+    <TextView
+        style="@style/TextView"
+        android:id="@+id/euroyen"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="141.3282"
+        android:gravity="center"
+        android:layout_columnWeight="1"/>
+    <TextView
+        style="@style/TextView"
+
+        android:id="@+id/eurolibra"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="0.828929"
+        android:gravity="center"
+        android:layout_columnWeight="1"/>
+
+    <!-- Quinta fila (YEN) -->
+    <TextView
+        style="@style/TextView"
+        android:text="@string/yen"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:gravity="center"/>
+
+    <TextView
+        style="@style/TextView"
+        android:id="@+id/yendolar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="0.719"
+        android:gravity="center"
+        android:layout_columnWeight="1"/>
+
+    <TextView
+        style="@style/TextView"
+        android:id="@+id/yeneuro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="101.615"
+        android:gravity="center"
+        android:layout_columnWeight="1"/>
+
+    <TextView
+        style="@style/Vacio"
+        android:layout_columnWeight="1"
+        />
+
+    <TextView
+        style="@style/TextView"
+        android:id="@+id/yenlibra"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="0.596"
+        android:gravity="center"
+        android:layout_columnWeight="1"
+        />
+
+    <!-- Sexta fila (LIBRA) -->
+    <TextView
+        style="@style/TextView"
+        android:text="@string/libra"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:gravity="center"/>
+
+    <TextView
+        style="@style/TextView"
+        android:id="@+id/libradolar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="0.009841"
+        android:gravity="center"
+        android:layout_columnWeight="1"/>
+
+    <TextView
+        style="@style/TextView"
+        android:id="@+id/libraeuro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="0.007075"
+        android:gravity="center"
+        android:layout_columnWeight="1"/>
+    <TextView
+        style="@style/TextView"
+        android:id="@+id/librayen"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="0.005865"
+        android:gravity="center"
+        android:layout_columnWeight="1"/>
+
+    <TextView
+        style="@style/Vacio"
+        android:layout_columnWeight="1"
+        />
+</GridLayout>

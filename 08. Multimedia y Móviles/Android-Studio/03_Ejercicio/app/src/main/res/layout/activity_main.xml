@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <!--··········································Centigrados··························-->
+    <TextView
+        android:id="@+id/tgc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/textview_border"
+        android:padding="10dp"
+        android:text="Grados centígrados"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </TextView>
+
+    <Button
+        android:id="@+id/btgmenos"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:onClick="decrementarCentigrados"
+        android:text="-1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tgc" />
+
+    <EditText
+        android:id="@+id/centigrados"
+        android:layout_width="122dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="0"
+        android:textAlignment="textEnd"
+        android:textColor="@color/black"
+
+        app:layout_constraintEnd_toStartOf="@+id/btgmas"
+        app:layout_constraintHorizontal_bias="0.559"
+        app:layout_constraintStart_toEndOf="@+id/btgmenos"
+        app:layout_constraintTop_toBottomOf="@+id/tgc"
+        app:layout_editor_absoluteX="122dp"
+        app:layout_editor_absoluteY="122dp" />
+
+    <Button
+        android:id="@+id/btgmas"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="incrementarCentigrados"
+        android:text="+1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tgc" />
+
+    <!--··········································Fahrenheit··························-->
+
+    <TextView
+        android:id="@+id/tgf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/textview_border"
+        android:padding="10dp"
+        android:text="Grados Fahrenheit"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.524"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/centigrados">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/fahrenheit"
+        android:layout_width="122dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="32.0"
+        android:textAlignment="textEnd"
+        android:textColor="@color/black"
+
+        app:layout_constraintEnd_toStartOf="@+id/btfmas"
+        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintStart_toEndOf="@+id/btfmenos"
+        app:layout_constraintTop_toBottomOf="@+id/tgf"
+        app:layout_editor_absoluteX="122dp"
+        app:layout_editor_absoluteY="122dp" />
+
+    <Button
+        android:id="@+id/btfmas"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="incrementarFahrenheit"
+        android:text="+1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tgf" />
+
+    <Button
+        android:id="@+id/btfmenos"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:onClick="decrementarFahrenheit"
+        android:text="-1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tgf" />
+
+    <!--··········································Kelvin··························-->
+
+    <TextView
+        android:id="@+id/tgk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/textview_border"
+        android:padding="10dp"
+        android:text="Grados Kelvin"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fahrenheit">
+
+    </TextView>
+
+    <Button
+        android:id="@+id/btkmenos"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
+        android:onClick="decrementarKelvin"
+        android:text="-1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tgk" />
+
+    <Button
+        android:id="@+id/btkmas"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="incrementarKelvin"
+        android:text="+1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tgk" />
+
+    <EditText
+        android:id="@+id/kelvin"
+        android:layout_width="122dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="273.15"
+        android:textAlignment="textEnd"
+        android:textColor="@color/black"
+
+        app:layout_constraintEnd_toStartOf="@+id/btkmas"
+        app:layout_constraintHorizontal_bias="0.576"
+        app:layout_constraintStart_toEndOf="@+id/btkmenos"
+        app:layout_constraintTop_toBottomOf="@+id/tgk"
+        app:layout_editor_absoluteX="122dp"
+        app:layout_editor_absoluteY="122dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

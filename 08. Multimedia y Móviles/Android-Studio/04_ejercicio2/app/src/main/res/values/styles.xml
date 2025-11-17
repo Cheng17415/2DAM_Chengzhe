@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="botonDigitos" parent="Widget.Material3.Button">
+        <item name="android:backgroundTint">@color/colorBotonDigitos</item>
+        <item name="android:layout_width"> 65dp </item>
+        <item name="android:layout_height"> 55dp </item>
+        <item name="android:textSize">25dp</item>
+    </style>
+    <style name="botonOperador" parent="botonDigitos">
+        <item name="android:backgroundTint">@color/colorBotonOperadores</item>
+    </style>
+    <style name="botonCero" parent="botonDigitos">
+        <item name="android:layout_width"> 150dp </item>
+    </style>
+</resources>

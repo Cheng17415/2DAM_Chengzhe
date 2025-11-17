@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/pantalla"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="49dp"
+        android:text="0."
+        android:background="#B44A4A"    
+        android:backgroundTint="#B13434"
+        android:textAlignment="viewEnd"
+        android:textColor="#FFFFFF"
+        android:textSize="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/siete"
+        style="@style/botonDigitos"
+        android:onClick="pulsarDigito"
+        android:text="@string/siete"
+        app:layout_constraintEnd_toStartOf="@+id/ocho"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ocho"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/cuatro"
+        style="@style/botonDigitos"
+        android:layout_marginTop="32dp"
+        android:onClick="pulsarDigito"
+        android:text="@string/cuatro"
+        app:layout_constraintEnd_toStartOf="@+id/cinco"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/siete"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/cinco"
+        style="@style/botonDigitos"
+        android:layout_marginTop="32dp"
+        android:onClick="pulsarDigito"
+        android:text="@string/cinco"
+        app:layout_constraintEnd_toStartOf="@+id/seis"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cuatro"
+        app:layout_constraintTop_toBottomOf="@+id/ocho"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/multiplicar"
+        style="@style/botonOperador"
+        android:layout_marginTop="32dp"
+        android:onClick="Operacion"
+        android:text="@string/multiplicar"
+        app:layout_constraintEnd_toStartOf="@+id/sumar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tres"
+        app:layout_constraintTop_toBottomOf="@+id/dividir"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/sumar"
+        style="@style/botonOperador"
+        android:layout_marginTop="32dp"
+        android:onClick="Operacion"
+        android:text="@string/sumar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/multiplicar"
+        app:layout_constraintTop_toBottomOf="@+id/restar"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/dividir"
+        style="@style/botonOperador"
+        android:layout_marginTop="32dp"
+        android:onClick="Operacion"
+        android:text="@string/dividir"
+        app:layout_constraintEnd_toStartOf="@+id/restar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/seis"
+        app:layout_constraintTop_toBottomOf="@+id/vaciar"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/seis"
+        style="@style/botonDigitos"
+        android:layout_marginTop="32dp"
+        android:onClick="pulsarDigito"
+        android:text="@string/seis"
+        app:layout_constraintEnd_toStartOf="@+id/dividir"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cinco"
+        app:layout_constraintTop_toBottomOf="@+id/nueve"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/restar"
+        style="@style/botonOperador"
+        android:layout_marginTop="32dp"
+        android:onClick="Operacion"
+        android:text="@string/restar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/dividir"
+        app:layout_constraintTop_toBottomOf="@+id/borrar"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/resto"
+        style="@style/botonOperador"
+        android:layout_marginTop="36dp"
+        android:onClick="tantoPorCiento"
+        android:text="@string/porcentaje"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/resultado"
+        app:layout_constraintTop_toBottomOf="@+id/sumar"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/vaciar"
+        style="@style/botonOperador"
+        android:onClick="pulsarDigito"
+        android:text="@string/vaciar"
+        app:layout_constraintEnd_toStartOf="@+id/borrar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/nueve"
+        app:layout_constraintTop_toTopOf="@+id/nueve"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/ocho"
+        style="@style/botonDigitos"
+        android:onClick="pulsarDigito"
+        android:text="@string/ocho"
+        app:layout_constraintEnd_toStartOf="@+id/nueve"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/siete"
+        app:layout_constraintTop_toTopOf="@+id/nueve"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/tres"
+        style="@style/botonDigitos"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+
+        android:onClick="pulsarDigito"
+        android:text="@string/tres"
+        app:layout_constraintEnd_toStartOf="@+id/multiplicar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/dos"
+        app:layout_constraintTop_toBottomOf="@+id/seis"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/nueve"
+        style="@style/botonDigitos"
+        android:layout_marginTop="32dp"
+        android:onClick="pulsarDigito"
+        android:text="@string/nueve"
+        app:layout_constraintEnd_toStartOf="@+id/vaciar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ocho"
+        app:layout_constraintTop_toBottomOf="@+id/pantalla"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/punto"
+        style="@style/botonOperador"
+        android:layout_marginTop="40dp"
+        android:onClick="PuntoDec"
+        android:text="@string/punto"
+        app:layout_constraintEnd_toStartOf="@+id/resultado"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/cero"
+        app:layout_constraintTop_toBottomOf="@+id/tres"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/uno"
+        style="@style/botonDigitos"
+        android:layout_marginTop="32dp"
+        android:onClick="pulsarDigito"
+        android:text="@string/uno"
+        app:layout_constraintEnd_toStartOf="@+id/dos"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cuatro"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/resultado"
+        style="@style/botonOperador"
+        android:layout_marginTop="36dp"
+        android:onClick="calcularResultado"
+        android:text="@string/resultado"
+        app:layout_constraintEnd_toStartOf="@+id/resto"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/punto"
+        app:layout_constraintTop_toBottomOf="@+id/multiplicar"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/cero"
+        style="@style/botonDigitos"
+        android:layout_width="146dp"
+        android:layout_height="53dp"
+
+        android:layout_marginTop="40dp"
+        android:onClick="pulsarDigito"
+        android:text="@string/cero"
+        app:layout_constraintEnd_toStartOf="@+id/punto"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uno"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/dos"
+        style="@style/botonDigitos"
+        android:layout_marginTop="32dp"
+        android:onClick="pulsarDigito"
+        android:text="@string/dos"
+        app:layout_constraintEnd_toStartOf="@+id/tres"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/uno"
+        app:layout_constraintTop_toBottomOf="@+id/cinco"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/borrar"
+        style="@style/botonOperador"
+        android:onClick="BorrarEntrada"
+        android:text="@string/borrar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/vaciar"
+        app:layout_constraintTop_toTopOf="@+id/vaciar"
+        tools:ignore="MissingConstraints" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
