@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Changer</title>
+</head>
+
+<style>
+    body {
+        background: #333;
+        color: #fff;
+        font-family: Arial, Helvetica, sans-serif;
+        min-height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: gold;
+        letter-spacing: 2px;
+    }
+
+    div#marco {
+        border: 2px solid gold;
+        border-radius: 12px;
+        margin: 20px auto;
+        text-align: center;
+        background: #333;
+        padding: 25px 30px;
+    }
+
+    label {
+        display: inline-block;
+        width: 80px;
+        text-align: right;
+        margin-right: 10px;
+        color: #ffd700;
+        font-weight: bold;
+    }
+
+    input[type="range"] {
+        width: 180px;
+        margin: 10px 0 20px 0;
+        accent-color: gold;
+    }
+
+    select {
+        width: 70px;
+        margin-left: 10px;
+        background-color: #444;
+        color: white;
+        border: 1px solid gold;
+        border-radius: 4px;
+        padding: 4px;
+    }
+
+    #colores {
+        background-color: #fff;
+        width: 200px;
+        height: 300px;
+        margin: 20px auto;
+        border-radius: 10px;
+        border: 2px solid #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        transition: all 0.3s ease;
+    }
+</style>
+
+<body>
+    <h2>Cambio de colores</h2>
+    <div id='marco'>
+        <div>
+            <label for="rojo">Rojo</label>
+            <input type="range" min="0" max="255" step='1' value="255" id="rojo">
+            <select id="srojo"></select>
+        </div>
+
+        <div>
+            <label for="verde">Verde</label>
+            <input type="range" min="0" max="255" step='1' value="255" id="verde">
+            <select id="sverde"></select>
+        </div>
+
+        <div>
+            <label for="azul">Azul</label>
+            <input type="range" min="0" max="255" step='1' value="255" id="azul">
+            <select id="sazul"></select>
+        </div>
+
+        <div>
+            <label for="alpha">Opacidad</label>
+            <input type="range" min="0" max="1" step="0.1" value="1" id="alpha">
+            <select id="salpha"></select>
+        </div>
+
+        <div>
+            <label for="ancho">Ancho</label>
+            <input type="range" min="200" max="1000" value="200" id="ancho">
+            <select id="sancho"></select>
+        </div>
+    </div>
+    
+    <div id="colores"></div>
+
+    <script>
+        function rellenar(destino, li, ls, step = 1, decimales = false) {
+            destino.innerHTML = '';
+
+            for (let i = li; i <= ls + step / 2; i += step) {
+                let valor = decimales ? parseFloat(i.toFixed(1)) : Math.round(i);
+                let option = document.createElement("option");
+                option.value = valor.toFixed(decimales ? 1 : 0);
+                option.textContent = option.value;
+                destino.appendChild(option);
+            }
+        }
+
+        function cambio(quien) {
+            let destino = document.getElementById("colores");
+            let vancho = parseInt(document.getElementById("ancho").value);
+            let vrojo = parseInt(document.getElementById("rojo").value);
+            let vverde = parseInt(document.getElementById("verde").value);
+            let vazul = parseInt(document.getElementById("azul").value);
+            let valfa = parseFloat(document.getElementById("alpha").value);
+
+            destino.style.backgroundColor = `rgba(${vrojo},${vverde},${vazul},${valfa})`;
+            destino.style.width = `${vancho}px`;
+
+            // Sincroniza con el select
+            if (quien && quien.id) {
+                let otrodestino = "s" + quien.id;
+                let selectElement = document.getElementById(otrodestino);
+                if (selectElement) {
+                    selectElement.value = parseFloat(quien.value).toFixed(quien.id === "alpha" ? 1 : 0);
+                }
+            }
+        }
+
+        function scambio(quien) {
+            let n = parseFloat(quien.value);
+            let destinoId = quien.id.substring(1);
+            let inputElement = document.getElementById(destinoId);
+            if (inputElement) {
+                inputElement.value = n;
+                cambio(inputElement);
+            }
+        }
+
+        function inicioNew(color) {
+            let origen = document.getElementById(color);
+            let destino = document.getElementById("s" + color);
+            if (!origen || !destino) return;
+
+            let min = parseFloat(origen.min);
+            let max = parseFloat(origen.max);
+            let step = parseFloat(origen.step);
+
+            if (color === "alpha") {
+                rellenar(destino, min, max, step, true);
+            } else {
+                rellenar(destino, min, max, 1, false);
+            }
+
+            destino.value = parseFloat(origen.value).toFixed(color === "alpha" ? 1 : 0);
+
+            destino.addEventListener('change', () => scambio(destino));
+            origen.addEventListener('input', () => cambio(origen));
+
+            cambio(origen);
+        }
+
+        window.addEventListener('load', () => {
+            ["rojo", "verde", "azul", "alpha", "ancho"].forEach(inicioNew);
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let meses = ["Enero", "Febrero", "Marzo", "Abril" , "Mayo", "Junio", "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+        for (let i = 1; i <= meses.length; i++) {
+            document.write(i + " " + meses[i-1] );
+            switch (i){
+                case 1: case 3: case 5: case 7 :case 8 :case 10: case 12:
+                    document.write(31 + "<br>");
+                    break;
+                
+                case 4 :case 6:case 9:case 11:
+                    document.write(30 + "<br>");
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

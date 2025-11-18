@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>memoria</title>
+
+<style>
+    #marco{
+        display: grid;
+        grid-template-columns: repeat(4, 100px);
+        grid-template-rows: repeat(4, 100px);
+        gap: 10px;
+        justify-content: center;
+        margin: 50px auto;
+    }
+    
+    .imagen-contenedor {
+        width: 100px;
+        height: 100px;
+        background-color: #3498db;
+        border: 2px solid #2980b9;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        color: white;
+        transition: all 0.3s ease;
+    }
+    
+    .imagen-contenedor:hover {
+        background-color: #2980b9;
+        transform: scale(1.05);
+    }
+
+    img{
+        width: 100px;
+        height: 100px;
+        border-radius: 10px ;
+    }
+</style>
+</head>
+<body>
+    <div id="marco"></div>
+</body>
+
+<script>
+    let valores = [];
+    let filas = 4;
+    let imagenes = ["bee", "cat", "chicken", "cow", 
+    "duck", "fox", "frog","penguin"];
+    let contadorClick = 0;
+
+    function cargar(){
+        cargarArrayInicial();
+
+        let html = "";
+        for(let i = 0; i < filas; i++){
+            for(let j = 0; j < filas; j++){
+                html += `<div class = "imagen-contenedor"><img src ="img/square.png"></div>`;
+            }
+        }
+        
+        document.getElementById("marco").innerHTML = html;
+        
+        const contenedores = document.querySelectorAll('.imagen-contenedor');
+    
+        contenedores.forEach((contenedor, index) => {
+            contenedor.addEventListener('dblclick', function() {
+                manejarClick(this, index); 
+            });
+        });
+    }
+    
+    function manejarClick(elemento, indice) {
+        contadorClick ++;
+        if(contadorClick > 2){
+
+        }
+        elemento.style.backgroundColor = '#e74c3c';
+        elemento.innerHTML = conseguirImagen(valores[indice]);
+    }
+
+    function cargarArrayInicial(){
+        let temporal = new Array(8);
+        temporal.fill(0);
+        let num;
+        for(let i = 0; i < filas; i++){
+            for(let j = 0; j < filas; j++){
+                do{
+                    
+                    //Valores de 0 a 7 hasta que ese valor en la matriz
+                    //temporal no sea mayor a 1 (que no haya + de 2 unidades)
+                    num = alea(8);
+                }while(temporal[num] > 1);
+                temporal[num]++;
+                
+                valores.push(num);
+            }
+        }
+    }
+
+    function alea(max){
+        return Math.floor(Math.random() * max);
+    }
+
+    function conseguirImagen(num){
+        let imagen =  `<img src="img/${imagenes[num]}.png">`;
+        console.log(imagen);
+        return imagen;
+    }
+    
+    cargar();
+</script>
+</html>

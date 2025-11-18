@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    let vimagenes = ["cee","ingla","japon","spain","usa"];
+    let camino = ".\\gif\\";
+    function cambio(origen){
+        let n = parseInt(origen.innerHTML);
+        document.getElementById("imagen").src=camino + vimagenes[n] + ".gif"
+    }
+</script>
+<style>
+    #marco{
+        width: 300px;
+        margin: 20px auto;
+        border: 5px ridge gold;
+        border-radius: 25px;
+    }
+    #marco p{
+        text-align: left;
+        margin-left: 20px;
+    }
+</style>
+<body>
+    <div id="marco">
+        <p>
+            <img src=".\gif\cee.gif" id='imagen'>
+        </p>
+
+        <p>
+            <button onclick=cambio(this)>0</button>
+            <button onclick=cambio(this)>1</button>
+            <button onclick=cambio(this)>2</button>
+            <button onclick=cambio(this)>3</button>
+            <button onclick=cambio(this)>4</button>
+        </p>
+    </div>
+</body>
+
+</html>
