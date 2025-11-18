@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario</title>
+    <script>
+        const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+        const diaSemana = ["L", "M", "X", "J", "V", "S", "D"];
+        let año;
+
+        function cargar() {
+            let destino = document.getElementById("años");
+            año = (new Date()).getFullYear();
+
+            for (let i = año - 10; i <= año + 10; i++) {
+                let a = document.createElement("option");
+                a.text = i;
+                a.value = i;
+                destino.appendChild(a);
+            }
+
+            destino.selectedIndex = 10;
+            todoelaño();
+        }
+
+        function cambio(){
+            año= document.getElementById("años").value;
+            todoelaño();
+        }
+
+        function todoelaño() {
+            let cadena = "";
+            for (let i = 0; i <= 11; i++) {
+                cadena += calendario_mes(new Date(año, i, 1));
+            }
+            document.getElementById("marco").innerHTML = cadena;
+        }
+        //f es el primer dia de cada mes
+        function calendario_mes(f) {
+            let cadena = "<table>";
+            let mes = f.getMonth();
+            let inicio = f.getDay() == 0 ? 6 : f.getDay() - 1;
+
+            cadena += "<caption>" + meses[mes] + "</caption>";
+            cadena += "<thead><tr>";
+            for (let i = 0; i < diaSemana.length; i++) {
+                cadena += "<th>" + diaSemana[i] + "</th>";
+            }
+            cadena += "</tr></thead>";
+            cadena += "<tbody><tr>";
+
+            for (let i = 0; i < inicio; i++) {
+                cadena += "<td>&nbsp;</td>";
+            }
+
+            while (f.getMonth() === mes) {
+                let diaSemanaActual = f.getDay() === 0 ? 6 : f.getDay() - 1;
+                cadena += "<td>" + f.getDate() + "</td>";
+
+                if (diaSemanaActual === 6) {
+                    cadena += "</tr><tr>";
+                }
+
+                f.setDate(f.getDate() + 1);
+            }
+            // Fill remaining cells in the last row if needed
+            let lastDayOfWeek = (f.getDay() === 0 ? 6 : f.getDay() - 1);
+            if (lastDayOfWeek !== 0) {
+                for (let i = lastDayOfWeek; i < 7; i++) {
+                    cadena += "<td>&nbsp;</td>";
+                }
+            }
+            cadena += "</tr></tbody></table>";
+            return cadena;
+        }
+
+        window.onload = () => {
+            cargar();
+        };
+    </script>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px;
+            width: 300px;
+            display: inline-block;
+            vertical-align: top;
+            border: 1px solid #ccc;
+        }
+
+        caption {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        th,
+        td {
+            border: 1px solid #aaa;
+            text-align: center;
+            width: 40px;
+            height: 40px;
+        }
+        select{
+            margin: 0 auto 20px auto;
+            display: block;
+            text-align: center;
+            width: 100px;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Calendario</h1>
+    <select id="años" onchange="cambio()"></select>
+    <div id="marco"></div>
+</body>
+
+</html>

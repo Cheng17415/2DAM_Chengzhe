@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    img{
+        width: 500px;
+    }
+</style>
+<script>
+    let signos = ["aries","tauro","geminis","cancer","leo","virgo","libra","escorpio","sagitario","capricornio","acuario","piscis"]
+    let camino = ".\\signos\\"
+    function cambio(){
+        let fechaInput = new Date(document.getElementById("fecha").value)
+        let num = fechaInput.getDate() + (fechaInput.getMonth() + 1) * 100
+        let signo = signos[getZodiacSign(num)]
+
+        
+        let destino = document.getElementById("im");
+        let cadena = "<img src=\"" + camino +signo + '.jpg\">'
+        
+        destino.innerHTML = cadena
+        
+    }
+    function getZodiacSign(num) {
+            if ((num>= 321) && (num <= 419)) return 0; 
+            else if ((num >= 420) && (num <= 521)) return 1;
+            else if ((num >= 522) && (num <= 620)) return 2;
+            else if ((num >= 621) && (num <= 722)) return 3; 
+            else if ((num >= 723) && (num <= 822)) return 4;
+            else if ((num >= 823) && (num <= 922)) return 5;
+            else if ((num >= 923) && (num <= 1022)) return 6;
+            else if ((num >= 1023) && (num <= 1121)) return 7;
+            else if ((num >= 1222) || (num <= 19)) return 8;
+            else if ((num >= 20) && (num <= 118)) return 9;
+            else if ((num >= 119) && (num <= 220)) return 10;
+            else if ((num >= 221) && (num <= 320)) return 11;
+            return 0;
+        }
+
+</script>
+<body >
+    <div id="marco">
+        <p>
+            <label for="">Fecha</label>
+            <input type="date" id="fecha" onchange=cambio()>
+        </p>
+        <p id="im" onchange= cambio() >
+           
+        </p>
+    </div>
+</body>
+</html>

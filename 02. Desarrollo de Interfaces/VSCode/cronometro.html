@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #imagenes{
+        width: 1000px;
+        margin: 20px auto;
+        text-align: center;
+    }
+    img{
+        width: 100px;
+        height: 150px;
+    }
+
+</style>
+<body>
+    <p id = "imagenes">
+        <img src="./num/0.png" id = "d1" alt="">
+        <img src="./num/0.png" id = "d2" alt="">
+        <img src="./num/dosp.png" id = "d3" alt="">
+        <img src="./num/0.png" id = "d4" alt="">
+        <img src="./num/0.png" id = "d5" alt="">
+        <img src="./num/dosp.png" id = "d6" alt="">
+        <img src="./num/0.png" id = "d7" alt="">
+        <img src="./num/0.png" id = "d8" alt="">
+    </p>
+
+    <p id = "capitales">
+        <select id="cap">
+            <option value="Madrid" selected>Madrid</option>
+            <option value="Pekin">Pekin</option>
+            <option value="Tokio">Tokio</option>
+            <option value="London">London</option>
+        </select>
+    </p>
+ 
+    <script>
+        let i = 1;
+
+        function inicio(){
+            let capital = document.getElementById("cap").value;
+            let tiempo = (new Date());
+            horaR(capital,tiempo);
+            console.log(tiempo.getHours());
+            let stiempo = tiempo.toLocaleTimeString();
+            stiempo.split('').forEach((cambio));
+            i = 1;
+        }
+
+        function cambio(numero){
+            if(i != 3 && i != 6){
+                document.getElementById("d" + i).src="./num/" + numero +".png";    
+            }
+            i++;
+        }
+
+        function horaR(capital,tiempo){
+            switch (capital){
+                case "Madrid":
+                    break;
+                case "Pekin":
+                    tiempo.setHours(tiempo.getHours() + 6);
+                    break;
+                case "Tokio":
+                    tiempo.setHours(tiempo.getHours() + 7);
+                    break;
+                case "London":
+                    tiempo.setHours(tiempo.getHours() - 1);
+                    break;
+            }
+        }
+
+        window.onload=()=>{
+            inicio();
+            setInterval(inicio,1000);
+        }
+    </script>
+</body>
+</html>
