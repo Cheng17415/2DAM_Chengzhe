@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--Formulario en el que una caja de texto quiero un número entero.
+    Quiero que en un select ponga binario, oftal, hexadecimal
+    Queremos que cuango elija binario, en otro campo tenga binario-->
+ 
+    <script>
+        let ventrada, vbasE,vbasR, vresultado;
+        function cargar() {
+            ventrada = document.getElementById("entrada");
+            vbasE = document.getElementById("basE");
+            vbasR = document.getElementById("basR");
+            vresultado = document.getElementById("resultado");
+        }
+
+        function dec_a_bin() {
+            let n = parseInt(ventrada.value);
+            let res = "";
+            while (n != 0) {
+                res = (n % 2).toString() + res;
+                n = parseInt(n / 2)
+            }
+            vresultado.value = res;
+        }
+        function dec_a_oct() {
+            let n = parseInt(ventrada.value);
+            let res = "";
+            while (n != 0) {
+                let c = n%8;
+                if ( c > 8 ) c = c + 2;
+                res = c.toString() + res;
+                n = parseInt(n / 8)
+            }
+            vresultado.value = res;
+        }
+        function dec_a_hec() {
+            let cadena = "0123456789ABCDEF";
+            let n = parseInt(ventrada.value);
+            let res = "";
+            while (n != 0) {
+                res = cadena[n % 16] + res;
+                n = parseInt(n / 16)
+            }
+            vresultado.value = res;
+        }
+
+        function cambio() {
+            switch (vbasR.value) {
+                case "Binario":
+                    dec_a_bin();
+                    break;
+                case "Octal":
+                    dec_a_oct();
+                    break;
+                case "Hexadecimal":
+                    dec_a_hec();
+                    break;
+            }
+        }
+
+    </script>
+</head>
+<style>
+    div {
+        width: 400px;
+        margin: 20px;
+        padding: 20px;
+        border: 2px solid gold;
+        border-radius: 10px;
+        margin: auto;
+    }
+</style>
+
+<body onload=cargar()>
+
+    <div>
+        <p>
+            <label for="">Base</label>
+            <input onchange=cambio() type="number" id="entrada">
+            <select onchange=cambio() id="basE">
+                <option value="Decimal" selected>Decimal</option>
+                <option value="Binario">Binario</option>
+                <option value="Octal">Octal</option>
+                <option value="Hexadecimal">Hexadecimal</option>
+            </select>
+            
+        </p>
+        
+        <p>
+            <label for="">Base resultado</label>
+            <select onchange=cambio() id="basR">
+                <option value="Decimal">Decimal</option>
+                <option value="Binario" selected>Binario</option>
+                <option value="Octal">Octal</option>
+                <option value="Hexadecimal">Hexadecimal</option>
+            </select>
+        </p>
+        <p>
+            <label for="">Resultado</label>
+            <input type="text" id="resultado" disabled>
+        </p>
+    </div>
+</body>
+
+</html>

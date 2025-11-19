@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        // Función de redondeo corregida
+        function redondear(numero, decimales) {
+            let n = Math.pow(10, decimales);
+            return Math.round(numero * n) / n;
+        }
+
+        // Función de conversión corregida
+        function increment(quien) {
+            let vid = quien.id;
+            let vgc = 0, vgf = 0, vgk = 0;
+            switch (vid) {
+                case "GC": // Grados Celsius
+                    vgc = parseFloat(quien.value);
+                    vgf = (vgc * 9) / 5 + 32;
+                    vgk = vgc + 273.15;
+                    break;
+                case "GF": // Grados Fahrenheit
+                    vgf = parseFloat(quien.value);
+                    vgc = (vgf - 32) * 5 / 9;
+                    vgk = vgc + 273.15;
+                    break;
+                case "GK": // Grados Kelvin
+                    vgk = parseFloat(quien.value);
+                    vgc = vgk - 273.15;
+                    vgf = (vgc * 9) / 5 + 32;
+                    break;
+            }
+
+            document.getElementById("GC").value = redondear(vgc, 2);
+            document.getElementById("GF").value = redondear(vgf, 2);
+            document.getElementById("GK").value = redondear(vgk, 2);
+        }
+
+        // Función para los botones (+1/-1)
+        function cambio(origen, quien, tipo) {
+            let vdestino = document.getElementById(quien);
+            if(tipo=="B"){
+                vdestino.value = parseFloat(vdestino.value) + parseInt(origen.innerHTML);
+            }
+            else{
+                vdestino.value = parseFloat(vdestino.value) + parseInt(origen.value);
+            }
+        increment(vdestino);  
+        }
+        
+        // NUEVA Función para el Select
+        function cambio_select(origen_select, quien_input) {
+            let vdestino = document.getElementById(quien_input);
+            vdestino.value = parseFloat(vdestino.value) + parseInt(origen_select.value);
+            increment(vdestino);          
+        }
+    </script>
+
+    <style>
+        fieldset {
+            background-color: #102C57;
+            width: 350px;
+            margin: 50px auto;
+            border-radius: 5px;
+            border: rgba(0, 255, 149, 0.068) solid;
+            padding: 20px;
+        }
+
+        fieldset input[type="number"] {
+            box-shadow: 3px 3px 2px 0px #E2E2E2;
+            background-color: #FFFFFF;
+            color: #000000;
+            width: 70px;
+        }
+
+        legend {
+            background-color: #DAC0A3;
+            color: #1F2937;
+            padding: 10px;
+            border-radius: 5px;
+            border: #DAC0A3 solid;
+        }
+
+        /* Ajuste de estilos para una mejor visualización */
+        p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        label {
+            min-width: 150px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <fieldset>
+        <legend>Conversion de temperaturas</legend>
+        <p>
+            <label for="GC">Grados Centigrados:</label>
+            <input onchange="increment(this)" id="GC" type="number" value="0">
+            <button onclick="cambio(this,'GC', 'B')">+1</button>
+            <button onclick="cambio(this,'GC', 'B')">-1</button>
+            <select onchange="cambio(this, 'GC', 'S')">
+                <option value="10">+10</option>
+                <option value="5">+5</option>
+                <option value="0" selected>0</option>
+                <option value="-1">-1</option>
+                <option value="-5">-5</option>
+                <option value="-10">-10</option>
+            </select>
+        </p>
+        <p>
+            <label for="GF">Grados Fahrenheit :</label>
+            <input onchange="increment(this)" id="GF" type="number" value="32">
+            <button onclick="cambio(this,'GF', 'B')">+1</button>
+            <button onclick="cambio(this,'GF', 'B')">-1</button>
+            <select onchange="cambio(this, 'GF', 'S')">
+                <option value="10">+10</option>
+                <option value="5">+5</option>
+                <option value="0" selected>0</option>
+                <option value="-1">-1</option>
+                <option value="-5">-5</option>
+                <option value="-10">-10</option>
+            </select>
+        </p>
+        <p>
+            <label for="GK">Grados kelvin:</label>
+            <input onchange="increment(this)" id="GK" type="number" value="273.15">
+            <button onclick="cambio(this,'GK', 'B')">+1</button>
+            <button onclick="cambio(this,'GK', 'B')">-1</button>
+            <select onchange="cambio(this, 'GK', 'S')">
+                <option value="10">+10</option>
+                <option value="5">+5</option>
+                <option value="0" selected>0</option>
+                <option value="-1">-1</option>
+                <option value="-5">-5</option>
+                <option value="-10">-10</option>
+            </select>
+        </p>
+    </fieldset>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora simple</title>
+    <script>
+        // La función ya no necesita argumentos, ya que leerá todo por sus IDs
+        function operacion() {
+            // 1. OBTENER VALORES y OPERADOR por id
+            let valor1 = parseInt(document.getElementById('valor1').value);
+            let valor2 = parseInt(document.getElementById('valor2').value);
+            let operador = document.getElementById('operador').value;
+            let result;
+
+            switch (operador) {
+                case "+":
+                    result = valor1 + valor2;
+                    break;
+                case "-":
+                    result = valor1 - valor2;
+                    break;
+                case "*":
+                    result = valor1 * valor2;
+                    break;
+                case "/":
+                    if (valor2 !== 0) {
+                        result = valor1 / valor2;
+                    } else {
+                        result = "Error: Div por cero";
+                    }
+                    break;
+            }
+
+            // 3. MOSTRAR RESULTADO
+            document.getElementById("resultado").value = result;
+        }
+
+        function limpiarCampos() {
+            // 1. Resetear los valores de los inputs al valor inicial ("0" o "32", etc.)
+            document.getElementById('valor1').value = "0";
+            document.getElementById('valor2').value = "0";
+            document.getElementById('resultado').value = "0";
+
+            // 2. Resetear el select a la operación inicial (Suma)
+            document.getElementById('operador').value = "+";
+
+            // 3. Recalcular la operación con los nuevos valores
+            operacion();
+        }
+    </script>
+    <style>
+        body {
+            background-color: #E7E6E1;
+        }
+
+        fieldset {
+            background-color: #537791;
+        }
+
+        fieldset input[type="number"] {
+            width: 70px;
+        }
+    </style>
+</head>
+
+<body>
+    <fieldset>
+        <legend>Calculadora simple</legend>
+        <p>
+            <label for="valor1">Ingrese primer valor:</label>
+            <input id="valor1" type="number" value="0" oninput="operacion()">
+        </p>
+        <p>
+            <label for="operador">Seleccione operación:</label>
+            <select id="operador" onchange="operacion()">
+                <option value="+" selected>Suma (+)</option>
+                <option value="-">Restar (-)</option>
+                <option value="*">Multiplicar (*)</option>
+                <option value="/">Division (/)</option>
+            </select>
+        </p>
+        <p>
+            <label for="valor2">Ingrese segundo valor:</label>
+            <input id="valor2" type="number" value="0" oninput="operacion()">
+        </p>
+        <p>
+            <label for="resultado">Resultado:</label>
+            <input id="resultado" type="text" disabled value="0">
+        </p>
+        <p>
+            <button type="button" onclick="limpiarCampos()">Limpiar Campos</button>
+        </p>
+    </fieldset>
+</body>
+
+</html>

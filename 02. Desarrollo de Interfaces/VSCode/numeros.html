@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload ="inicio()">
+    <p style="text-align: center;">
+        <img src="./num/0.png" id = "imagen" alt="">
+    </p>
+    
+    <script>
+        let n = 0;
+        function cambio(){
+            n++;
+            if(n==10) n = 1;
+            document.getElementById("imagen").src="./num/" + n +".png";
+        }
+
+        function inicio(){
+            setTimeout(() =>{
+                cambio();
+                inicio();
+            },500);
+        }
+    </script>
+</body>
+</html>

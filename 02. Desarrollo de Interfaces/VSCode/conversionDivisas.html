@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conversion</title>
+  <style>
+    body {
+      font-size: large;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    input {
+      width: 100px;
+      border: 1px solid black;
+      border-radius: 10px;
+    }
+
+    .same {
+      background-color: yellow;
+      border: 1px solid gray;
+    }
+
+    table {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #form-equivalencia {
+      margin-top: 30px;
+    }
+
+    caption {
+      margin-bottom: 20px;
+    }
+
+    button {
+      margin-left: 10px;
+      margin-right: 10px;
+      width: 50px;
+      background-color: rgb(89, 94, 249);
+      border: 1px solid black;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .input {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <table>
+    <tr>
+      <th></th>
+      <td align="center"><img src="gif/usa.gif"></td>
+      <td align="center"><img src="gif/cee.gif"></td>
+      <td align="center"><img src="gif/japon.gif"></td>
+      <td align="center"><img src="gif/ingla.gif"></td>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Dólar</th>
+      <th>Euro</th>
+      <th>Yen</th>
+      <th>Libra</th>
+    </tr>
+
+    <tr>
+      <th>Dólar</th>
+      <td><input type="number" id="dolar-dolar" disabled class="same"></td>
+      <td><input type="number" id="dolar-euro"></td>
+      <td><input type="number" id="dolar-yen"></td>
+      <td><input type="number" id="dolar-libra"></td>
+    </tr>
+    <tr>
+      <th>Euro</th>
+      <td><input type="number" id="euro-dolar" disabled></td>
+      <td><input type="number" id="euro-euro" disabled class="same"></td>
+      <td><input type="number" id="euro-yen" disabled></td>
+      <td><input type="number" id="euro-libra" disabled></td>
+    </tr>
+    <tr>
+      <th>Yen</th>
+      <td><input type="number" id="yen-dolar" disabled></td>
+      <td><input type="number" id="yen-euro" disabled></td>
+      <td><input type="number" id="yen-yen" disabled class="same"></td>
+      <td><input type="number" id="yen-libra" disabled></td>
+    </tr>
+    <tr>
+      <th>Libra</th>
+      <td><input type="number" id="libra-dolar" disabled></td>
+      <td><input type="number" id="libra-euro" disabled></td>
+      <td><input type="number" id="libra-yen" disabled></td>
+      <td><input type="number" id="libra-libra" disabled class="same"></td>
+    </tr>
+
+  </table>
+
+  <form id="form-equivalencia">
+    <table id="equivalencia">
+      <caption>Equivalencia de monedas</caption>
+
+      <tr>
+        <th>Dólar</th>
+        <td><button type="button" class="dolar-boton">+1</button></td>
+        <td><input type="number" id="dolar-inp" class="input" value="0" step="any">$</td>
+        <td><button type="button" class="dolar-boton">-1</button></td>
+        <td> <select class="opciones" id="dolar-select" data-tipo="dolar"></select></td>
+      </tr>
+
+      <tr>
+        <th>Euro</th>
+        <td><button type="button" class="euro-boton">+1</button></td>
+        <td><input type="number" id="euro-inp" class="input" value="0" step="any">€</td>
+        <td><button type="button" class="euro-boton">-1</button></td>
+        <td> <select class="opciones" id="euro-select" data-tipo="euro"></select></td>
+      </tr>
+
+      <tr>
+        <th>Yen</th>
+        <td><button type="button" class="yen-boton">+1</button></td>
+        <td><input type="number" id="yen-inp" class="input" value="0" step="any">¥</td>
+        <td><button type="button" class="yen-boton">-1</button></td>
+        <td> <select class="opciones" id="yen-select" data-tipo="yen"></select></td>
+      </tr>
+
+      <tr>
+        <th>Libra</th>
+        <td><button type="button" class="libra-boton">+1</button></td>
+        <td><input type="number" id="libra-inp" class="input" value="0" step="any">£</td>
+        <td><button type="button" class="libra-boton">-1</button></td>
+        <td> <select class="opciones" id="libra-select" data-tipo="libra"></select></td>
+      </tr>
+    </table>
+
+    <div style="text-align:center; margin-top:15px;">
+      <button type="reset" id="reset-btn">Reset</button>
+    </div>
+  </form>
+
+  <script>
+  let valores = {
+    dolar: 1,
+    euro: 0.8626,
+    yen: 152.62,
+    libra: 0.7652
+  };
+  const divisas = ["dolar", "euro", "yen", "libra"];
+
+  // Inicializa los selectores con opciones y agrega eventos
+  function inicioSelector() {
+    document.querySelectorAll(".opciones").forEach(selector => {
+      agregarOpciones(selector, -2, 2);
+      selector.addEventListener("change", () => cambioInput(selector));
+    });
+  }
+
+  // Agrega opciones a un selector
+  function agregarOpciones(selector, min, max) {
+    for (let i = min; i <= max; i++) {
+      let opcion = document.createElement("option");
+      opcion.text = i;
+      opcion.value = i;
+      selector.appendChild(opcion);
+    }
+  }
+
+  // Actualiza el valor del input asociado al selector
+  function cambioInput(selector) {
+    let elem = document.getElementById(`${selector.dataset.tipo}-inp`);
+    elem.value = Number(selector.value) + Number(elem.value);
+    elem.dispatchEvent(new Event('change'));
+  }
+
+  // Inicializa los eventos de equivalencia
+  function inicioEquivalencia() {
+    inputListener();
+    divisas.forEach(valor => {
+      let input = document.getElementById(`${valor}-inp`);
+      agregarEventosBotones(valor, input);
+    });
+  }
+
+  // Agrega eventos a los botones de incremento y decremento
+  function agregarEventosBotones(divisa, input) {
+    document.querySelectorAll(`.${divisa}-boton`).forEach(boton => {
+      boton.addEventListener('click', () => {
+        input.value = Number(input.value) + Number(boton.innerHTML);
+        input.dispatchEvent(new Event('change'));
+      });
+    });
+  }
+
+  // Escucha cambios en los inputs y actualiza los valores relacionados
+  function inputListener() {
+    divisas.forEach(origen => {
+      let inputOrigen = document.getElementById(`${origen}-inp`);
+      divisas.forEach(destino => {
+        if (origen === destino) return;
+        let inputDestino = document.getElementById(`${destino}-inp`);
+        inputOrigen.addEventListener("change", () => {
+          inputDestino.value = calcularConversion(origen, destino, inputOrigen.value);
+        });
+      });
+    });
+  }
+
+  // Calcula la conversión entre dos divisas
+  function calcularConversion(origen, destino, valor) {
+    let resultado = valores[destino] / valores[origen];
+    return (resultado * valor).toFixed(6);
+  }
+
+  // Inicializa los eventos y carga los valores iniciales
+  function inicio() {
+    agregarEventosInputs();
+    inicioEquivalencia();
+    inicioSelector();
+    cargarTabla();
+  }
+
+  // Agrega eventos a los inputs de la tabla principal
+  function agregarEventosInputs() {
+    ["dolar-euro", "dolar-yen", "dolar-libra"].forEach(id => {
+      let elem = document.getElementById(id);
+      elem.addEventListener("change", () => cambio(elem));
+    });
+  }
+
+  // Actualiza los valores de la tabla y los inputs
+  function cambio(inputElem) {
+    let texto = inputElem.id.split("-")[1]; // Obtiene la divisa destino
+    valores[texto] = Number(inputElem.value);
+    cargarTabla();
+    actualizarInputs();
+  }
+
+  // Recalcula toda la tabla de conversiones
+  function cargarTabla() {
+    divisas.forEach(origen => {
+      divisas.forEach(destino => {
+        if (origen === destino) return;
+        let inp = document.getElementById(`${origen}-${destino}`);
+        inp.value = calcularConversion(origen, destino, 1);
+      });
+    });
+  }
+
+  // Actualiza los inputs del formulario
+  function actualizarInputs() {
+    divisas.forEach(divisa => {
+      let input = document.getElementById(`${divisa}-inp`);
+      input.dispatchEvent(new Event('change'));
+    });
+  }
+
+  window.addEventListener('load', () => inicio());
+</script>
+</body>
+
+</html>
+
+

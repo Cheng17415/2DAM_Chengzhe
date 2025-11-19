@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--let letras = "TRWAGMYFPDXBNJZSQVHLCKE";
+        let dni = "X9059350";
+        alert(dni);
+        let posi = "XYZ".indexOf(dni[0]);
+        switch (posi){
+            case 0:
+                dni = dni.replace("X","0");
+                break;
+            case 1:
+                dni = dni.replace("Y","1");
+                break;
+            case 2:
+                dni = dni.replace("Z","2");
+                break;
+        }
+        let numero = parseInt(dni) % 23;
+        document.write("La letra es " + letras[numero] + "<br>");*/-->
+    <script>
+        let cadena = "TRWAGMYFPDXBNJZSQVHLCKE";
+        let vdni, vletra;
+        function cargar() {
+            vdni = document.getElementById("dni");
+            vletra = document.getElementById("letra");
+        }
+        function cambio() {
+            let valor = vdni.value;
+            let pos = "XYZ".indexOf(valor[0]);
+            let posi;
+            if (pos == -1) {
+                posi = parseInt(valor) % 23;
+                
+            } else {
+                posi = parseInt(pos.toString() + valor.substring(1)) % 23;
+            }
+            vletra.value = cadena[posi];
+        }
+    </script>
+    <style>
+        body {
+            background-color: #E7E6E1;
+        }
+
+        fieldset {
+            background-color: #537791;
+        }
+    </style>
+</head>
+
+<body onload=cargar()>
+    <input onchange=cambio() type="text" id="dni">
+    <input type="text" id="letra" disabled>
+</body>
+
+
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario</title>
+</head>
+
+<body>
+    <div id="marco">
+        <p style="text-align: center;">
+            <label for="hora_curso">Hora del Curso</label>
+            <input type="number" id="hora_curso">
+        </p>
+        <p style="text-align: center;">
+            <label for="hora_curso">Fecha de Inicio</label>
+            <input type="date" id="fecha_inicio">
+        </p>
+        <fieldset id="horas_dia">
+        </fieldset>
+    </div>
+
+    <div id="tabla"></div>
+    <script>
+        let horas_totales = 200;
+        let horas = 8;
+        let fecha_inicio = Date.now();
+
+        function determinarDiaSemana(fecha) {
+            let diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+            return diasSemana[fecha.getDay()];
+        }
+
+        function setProximaFecha(fecha) {
+            do {
+                fecha.setDate(fecha.getDate() + 1);
+            } while (fecha.getDay() === 0 || fecha.getDay() === 6);
+            
+            return fecha;
+        }
+
+        function cambio(){
+            horas_totales = parseFloat(document.getElementById('hora_curso').value);
+            horas = document.querySelector('input[name="horas"]:checked').value;
+            fecha_inicio = document.getElementById('fecha_inicio').value;
+            updateTabla(horas_totales, horas,fecha_inicio);
+        }
+
+        function cargar() {
+            let horasDiaElem = document.getElementById("horas_dia");
+            let texto_horas = '<legend>Horas/Dia</legend>';
+            for (let i = 1; i <= 8; i++) {
+                texto_horas += `<input type="radio" name="horas" id="rad${i}" value="${i}">
+                                <label for="rad${i}">${i} hora</label><br>`;
+            }
+            horasDiaElem.innerHTML = texto_horas;
+
+        }
+
+        function updateTabla(horas_totales, horasPorDia, fecha_inicio) {
+            const tabla = document.getElementById('tabla');
+
+            const perDay = Number(horasPorDia) || 8;
+            const total = Number(horas_totales) || 0;
+
+            // normalizar/validar fecha de inicio
+            let fecha = fecha_inicio ? new Date(fecha_inicio) : new Date();
+            if (isNaN(fecha)) fecha = new Date();
+
+            let texto_tabla = '<table>';
+            texto_tabla += '<tr>';
+            texto_tabla += '<th>Horas/Día</th>';
+            texto_tabla += '<th>Σ Horas</th>';
+            texto_tabla += '<th>Día</th>';
+            texto_tabla += '<th>Fecha</th>';
+            texto_tabla += '</tr>';
+
+            const dias = Math.floor(total / perDay);
+            const diasRem = total % perDay;
+            let sumHoras = 0;
+
+            const formatFecha = (d) => {
+                const dd = String(d.getDate()).padStart(2, '0');
+                const mm = String(d.getMonth() + 1).padStart(2, '0'); // +1 porque getMonth() es 0-based
+                const yyyy = d.getFullYear();
+                return `${dd}-${mm}-${yyyy}`;
+            };
+
+            for (let i = 0; i < dias; i++) {
+                sumHoras += perDay;
+                texto_tabla += '<tr>';
+                texto_tabla += `<td>${perDay}</td>`;
+                texto_tabla += `<td>${sumHoras}</td>`;
+                texto_tabla += `<td>${determinarDiaSemana(fecha)}</td>`;
+                texto_tabla += `<td>${formatFecha(fecha)}</td>`;
+                texto_tabla += '</tr>';
+                setProximaFecha(fecha);
+            }
+
+            if (diasRem > 0) {
+                sumHoras += diasRem;
+                texto_tabla += '<tr>';
+                texto_tabla += `<td>${diasRem}</td>`;
+                texto_tabla += `<td>${sumHoras}</td>`;
+                texto_tabla += `<td>${determinarDiaSemana(fecha)}</td>`;
+                texto_tabla += `<td>${formatFecha(fecha)}</td>`;
+                texto_tabla += '</tr>';
+            }
+
+            texto_tabla += '</table>';
+            tabla.innerHTML = texto_tabla;
+        }
+
+        window.addEventListener("load", () => { cargar(); });
+        window.addEventListener("change",()=> {cambio();});
+        //Cargar hora
+        //Fecha inicio curso
+        //Horas por día
+        //Mostrar el calendario abajo
+    </script>
+</body>
+
+</html>

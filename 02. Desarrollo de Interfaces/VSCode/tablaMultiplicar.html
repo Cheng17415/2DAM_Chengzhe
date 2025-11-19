@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table</title>
+    <style>
+        #marco {
+            width: 80%;
+            margin: 20px auto;
+            font-family: Arial, sans-serif;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        caption {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        tr:hover {
+            background-color: #e9f7e9;
+        }
+        
+        td:hover {
+            background-color: #c8e6c9;
+        }
+    </style>
+</head>
+<body onload="cargar()">
+    <div id="marco"></div>
+
+    <script>
+        function cargar() {
+            let destino = document.getElementById("marco");
+            destino.innerHTML = "";
+            let cadena = '<table>';
+            cadena += '<caption>Tabla de multiplicar</caption>';
+            cadena += '<thead>';
+            cadena += '<tr>';
+            cadena += '<th></th>';
+            
+            // Create header row with numbers 0 to 10
+            for(let i = 0; i <= 10; i++) {
+                cadena += '<th>' + i + '</th>';
+            }
+            cadena += '</tr>';
+            cadena += '</thead>';
+            
+            cadena += '<tbody>';
+            // Create table body with multiplication results
+            for (let i = 0; i <= 10; i++) {
+                cadena += '<tr>';
+                cadena += '<th>' + i + '</th>';
+                
+                // For each row, multiply by columns 0 to 10
+                for (let j = 0; j <= 10; j++) {
+                    cadena += '<td>' + (i * j) + '</td>';
+                }
+                cadena += '</tr>';
+            }
+            cadena += '</tbody>';
+            cadena += '</table>';
+            
+            destino.innerHTML = cadena;
+        }
+    </script>
+</body>
+</html>
