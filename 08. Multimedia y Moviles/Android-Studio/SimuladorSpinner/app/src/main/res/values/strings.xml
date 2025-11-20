@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SimuladorSpinner</string>
+    <string-array name="matriz">
+        <item>+</item>
+        <item>-</item>
+        <item>*</item>
+        <item>/</item>
+    </string-array>
+</resources>
