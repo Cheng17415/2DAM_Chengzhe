@@ -25,6 +25,7 @@ public class Inicio {
 				oos = new ObjectOutputStream(new FileOutputStream(fichero));
 			} else {
 				oos = new ObjectOutputStream(new FileOutputStream(fichero, true)) {
+					//Para que no haya problemas con el header del archivo. Si no, se corrompería.
 					protected void writeStreamHeader() throws IOException {
 						reset();
 					}
