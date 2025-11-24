@@ -23,13 +23,10 @@ public class Ejer05 {
 
 class Tarea2 implements Runnable{
 	private String nombre;
-	private boolean activado;
 	public Tarea2(String nombre) {
 		super();
 		this.nombre = nombre;
 	}
-	
-	public void desactivar() {this.activado =true;}
 
 	@Override
 	public void run() {

@@ -1,9 +1,6 @@
 package _01_hilos;
 
 public class Ejer01 {
-
-	private static short num = 100;
-
 	public static void main(String[] args) {
 		//Primera implementación
 		// Thread h1 = new Thread(new Ejer01().new RunnableImpl());
@@ -35,7 +32,6 @@ class Tarea extends Thread {
 	public void run() {
 		for (int i = 0; i < 10; i++) {
 			System.out.println("Soy un hilo y esto es lo que hago " + getName());
-
 		}
 	}
 }
