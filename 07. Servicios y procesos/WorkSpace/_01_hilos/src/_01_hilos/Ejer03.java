@@ -1,9 +1,9 @@
-package primerosHilos;
+package _01_hilos;
 
 import java.util.Date;
 import java.util.Scanner;
 
-public class Ejer3 {
+public class Ejer03 {
 	
 	static Scanner sc = new Scanner(System.in);
 	public static void main(String[] args) {
@@ -43,7 +43,6 @@ public class Ejer3 {
 			try {
 				hilos[i].join();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

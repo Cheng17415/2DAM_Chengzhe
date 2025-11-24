@@ -1,4 +1,4 @@
-package primerosHilos;
+package _01_hilos;
 
 public class Ejer01 {
 

@@ -1,6 +1,6 @@
-package primerosHilos;
+package _01_hilos;
 
-public class Ejer4InterrumpirHilo {
+public class Ejer04InterrumpirHilo {
 	public static void main(String[] args) throws InterruptedException {
 		//Hilo que queremos interrumpir
 		Thread workerTask = new Thread(new WorkerTask(),"Trabajo");
