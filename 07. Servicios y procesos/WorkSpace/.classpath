@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="AdivinarNumOculto/src"/>
+	<classpathentry kind="src" path="BancoSincronizacion/src"/>
+	<classpathentry kind="src" path="EjerciciosCasa/src"/>
+	<classpathentry kind="src" path="GrandesAlmacenes/src"/>
+	<classpathentry kind="src" path="InterBloqueo/src"/>
+	<classpathentry kind="src" path="PrimerosEjercicios/src"/>
+	<classpathentry kind="src" path="PrimerosHilos/src"/>
+	<classpathentry kind="src" path="ProductoresConsumidores/src"/>
+	<classpathentry kind="src" path="ProductoresConsumidores(extend)/src"/>
+	<classpathentry kind="src" path="ProductoresConsumidores2/src"/>
+	<classpathentry kind="src" path="ProductoresConsumidores3/src"/>
+	<classpathentry kind="src" path="SincronizacionHilos/src"/>
+	<classpathentry kind="output" path="Nuevo/bin"/>
+</classpath>

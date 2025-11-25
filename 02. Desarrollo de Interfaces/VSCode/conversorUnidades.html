@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de unidades</title>
+</head>
+<style>
+    body{
+        font-size: larger;
+    }
+    #marco{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+    legend{
+        border: 1px solid black;
+        border-radius: 10px;
+        background-color: aquamarine;
+    }
+    fieldset{
+        border: 1px solid black;
+        border-radius: 10px;
+        text-align: center;
+        background-color: aquamarine;
+        width: 400px;
+    }
+
+    div{
+        margin: 10px;
+    }
+</style>
+<body>
+    <div id="marco">
+        <fieldset>
+            <legend>Conversor de Unidades</legend>
+            <div>
+                <select id="medidas"></select>
+            </div>
+            <div>
+                <div>
+                    <input type="number" id="inpNum">
+                    <select id="selInput"></select>
+                </div>
+                
+                =
+                
+                <div>
+                    <input type="number" id="outNum" disabled>
+                    <select id="selOutput"></select>
+                </div>
+                
+            </div>
+        </fieldset>
+    </div>
+
+    <script>
+        const medidas = ["Longitud","Masa","Capacidad", "Superficie", "Volumen"];
+        const longitudes =["Kilómetro","Hectómetro","Decámetro","Metro","Decímetro","Centímetro","Milímetro"];
+        const masas = ["Kilogramo","Hectogramo","Decagramo","Gramo","Decigramo","Centigramo","Miligramo"];
+        const capacidades = ["Kilolitro","Hectolitro","Decalitro","Litro","Decilitro","Centilitro","Mililitro"];
+        const superficies = ["km2","hm2","dam2","m2","dm2","cm2","mm2"];
+        const volumenes = ["km3","hm3","dam3","m3","dm3","cm3","mm3"];
+        
+        //ELEMENTOS GLOBALES
+        const selMed = document.getElementById("medidas");
+        const selInput = document.getElementById("selInput");
+        const selOutput = document.getElementById("selOutput");
+        const inpNum = document.getElementById("inpNum");
+        const outNum = document.getElementById("outNum");
+
+        let arrActual = longitudes;
+        let potencia = 1; //2 para superficie y 3 para volumen.
+
+        function inicio() {
+    
+            // Cargar selectores
+            cargarSelect(selMed, medidas);
+            cargarSelect(selInput, longitudes);
+            cargarSelect(selOutput, longitudes);
+
+            // Inicializar evento de medidas
+            selMed.addEventListener("change", () => {
+                cambioMedidas(selMed.value);
+            });
+
+            // Inicializar evento de selectores
+            selInput.addEventListener("change",()=>{
+                realizarConversion();  
+            });
+            selOutput.addEventListener("change",()=>{
+                realizarConversion();     
+            });
+
+            // Inicializar eventos de input
+            const input = document.getElementById("inpNum");
+            input.addEventListener("input", () => realizarConversion());
+        }
+
+        function realizarConversion() {          
+            if(inpNum.value === "" || inpNum.value === null) {
+                outNum.value = "";
+                return;
+            }
+            
+            let valor = parseFloat(inpNum.value);
+
+            const indexIn = selInput.selectedIndex;
+            const indexOut = selOutput.selectedIndex;
+            
+            // Calcular la diferencia de índices
+            let diferencia = indexOut - indexIn;
+            
+            let factorConversion = Math.pow(10, diferencia * potencia);
+            let resultado = valor * factorConversion;
+            
+            outNum.value = resultado;
+        }
+        
+        function cambioMedidas(valorMedida){
+            inpNum.value = "";
+            outNum.value = "";
+            switch(valorMedida){
+                case "Longitud":
+                    arrActual = longitudes;
+                    potencia = 1;
+                    break;
+                case "Masa":
+                    arrActual = masas;
+                    potencia = 1;
+                    break;
+                case "Capacidad":
+                    arrActual = capacidades;
+                    potencia = 1;
+                    break;
+                case "Superficie":
+                    arrActual = superficies;
+                    potencia = 2;
+                    break;
+                case "Volumen":
+                    arrActual = volumenes;
+                    potencia = 3;
+                    break;
+            }
+            cargarSelect(selInput,arrActual);
+            cargarSelect(selOutput,arrActual);
+        }
+
+        function cargarSelect(select, array){
+            select.innerHTML ="";
+            array.forEach(elem =>{
+                let opcion = document.createElement("option");
+                opcion.value = elem;
+                opcion.innerHTML = elem;
+                select.appendChild(opcion);
+            });
+        }
+        
+        inicio();
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<script type="text/javascript">
+let unidades=["longitud","masa","capacidad","superficie","volumen"];
+let longitud=["milímetro","centímetro","decímetro","metro","decámetro","hectómetro","Kilómetro"];
+let masa=["miligramo","centigramo","decigramo","gramo","decagramo","hectogramo","kilogramo"];
+let capacidad=["mililitro","centilitro","decilitro","litro","decalitro","hectolitro","kilolitro"];
+let superficie=["milímetro cuadrado","centímetro cuadrado","decímetro cuadrado","metro cuadrado","decámetro cuadrado","hectómetro cuadrado","Kilómetro cuadrado"]
+let volumen=["milímetro cúbico","centímetro cúbico","decímetro cúbico","metro cúbico","decámetro cúbico","hectómetro cúbico","Kilómetro cúbico"]
+
+
+function inicio(){
+	let ori=document.getElementById("unidades");
+	cambio(ori,unidades,false)
+    ori.addEventListener("change", function(){ cambio_unidad(ori);});
+	cambio_unidad(ori);
+	let origen=document.getElementById("origen");
+	origen.addEventListener("change", function(){ calculo_general(origen);});
+	let destino=document.getElementById("destino");
+	destino.addEventListener("change", function(){ calculo_general(destino);});
+	let norigen=document.getElementById("norigen");
+	norigen.addEventListener("input", function(){ calculo_general(norigen);});
+	let ndestino=document.getElementById("ndestino");
+	ndestino.addEventListener("input", function(){ calculo_general(ndestino);});
+
+}
+function calculo_general(ori){
+	let a=document.getElementById("destino").selectedIndex;
+	let potencia=10;
+	if ((document.getElementById("destino").options[a].text).indexOf("cuadrado")>-1){
+		potencia=100;
+	}else if((document.getElementById("destino").options[a].text).indexOf("cúbico")>-1){
+		potencia=1000;
+	}
+	let n=document.getElementById("destino").selectedIndex-document.getElementById("origen").selectedIndex;
+	if ((ori.id).indexOf("origen")>-1){
+		document.getElementById("ndestino").value=document.getElementById("norigen").value/Math.pow(potencia,n);
+	}else{
+		document.getElementById("norigen").value=document.getElementById("ndestino").value/Math.pow(potencia,-n);
+	}
+}
+function cambio(destino,matriz,borrar){
+	if (borrar)while(destino.hasChildNodes()){destino.removeChild(destino.firstChild);}
+
+		for(let i=0;i<matriz.length;i++){
+			let a=document.createElement('option');
+			a.text=matriz[i];
+			a.value=matriz[i];;
+			destino.add(a);
+		}
+}
+
+function cambio_unidad(ori){
+
+	cambio(document.getElementById("origen"),eval(ori.value),true)
+	cambio(document.getElementById("destino"),eval(ori.value),true)
+	document.getElementById("origen").selectedIndex=6;
+	document.getElementById("destino").selectedIndex=3;
+	calculo_general(document.getElementById("origen"));
+}
+window.onload=()=>{inicio();}
+
+</script>	
+<style type="text/css">
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  min-width: min(100%,240px);
+  padding: 5px 14px 5px 10px;
+  border: solid 1px #999;
+  border-radius: 6px;
+/*   background-image: url(https://www.svgrepo.com/show/362528/caret-down-bold.svg); */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='180 -360 600 1200'%3E%3Cpath d='M1015 10q-10-10-23-10t-23 10L512 492 55 10Q45 0 32 0T9 10Q0 20 0 34t9 24l480 506q10 10 23 10t23-10l480-506q9-10 9-24t-9-24z'%20fill%3D%27slategray%27/%3E%3C/svg%3E");
+  background-size: 18px;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 12px) center;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: slategray;
+  outline: none;
+
+}
+/* For IE10 */
+select::-ms-expand {
+  display: none;
+}
+
+p input{display: block; width: 185px; margin:0px;  padding: 5px 14px 10px 10px;font-size: 1.2rem;  border: solid 1px #999;
+	border-radius: 6px;}
+
+    
+.container {
+  margin:20px auto;
+  background-color: aquamarine ; 
+  width: 500px;
+  padding:20px;
+  border-radius: 25px;
+}
+legend{border: 2px ridge gold;border-radius: 25px;padding: 5px;background-color: aquamarine;color: black;font-weight: bold;}	
+</style>
+</head>
+<body >
+
+
+    <fieldset class="container">
+		<legend>Conversor de Unidades</legend>
+	  <table align="center">
+		<tr>
+			<td colspan="3" style="text-align:center"><select id="unidades" ></select></td>
+		</tr>
+		<tr>
+			<td><p><input type="number" id="norigen"><select id="origen" ></select></p></td>
+			<td>=</td>
+			<td><p><input type="number" id="ndestino"><select id="destino" ></select></td>
+		</tr>
+	  </table>
+	</fieldset>
+</body>
+</html>
