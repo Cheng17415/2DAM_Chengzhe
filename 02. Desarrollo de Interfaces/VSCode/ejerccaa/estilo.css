@@ -1,0 +1,22 @@
+body{
+    text-align: center;
+}
+#marcoProvincias{
+    display: inline-block;
+    border: 1px solid bisque;
+}
+img{
+    height: 50px;
+    width: 50px;
+}
+
+img:hover{
+    background-color: aquamarine;
+    cursor: pointer;
+}
+.hechoClick{
+    background-color: aquamarine;
+}
+fieldset{
+    display: inline-block;
+}
