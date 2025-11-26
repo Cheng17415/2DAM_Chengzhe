@@ -25,7 +25,7 @@ public class Buffer {
 	
 	/**
 	 * @throws InterruptedException ********************************************************/
-	public synchronized int consumir() throws InterruptedException {
+	public synchronized void consumir() throws InterruptedException {
 		while(contador == 0) {
 			System.out.println("El consumidor esta esperando. El buffer está vacío.");
 			wait(); // Espera si el buffer está vacío
@@ -33,7 +33,6 @@ public class Buffer {
 		int valor = buffer[--contador];
 		System.out.println("El consumidor consumio " + valor);
 		notify(); //Notifica al productor que hay valores por introducir
-		return valor;
 	}
 	
 	

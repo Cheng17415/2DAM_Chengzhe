@@ -16,8 +16,6 @@ public class ConsumidorCoches implements Runnable {
         for (int i = 0; i < LIMITE_CONSUMO; i++) {
             try {
                 cocheConsumido = fabrica.sacarCoche();
-                
-                System.out.println("Consumidor PROCESÓ el: " + cocheConsumido);
                 Thread.sleep(300); 
                 
             } catch (InterruptedException e) {

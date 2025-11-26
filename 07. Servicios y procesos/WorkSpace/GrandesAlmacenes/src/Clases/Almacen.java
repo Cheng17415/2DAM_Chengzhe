@@ -3,9 +3,7 @@ package Clases;
 public class Almacen {
 	private int unidades;
 	
-	
 	public Almacen(int unidades) {
-		super();
 		this.unidades = unidades;
 	}
 

@@ -23,11 +23,10 @@ public class Hilo implements Runnable {
 				} else {
 					System.out.println(nombre + " ha entrado pero no ha conseguido comprar");
 				}
-
 			}
 			intento--;
 		}
 		System.out.println(nombre + " se ha quedado sin paciencia");
 	}
-
+	
 }

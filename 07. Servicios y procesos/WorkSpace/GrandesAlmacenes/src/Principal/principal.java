@@ -14,7 +14,7 @@ public class principal {
 		for (int i = 0; i < CLIENTES; i++) {
 			hilos[i] = new Thread(new Hilo("Hilo " + (i + 1), INTENTOS, almacen));
 		}
-		
+		//Lo dividimos en dos for loop para que estén en las mismas condiciones.
 		for (int i = 0; i < CLIENTES; i++) {
 			hilos[i].start();
 		}
