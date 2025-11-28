@@ -22,7 +22,7 @@ public class Almacen {
 	}
 	
 	
-	public boolean cogerProducto() {
+	public synchronized boolean cogerProducto() {
 		if(nProductos>0) {
 			nProductos--;
 			return true;

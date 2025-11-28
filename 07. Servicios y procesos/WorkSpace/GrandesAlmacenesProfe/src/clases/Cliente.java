@@ -29,21 +29,15 @@ public class Cliente extends Thread{
 	public void run() {
 		super.run();
 		for(int i= 0; i< N_INTENTOS; i++) {
-			if(!puerta.estaOcupada()) {
-				if(puerta.intentarEntrar()) {
-					esperar();
-					puerta.liberarPuerta();
-					if(almacen.cogerProducto()) {
-						System.out.println(nombre + " : cogí un producto");
-						return;
-					} else {
-						System.out.println("No cogí nada");
-					}
-					return;
-				}
-			} else {
+			if(puerta.intentarEntrar()) {
 				esperar();
+				puerta.liberarPuerta();
+				if(almacen.cogerProducto()) {
+					System.out.println(nombre + " : cogí un producto");
+				} else {System.out.println("No cogí nada");}
+				return;
 			}
+			esperar();
 		}
 		System.out.println("Lo intente " + N_INTENTOS + " y no pude coger ninguno.");
 	}
