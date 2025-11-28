@@ -7,7 +7,7 @@ public class Cuenta {
 		super();
 		this.dinero = dinero;
 	}
-	
+	//Se utiliza synchronized para que solamente 1 hilo pueda estar dentro del método.
 	public synchronized int getDinero() {
 		return dinero;
 	}

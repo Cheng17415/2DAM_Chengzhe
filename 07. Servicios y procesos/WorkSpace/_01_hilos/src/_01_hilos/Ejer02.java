@@ -4,10 +4,10 @@ import java.util.Date;
 
 
 public class Ejer02 {
-	//en una matriz de 500-000-000. Random cada num, buscar el máximo
-	//En dos hilos, la mitad de ellos, buscar el máximo y al final del hilo comparar entre esos dos
+	//En una matriz de 500-000-000. Random cada num, buscar el máximo.
+	//Realizarlo en dos hilos, la mitad de los num en cada hilo.
+	//Buscar el máximo y al final del hilo comparar entre esos dos.
 	public static void main(String[] args) {
-		
 		System.out.println("Cantidad de nucleos del procesador:" +
 				Runtime.getRuntime().availableProcessors());
 		
@@ -20,6 +20,7 @@ public class Ejer02 {
 		System.out.println("Fin de carga de matriz");
 		
 		System.out.println("Empezando hilo principal");
+		//Para comparar el tiempo que ha tardado.
 		Date d1 = new Date();
 		int may = v[0];
 		
@@ -31,6 +32,8 @@ public class Ejer02 {
 		long ms = (d2.getTime() - d1.getTime());
 		System.out.println("Un hilo ha tardado " + ms + " milisegundos");
 		System.out.println("Fin hilo principal");
+		
+		//Dos hilos
 		d1 = new Date();
 		
 		HiloMayor h1 = new HiloMayor();
@@ -42,6 +45,8 @@ public class Ejer02 {
 		h1.start();
 		h2.start();
 		
+		//Es una forma de saber que han terminado los hilos de ejecutar
+		//No es recomendable, ya que ejecuta el while loop hasta que acaben los hilos.
 		while(h1.isAlive() || h2.isAlive());
 		
 		System.out.println("Mayor elemento del vector:");
@@ -72,6 +77,8 @@ class HiloMayor extends Thread{
 		this.fin = f;
 		this.v = v;
 	}
+	
+	@Override
 	public void run() {
 		System.out.println("Empezando hilo ");
 		may = v[ini];

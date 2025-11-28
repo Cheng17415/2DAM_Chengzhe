@@ -6,6 +6,7 @@ public class Articulo {
 	private double precioCompra;
 	private double precioVenta;
 	private int stock;
+	//Contador estatico, es un atributo de la CLASE
 	private static int contador = 1;
 	
 	public Articulo(String descripcion, double precioCompra, double precioVenta, int stock) {

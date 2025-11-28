@@ -2,11 +2,8 @@ package ejercicio2;
 
 import java.util.ArrayList;
 public class Ejercicio2 {
-	/*
-    Crear un programa que elija al azar 15 cartas de la baraja española (15
-    objetos de la clase Carta). Usa un objeto de la clase ArrayList para
-    almacenarlas y asegúrate que no se repita ninguna.
-     */
+	/*Crear un programa que elija al azar 15 cartas de la baraja española (15
+    objetos de la clase Carta). Usar ArrayList para almacenarlas y asegúrar que no se repita ninguna.*/
 	
     public static void main(String[] args) {
         ArrayList<Carta> cartas_totales = new ArrayList<>();

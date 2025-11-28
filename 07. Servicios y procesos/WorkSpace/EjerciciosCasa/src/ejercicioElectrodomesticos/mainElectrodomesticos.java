@@ -4,14 +4,15 @@ package ejercicioElectrodomesticos;
 public class mainElectrodomesticos {
 
 	public static void main(String[] args) {
+		//Ejercicio de polimorfismo y herencia usando electrodomesticos.
 		//Instanciar
 		Electrodomestico [] ed = new Electrodomestico[10];
-		asignarValoresArray(ed);
+		asignarElectroPred(ed);
 		recorrerArray(ed);
 		precioClase(ed);
 	}
 	
-	public static void asignarValoresArray(Electrodomestico[] ed) {
+	public static void asignarElectroPred(Electrodomestico[] ed) {
 		ed[0] = new Electrodomestico();
 		ed[1] = new Electrodomestico(150,20);
 		ed[2] = new Electrodomestico(200, "rojo", 'B',35);
@@ -26,7 +27,7 @@ public class mainElectrodomesticos {
 	
 	public static void recorrerArray(Electrodomestico[] ed) {
 		for (Electrodomestico e : ed) {
-			System.out.println(e.toString());
+			System.out.println(e);
 			System.out.printf("El precio final es de %.2f€\n\n",e.precioFinal());
 		}
 	}

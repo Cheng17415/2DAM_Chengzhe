@@ -2,6 +2,7 @@ package _01_hilos;
 
 public class Ejer01 {
 	public static void main(String[] args) {
+		/*Introduccion a hilos*/
 		//Primera implementación
 		// Thread h1 = new Thread(new Ejer01().new RunnableImpl());
 		// Thread h2 = new Thread(new Ejer01().new RunnableImpl());

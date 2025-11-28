@@ -2,15 +2,16 @@ package _01_hilos;
 
 public class Ejer05 {
 	public static void main(String[] args) {
+		//Un hilo debe ejecutarse 10 veces antes de que se ejecute el siguiente.
 		Thread t1 = new Thread(new Tarea2("Tarea 1"));
 		Thread t2 = new Thread(new Tarea2("Tarea 2"));
 		t1.start();
+		//Mejor manera de esperar a que termine un hilo.
 		try {
 			t1.join();
 		}catch(InterruptedException e) {
 			e.printStackTrace();
 		}
-		
 		
 		t2.start();
 		try {
