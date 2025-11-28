@@ -1,0 +1,5 @@
+ana:40
+maria:30
+andrea:20
+luisa:12
+juan jose:22

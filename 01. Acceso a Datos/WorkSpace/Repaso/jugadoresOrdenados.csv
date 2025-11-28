@@ -1,0 +1,573 @@
+full_name,age,birthday,birthday_GMT,league,season,position,Club,minutes_played_overall,minutes_played_home,minutes_played_away,nationality,appearances_overall,appearances_home,appearances_away,goals_overall,goals_home,goals_away,assists_overall,assists_home,assists_away,penalty_goals,penalty_misses,clean_sheets_overall,clean_sheets_home,clean_sheets_away,conceded_overall,conceded_home,conceded_away,yellow_cards_overall,red_cards_overall,goals_involved_per_90_overall,assists_per_90_overall,goals_per_90_overall,goals_per_90_home,goals_per_90_away,min_per_goal_overall,conceded_per_90_overall,min_per_conceded_overall,min_per_match,min_per_card_overall,min_per_assist_overall,cards_per_90_overall,rank_in_league_top_attackers,rank_in_league_top_midfielders,rank_in_league_top_defenders,rank_in_club_top_scorer
+AFC Bournemouth,1980-02-20
+AFC Bournemouth,1982-10-07
+AFC Bournemouth,1985-02-16
+AFC Bournemouth,1986-08-20
+AFC Bournemouth,1986-09-07
+AFC Bournemouth,1987-04-02
+AFC Bournemouth,1987-06-20
+AFC Bournemouth,1989-11-26
+AFC Bournemouth,1990-02-01
+AFC Bournemouth,1991-04-05
+AFC Bournemouth,1991-04-19
+AFC Bournemouth,1991-04-29
+AFC Bournemouth,1992-01-15
+AFC Bournemouth,1992-02-27
+AFC Bournemouth,1993-02-23
+AFC Bournemouth,1993-03-13
+AFC Bournemouth,1994-02-24
+AFC Bournemouth,1994-10-25
+AFC Bournemouth,1995-02-18
+AFC Bournemouth,1995-12-08
+AFC Bournemouth,1996-02-08
+AFC Bournemouth,1996-04-09
+AFC Bournemouth,1996-12-18
+AFC Bournemouth,1997-02-03
+AFC Bournemouth,1997-05-14
+AFC Bournemouth,1997-07-08
+AFC Bournemouth,1997-09-14
+AFC Bournemouth,1997-11-05
+AFC Bournemouth,1998-07-28
+AFC Bournemouth,1999-05-18
+AFC Bournemouth,1999-08-28
+AFC Bournemouth,1999-11-07
+Arsenal,1970-01-01
+Arsenal,1982-05-20
+Arsenal,1984-01-16
+Arsenal,1985-09-10
+Arsenal,1986-02-26
+Arsenal,1988-06-09
+Arsenal,1988-10-15
+Arsenal,1989-01-21
+Arsenal,1989-06-18
+Arsenal,1990-11-26
+Arsenal,1990-12-26
+Arsenal,1991-05-28
+Arsenal,1992-02-08
+Arsenal,1992-03-04
+Arsenal,1992-04-17
+Arsenal,1992-07-11
+Arsenal,1992-09-02
+Arsenal,1992-09-27
+Arsenal,1993-06-20
+Arsenal,1994-01-06
+Arsenal,1995-03-19
+Arsenal,1995-09-20
+Arsenal,1996-02-11
+Arsenal,1996-05-03
+Arsenal,1997-08-29
+Arsenal,1997-12-11
+Arsenal,1999-04-14
+Arsenal,1999-05-30
+Arsenal,1999-08-20
+Arsenal,2000-07-07
+Arsenal,2000-07-28
+Brighton & Hove Albion,1980-10-01
+Brighton & Hove Albion,1983-09-25
+Brighton & Hove Albion,1987-04-16
+Brighton & Hove Albion,1988-04-25
+Brighton & Hove Albion,1988-05-02
+Brighton & Hove Albion,1988-06-28
+Brighton & Hove Albion,1989-02-27
+Brighton & Hove Albion,1989-06-12
+Brighton & Hove Albion,1990-08-18
+Brighton & Hove Albion,1991-04-14
+Brighton & Hove Albion,1991-06-15
+Brighton & Hove Albion,1991-09-02
+Brighton & Hove Albion,1991-11-20
+Brighton & Hove Albion,1991-11-21
+Brighton & Hove Albion,1992-01-01
+Brighton & Hove Albion,1992-04-08
+Brighton & Hove Albion,1992-05-09
+Brighton & Hove Albion,1992-07-07
+Brighton & Hove Albion,1993-04-11
+Brighton & Hove Albion,1993-08-11
+Brighton & Hove Albion,1993-11-07
+Brighton & Hove Albion,1994-07-20
+Brighton & Hove Albion,1995-05-14
+Brighton & Hove Albion,1996-08-30
+Brighton & Hove Albion,1997-10-08
+Brighton & Hove Albion,1998-06-04
+Brighton & Hove Albion,1999-01-04
+Brighton & Hove Albion,1999-08-06
+Burnley,1981-01-30
+Burnley,1983-09-20
+Burnley,1985-06-28
+Burnley,1985-08-20
+Burnley,1986-04-15
+Burnley,1987-04-16
+Burnley,1987-04-19
+Burnley,1988-04-15
+Burnley,1989-06-09
+Burnley,1989-06-25
+Burnley,1989-09-21
+Burnley,1989-10-21
+Burnley,1989-10-30
+Burnley,1990-04-01
+Burnley,1990-08-18
+Burnley,1990-10-27
+Burnley,1991-12-07
+Burnley,1992-01-14
+Burnley,1992-01-31
+Burnley,1992-05-01
+Burnley,1992-11-19
+Burnley,1993-01-15
+Burnley,1993-09-18
+Burnley,1999-11-22
+Burnley,1999-11-26
+Burnley,1999-12-05
+Burnley,2000-08-22
+Cardiff City,1983-05-07
+Cardiff City,1985-01-13
+Cardiff City,1986-12-11
+Cardiff City,1987-09-24
+Cardiff City,1988-07-16
+Cardiff City,1989-04-22
+Cardiff City,1989-12-28
+Cardiff City,1990-02-07
+Cardiff City,1990-03-05
+Cardiff City,1990-03-28
+Cardiff City,1990-04-18
+Cardiff City,1990-06-05
+Cardiff City,1990-08-24
+Cardiff City,1990-12-09
+Cardiff City,1991-01-08
+Cardiff City,1991-01-08
+Cardiff City,1991-01-31
+Cardiff City,1991-04-12
+Cardiff City,1991-08-21
+Cardiff City,1992-04-15
+Cardiff City,1993-02-02
+Cardiff City,1993-06-08
+Cardiff City,1993-10-13
+Cardiff City,1994-01-31
+Cardiff City,1994-05-28
+Cardiff City,1994-10-13
+Cardiff City,1994-12-06
+Cardiff City,1995-02-24
+Chelsea,1981-09-28
+Chelsea,1985-12-19
+Chelsea,1986-09-30
+Chelsea,1987-04-22
+Chelsea,1987-05-04
+Chelsea,1987-07-28
+Chelsea,1987-12-10
+Chelsea,1988-08-09
+Chelsea,1989-08-28
+Chelsea,1990-03-05
+Chelsea,1990-12-12
+Chelsea,1990-12-28
+Chelsea,1991-01-07
+Chelsea,1991-03-29
+Chelsea,1991-12-20
+Chelsea,1992-06-11
+Chelsea,1992-10-23
+Chelsea,1993-03-03
+Chelsea,1993-12-05
+Chelsea,1994-05-06
+Chelsea,1994-08-03
+Chelsea,1994-10-03
+Chelsea,1996-01-23
+Chelsea,1996-04-10
+Chelsea,2000-07-13
+Chelsea,2000-09-14
+Chelsea,2000-11-07
+Crystal Palace,1979-05-18
+Crystal Palace,1987-01-10
+Crystal Palace,1987-01-24
+Crystal Palace,1987-02-14
+Crystal Palace,1987-10-07
+Crystal Palace,1988-04-26
+Crystal Palace,1989-03-29
+Crystal Palace,1989-10-29
+Crystal Palace,1989-12-21
+Crystal Palace,1990-02-13
+Crystal Palace,1990-04-27
+Crystal Palace,1990-06-06
+Crystal Palace,1990-08-29
+Crystal Palace,1990-12-03
+Crystal Palace,1991-04-07
+Crystal Palace,1991-07-16
+Crystal Palace,1991-09-11
+Crystal Palace,1992-11-10
+Crystal Palace,1992-12-23
+Crystal Palace,1993-03-31
+Crystal Palace,1993-10-02
+Crystal Palace,1995-08-26
+Crystal Palace,1995-09-18
+Crystal Palace,1995-12-05
+Crystal Palace,1996-09-09
+Crystal Palace,1997-11-15
+Crystal Palace,1997-11-26
+Crystal Palace,1998-09-11
+Crystal Palace,1998-11-27
+Crystal Palace,1999-01-17
+Everton,1982-08-17
+Everton,1982-09-22
+Everton,1984-12-11
+Everton,1988-10-11
+Everton,1989-03-16
+Everton,1989-09-08
+Everton,1989-09-26
+Everton,1989-11-08
+Everton,1990-11-12
+Everton,1991-06-07
+Everton,1992-09-08
+Everton,1993-01-11
+Everton,1993-07-20
+Everton,1993-07-30
+Everton,1994-03-07
+Everton,1994-05-27
+Everton,1994-09-23
+Everton,1994-10-27
+Everton,1995-07-09
+Everton,1996-10-22
+Everton,1997-03-15
+Everton,1997-03-16
+Everton,1997-05-10
+Everton,1997-10-10
+Everton,1997-10-20
+Everton,1998-06-30
+Fulham,1970-01-01
+Fulham,1986-12-19
+Fulham,1987-10-05
+Fulham,1987-12-31
+Fulham,1988-05-27
+Fulham,1988-11-04
+Fulham,1988-12-15
+Fulham,1989-10-11
+Fulham,1990-06-21
+Fulham,1990-11-06
+Fulham,1991-01-08
+Fulham,1991-01-20
+Fulham,1991-07-19
+Fulham,1992-03-10
+Fulham,1992-05-24
+Fulham,1992-09-30
+Fulham,1993-09-01
+Fulham,1993-09-17
+Fulham,1993-12-05
+Fulham,1994-01-19
+Fulham,1994-02-28
+Fulham,1994-03-02
+Fulham,1994-09-16
+Fulham,1995-01-20
+Fulham,1995-03-07
+Fulham,1995-11-16
+Fulham,1998-01-02
+Fulham,1998-05-23
+Fulham,2000-05-18
+Fulham,2000-05-18
+Huddersfield Town,1986-06-26
+Huddersfield Town,1987-11-20
+Huddersfield Town,1988-12-06
+Huddersfield Town,1988-12-07
+Huddersfield Town,1989-02-01
+Huddersfield Town,1989-03-08
+Huddersfield Town,1989-04-16
+Huddersfield Town,1990-04-23
+Huddersfield Town,1990-04-29
+Huddersfield Town,1990-09-15
+Huddersfield Town,1991-06-04
+Huddersfield Town,1991-06-18
+Huddersfield Town,1992-04-14
+Huddersfield Town,1992-04-22
+Huddersfield Town,1992-05-12
+Huddersfield Town,1993-05-03
+Huddersfield Town,1994-02-14
+Huddersfield Town,1994-07-31
+Huddersfield Town,1994-09-29
+Huddersfield Town,1995-09-26
+Huddersfield Town,1996-01-14
+Huddersfield Town,1996-03-08
+Huddersfield Town,1996-06-11
+Huddersfield Town,1996-07-05
+Huddersfield Town,1996-11-28
+Huddersfield Town,1997-01-23
+Huddersfield Town,1997-08-07
+Huddersfield Town,1997-12-19
+Huddersfield Town,1998-10-13
+Huddersfield Town,1999-12-11
+Huddersfield Town,2000-09-07
+Huddersfield Town,2001-03-10
+Leicester City,1984-01-21
+Leicester City,1986-04-07
+Leicester City,1986-04-16
+Leicester City,1986-11-05
+Leicester City,1987-01-04
+Leicester City,1987-01-11
+Leicester City,1988-01-03
+Leicester City,1988-01-16
+Leicester City,1989-03-15
+Leicester City,1989-11-18
+Leicester City,1992-05-09
+Leicester City,1992-06-23
+Leicester City,1993-03-05
+Leicester City,1993-06-22
+Leicester City,1993-10-06
+Leicester City,1994-12-21
+Leicester City,1995-10-18
+Leicester City,1996-05-23
+Leicester City,1996-06-28
+Leicester City,1996-10-03
+Leicester City,1996-11-23
+Leicester City,1996-12-16
+Leicester City,1996-12-21
+Leicester City,1997-05-07
+Leicester City,1997-09-07
+Leicester City,1997-10-01
+Leicester City,1997-12-09
+Liverpool,1986-01-04
+Liverpool,1988-03-06
+Liverpool,1988-05-10
+Liverpool,1989-07-05
+Liverpool,1989-09-01
+Liverpool,1990-06-17
+Liverpool,1990-11-11
+Liverpool,1991-07-08
+Liverpool,1991-08-08
+Liverpool,1991-10-02
+Liverpool,1991-10-10
+Liverpool,1992-04-10
+Liverpool,1992-06-15
+Liverpool,1992-07-05
+Liverpool,1992-10-02
+Liverpool,1993-06-22
+Liverpool,1993-08-15
+Liverpool,1993-10-23
+Liverpool,1994-03-11
+Liverpool,1995-02-10
+Liverpool,1995-04-18
+Liverpool,1997-05-23
+Liverpool,1998-10-07
+Liverpool,2000-05-22
+Liverpool,2001-01-30
+Manchester City,1983-04-13
+Manchester City,1985-05-04
+Manchester City,1986-01-08
+Manchester City,1986-04-10
+Manchester City,1988-02-12
+Manchester City,1988-06-02
+Manchester City,1989-11-21
+Manchester City,1990-05-28
+Manchester City,1990-10-24
+Manchester City,1991-02-21
+Manchester City,1991-06-28
+Manchester City,1991-07-15
+Manchester City,1993-08-17
+Manchester City,1994-05-27
+Manchester City,1994-05-28
+Manchester City,1994-07-17
+Manchester City,1994-08-10
+Manchester City,1994-12-08
+Manchester City,1996-01-11
+Manchester City,1996-12-15
+Manchester City,1997-02-10
+Manchester City,1997-04-03
+Manchester City,1998-11-07
+Manchester City,2000-05-28
+Manchester United,1983-01-27
+Manchester United,1985-07-09
+Manchester United,1985-08-04
+Manchester United,1987-02-22
+Manchester United,1987-11-22
+Manchester United,1988-04-28
+Manchester United,1988-08-01
+Manchester United,1988-12-19
+Manchester United,1989-08-14
+Manchester United,1989-11-22
+Manchester United,1989-12-02
+Manchester United,1990-03-20
+Manchester United,1990-11-07
+Manchester United,1992-02-21
+Manchester United,1992-12-15
+Manchester United,1993-03-05
+Manchester United,1993-03-15
+Manchester United,1993-05-13
+Manchester United,1994-04-12
+Manchester United,1994-07-17
+Manchester United,1995-07-12
+Manchester United,1995-12-05
+Manchester United,1996-01-01
+Manchester United,1996-12-08
+Manchester United,1997-10-31
+Manchester United,1999-03-18
+Manchester United,1999-12-04
+Manchester United,2000-08-31
+Manchester United,2001-03-13
+Manchester United,2001-10-01
+Newcastle United,1987-06-14
+Newcastle United,1989-01-15
+Newcastle United,1989-01-24
+Newcastle United,1989-02-21
+Newcastle United,1989-09-10
+Newcastle United,1989-09-16
+Newcastle United,1989-09-26
+Newcastle United,1990-03-27
+Newcastle United,1990-10-08
+Newcastle United,1991-05-20
+Newcastle United,1991-09-26
+Newcastle United,1991-12-20
+Newcastle United,1992-01-10
+Newcastle United,1992-02-27
+Newcastle United,1992-07-15
+Newcastle United,1993-07-09
+Newcastle United,1993-07-29
+Newcastle United,1993-11-11
+Newcastle United,1994-02-10
+Newcastle United,1994-05-05
+Newcastle United,1995-02-24
+Newcastle United,1995-03-18
+Newcastle United,1995-03-22
+Newcastle United,1995-11-21
+Newcastle United,1996-02-08
+Newcastle United,1997-03-04
+Newcastle United,1997-04-14
+Newcastle United,1997-10-30
+Newcastle United,1999-11-03
+Newcastle United,2000-02-27
+Southampton,1985-01-01
+Southampton,1987-01-22
+Southampton,1988-03-17
+Southampton,1988-08-24
+Southampton,1989-07-05
+Southampton,1989-08-05
+Southampton,1989-12-03
+Southampton,1991-08-31
+Southampton,1991-09-24
+Southampton,1991-11-26
+Southampton,1992-03-30
+Southampton,1992-07-23
+Southampton,1992-08-03
+Southampton,1993-09-01
+Southampton,1994-01-27
+Southampton,1994-03-06
+Southampton,1994-03-06
+Southampton,1994-08-04
+Southampton,1994-11-01
+Southampton,1995-08-05
+Southampton,1995-09-15
+Southampton,1995-09-18
+Southampton,1996-01-22
+Southampton,1996-04-12
+Southampton,1997-03-28
+Southampton,1997-10-07
+Southampton,1998-11-03
+Southampton,1999-02-08
+Southampton,1999-02-22
+Southampton,2000-07-06
+Southampton,2000-10-10
+Tottenham Hotspur,1983-10-20
+Tottenham Hotspur,1985-02-26
+Tottenham Hotspur,1986-12-26
+Tottenham Hotspur,1987-04-24
+Tottenham Hotspur,1987-07-16
+Tottenham Hotspur,1989-03-02
+Tottenham Hotspur,1989-08-16
+Tottenham Hotspur,1990-07-02
+Tottenham Hotspur,1990-09-19
+Tottenham Hotspur,1991-06-25
+Tottenham Hotspur,1992-01-02
+Tottenham Hotspur,1992-02-14
+Tottenham Hotspur,1992-03-04
+Tottenham Hotspur,1992-07-08
+Tottenham Hotspur,1992-08-13
+Tottenham Hotspur,1992-12-24
+Tottenham Hotspur,1993-04-24
+Tottenham Hotspur,1993-07-28
+Tottenham Hotspur,1994-01-15
+Tottenham Hotspur,1994-06-15
+Tottenham Hotspur,1995-02-13
+Tottenham Hotspur,1996-02-02
+Tottenham Hotspur,1996-04-11
+Tottenham Hotspur,1996-06-12
+Tottenham Hotspur,1997-02-23
+Tottenham Hotspur,1997-04-13
+Tottenham Hotspur,1998-01-12
+Tottenham Hotspur,1998-10-02
+Tottenham Hotspur,1998-11-05
+Tottenham Hotspur,1998-11-09
+Tottenham Hotspur,2000-01-29
+Tottenham Hotspur,2000-09-16
+Watford,1981-02-15
+Watford,1983-04-03
+Watford,1984-06-27
+Watford,1985-07-17
+Watford,1986-10-03
+Watford,1987-06-21
+Watford,1988-06-29
+Watford,1988-07-11
+Watford,1989-02-06
+Watford,1989-07-22
+Watford,1989-08-09
+Watford,1989-08-12
+Watford,1991-01-07
+Watford,1991-02-02
+Watford,1991-02-24
+Watford,1991-06-26
+Watford,1993-01-01
+Watford,1993-09-30
+Watford,1994-01-02
+Watford,1994-03-13
+Watford,1994-12-12
+Watford,1995-04-17
+Watford,1995-07-02
+Watford,1996-01-07
+Watford,1997-05-31
+Watford,1999-11-04
+Watford,1999-11-18
+West Ham United,1985-01-16
+West Ham United,1985-04-18
+West Ham United,1986-02-06
+West Ham United,1987-01-03
+West Ham United,1987-05-08
+West Ham United,1987-06-26
+West Ham United,1987-09-07
+West Ham United,1988-05-23
+West Ham United,1988-06-01
+West Ham United,1988-09-10
+West Ham United,1989-01-06
+West Ham United,1989-04-19
+West Ham United,1989-10-23
+West Ham United,1989-12-15
+West Ham United,1990-03-28
+West Ham United,1991-08-23
+West Ham United,1992-01-01
+West Ham United,1992-03-27
+West Ham United,1992-10-10
+West Ham United,1993-02-15
+West Ham United,1993-04-15
+West Ham United,1993-11-07
+West Ham United,1997-01-09
+West Ham United,1997-03-16
+West Ham United,1998-04-19
+West Ham United,1998-06-19
+West Ham United,1998-10-30
+West Ham United,1999-01-14
+West Ham United,2000-01-24
+West Ham United,2000-03-25
+Wolverhampton Wanderers,1986-09-08
+Wolverhampton Wanderers,1986-10-24
+Wolverhampton Wanderers,1988-02-15
+Wolverhampton Wanderers,1990-03-06
+Wolverhampton Wanderers,1990-03-26
+Wolverhampton Wanderers,1991-02-03
+Wolverhampton Wanderers,1991-05-05
+Wolverhampton Wanderers,1992-01-16
+Wolverhampton Wanderers,1993-02-25
+Wolverhampton Wanderers,1993-08-12
+Wolverhampton Wanderers,1993-10-18
+Wolverhampton Wanderers,1994-01-12
+Wolverhampton Wanderers,1994-03-03
+Wolverhampton Wanderers,1994-03-28
+Wolverhampton Wanderers,1995-04-15
+Wolverhampton Wanderers,1995-07-16
+Wolverhampton Wanderers,1996-01-25
+Wolverhampton Wanderers,1996-12-04
+Wolverhampton Wanderers,1997-03-13
+Wolverhampton Wanderers,1997-05-23
+Wolverhampton Wanderers,1998-02-08
+Wolverhampton Wanderers,1999-04-09
+Wolverhampton Wanderers,1999-08-24
+Wolverhampton Wanderers,2000-01-26
+Wolverhampton Wanderers,2000-01-27

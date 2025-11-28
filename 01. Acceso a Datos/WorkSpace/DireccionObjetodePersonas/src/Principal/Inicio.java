@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
@@ -26,9 +25,7 @@ public class Inicio {
 			} else {
 				oos = new ObjectOutputStream(new FileOutputStream(fichero, true)) {
 					//Para que no haya problemas con el header del archivo. Si no, se corrompería.
-					protected void writeStreamHeader() throws IOException {
-						reset();
-					}
+					protected void writeStreamHeader() throws IOException {reset();}
 				};
 
 			}
