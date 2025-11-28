@@ -19,6 +19,7 @@ class WorkerTask implements Runnable{
 			Thread.sleep(5000);
 			System.out.println(Thread.currentThread().getName() + ": Desperté normalmente.");
 		} catch(InterruptedException e) {
+			//Cuando se interrumpe, salta esta excepción.
 			System.out.println(Thread.currentThread().getName() + ": Fue interrumpido mientras ejectutaba.");
 		}
 		finally {

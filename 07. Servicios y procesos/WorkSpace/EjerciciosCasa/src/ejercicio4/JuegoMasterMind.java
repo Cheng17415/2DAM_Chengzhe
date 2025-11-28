@@ -9,10 +9,10 @@ public class JuegoMasterMind {
     public static char[] resultados;
     public static Scanner sc = new Scanner(System.in);
     
-    
+    /*El juego de MasterMind consiste en adivinar las posiciones correctas con el color correcto
+     * con unos intentos definidos*/
     
     public static void main(String[] args) {
-        
         /*char[] combSecreta = {'R', 'V', 'A', 'R'};
         c = new Combinacion(combSecreta); */
          
@@ -39,7 +39,7 @@ public class JuegoMasterMind {
                 case 2:
                 	juegoIA();
                     break;
-                case 3: // <-- CORRECCIÓN: Cambiado de 0 a 3
+                case 3:
                     System.out.println("Saliendo del programa...");
                     break;
                 default:
@@ -49,15 +49,13 @@ public class JuegoMasterMind {
                 System.out.println("\nPulse cualquier tecla para continuar...");
                 sc.nextLine();
             }
-        } while (opcion != 3); // <-- CORRECCIÓN: Cambiado de 0 a 3
+        } while (opcion != 3); 
         sc.close();
 
     }
     
     public static void juegoJcJ() {
         System.out.println("Jugador 1, introduce la combinación secreta (Ejemplo: RAVZ):");
-        // Validar la entrada del Jugador 1 sería una buena mejora,
-        // pero nos centramos en el bug principal.
         char[] secreta = sc.nextLine().toUpperCase().toCharArray();
 
         // Evitar que el Jugador 2 vea la combinación secreta
@@ -77,10 +75,9 @@ public class JuegoMasterMind {
             // 2. Imprimir la variable 'resultados'
             System.out.println("Resultado: " + Arrays.toString(resultados));
 
-
             // Comprobamos si ha ganado
             boolean haGanado = true;
-            for (char r : resultados) { // Ahora 'resultados' tiene la info correcta
+            for (char r : resultados) {
                 if (r != 'R') {
                     haGanado = false;
                     break;

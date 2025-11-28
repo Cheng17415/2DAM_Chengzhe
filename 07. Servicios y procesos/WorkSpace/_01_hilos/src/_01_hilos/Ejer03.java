@@ -7,9 +7,8 @@ public class Ejer03 {
 	
 	static Scanner sc = new Scanner(System.in);
 	public static void main(String[] args) {
-		//Pedimos numero de hilos.
-		//Crear tantos hilos como los que tenemos.
-		//Saber cuánto tarda y obtener el máximo
+		//Pedir al usuario un numero de hilos que no supere el maximo de los nucleos.
+		//Dividir el total por los hilos y obtener el maximo total.
 		int nhilosTotales = Runtime.getRuntime().availableProcessors();
 		int nhilo;
 		int [] v = new int[500_000_000];

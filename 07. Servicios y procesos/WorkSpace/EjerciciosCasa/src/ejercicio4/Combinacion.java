@@ -1,8 +1,4 @@
 package ejercicio4;
-
-import java.util.Arrays;
-import java.util.HashMap;
-
 public class Combinacion {
     final int NumColoresCombinacion = 4;
     /* Número de colores de una combinación */
@@ -87,32 +83,6 @@ public class Combinacion {
 
 	    return resultado;
 	}
-
-
-    private int aparicion(char c, char[] letras) {
-        int apa = 0;
-        for (char letra : letras) {
-            if (c == letra) {
-                apa++;
-            }
-        }
-        return apa;
-    }
-    
-    private char[] obtenerCorrectas(char[] resultado, char[] combi){
-        for (int i = 0; i < combi.length; i++) {
-            for (int j = 0; j < combSecreto.length; j++) {
-                if (combi[i] == combSecreto[j] && i == j) {
-                    resultado[i] = 'R';
-                    //Tras saber que un color está en la posición correcta, la sustituyo por un caracter cualquiera 
-                    //que no sea un color disponible para facilitar el proceso.
-                    combSecreto[j] = '0';
-                    break;
-                }
-            }
-        }
-        return resultado;
-    }
     
      public int alea(int li, int ls) {
         return (int) (Math.random() * (ls - li + 1)) + li;

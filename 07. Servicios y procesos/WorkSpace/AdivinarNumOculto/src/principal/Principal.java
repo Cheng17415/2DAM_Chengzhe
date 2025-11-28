@@ -2,6 +2,8 @@ package principal;
 
 public class Principal {
 	public static void main(String [] args) {
+		/*Se debe generar un numero aleatorio entre 0 y 100.
+		 *10 hilos adivinan otro numero aleatorio hasta acertar.*/
 		int NUM_HILOS = 10;
 		Hilo [] hilos = new Hilo[NUM_HILOS];
 		NumeroOculto oculto = new NumeroOculto();
