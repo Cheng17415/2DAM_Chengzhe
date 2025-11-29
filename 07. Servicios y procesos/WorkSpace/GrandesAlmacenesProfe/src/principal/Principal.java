@@ -6,6 +6,9 @@ import clases.Puerta;
 
 public class Principal {
 	public static void main(String[] args) {
+		/*Hay que simular unos almacenes, en donde hay 300 clientes y 100 productos.
+		 * En la puerta solo cabe 1 cliente a la vez. Van a intentar entrar 10 veces
+		 * por la puerta, si no lo consigue se va.*/
 		final int N_CLIENTES = 300;
 		final int N_PRODUCTOS = 100;
 		

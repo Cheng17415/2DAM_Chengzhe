@@ -5,6 +5,7 @@ import Clases.Hilo;
 
 public class Inicio {
 	public static void main(String[] args) {
+		/*Simular transferencias de un gestor de una cuenta a otra.*/
 		Cuenta c1 = new Cuenta("11111",12500);
 		Cuenta c2 = new Cuenta("22222",23400);
 		

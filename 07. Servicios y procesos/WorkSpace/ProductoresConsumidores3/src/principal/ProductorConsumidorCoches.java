@@ -8,6 +8,7 @@ public class ProductorConsumidorCoches {
 	
 	private static final int COCHES_A_GENERAR = 5; 
 
+	/*Una productor de coches va a generar 5 coches, los cuales el consumidor consume.*/
 	public static void main(String[] args) {
         
 		FabricaCoches fabrica = new FabricaCoches();

@@ -11,11 +11,10 @@ public class ConsumidorCoches implements Runnable {
 
     @Override
     public void run() {
-        Coches cocheConsumido;
         
         for (int i = 0; i < LIMITE_CONSUMO; i++) {
             try {
-                cocheConsumido = fabrica.sacarCoche();
+                fabrica.sacarCoche();
                 Thread.sleep(300); 
                 
             } catch (InterruptedException e) {
