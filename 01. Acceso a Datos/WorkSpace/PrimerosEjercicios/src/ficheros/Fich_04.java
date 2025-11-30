@@ -12,8 +12,7 @@ public class Fich_04 {
 	public static void main(String[] args) throws IOException {
 		try (BufferedReader br = new BufferedReader(new FileReader("notasAlumnos.csv"));
 				BufferedWriter bw = new BufferedWriter(new FileWriter("aprobados.csv"));
-				BufferedWriter bw2 = new BufferedWriter(new FileWriter("suspendidos.csv"));)
-			{
+				BufferedWriter bw2 = new BufferedWriter(new FileWriter("suspendidos.csv"))){
 			String[] lista = null;
 			String texto = br.readLine();
 			while (texto != null) {

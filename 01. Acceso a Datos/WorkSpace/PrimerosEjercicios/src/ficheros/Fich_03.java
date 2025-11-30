@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import Clases.Biblioteca;
 
 public class Fich_03 {
-
-	public static void main(String[] args) throws IOException {
-		//Generar en un fichero las notas aleatorios(50)relativas a fisica, quimica y mates. Separarlas por Alumno1:10:5:4 .csv
 	
+	/*Generar en un fichero las notas aleatorios(50) relativas a fisica,
+	 *quimica y mates. Separarlas por Alumno1:10:5:4 .csv*/
+	public static void main(String[] args) throws IOException {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter("notasAlumnos.csv"))){
 			ArrayList<String> lista = new ArrayList<String>();
 			for (int i = 1; i <= 50; i++) {

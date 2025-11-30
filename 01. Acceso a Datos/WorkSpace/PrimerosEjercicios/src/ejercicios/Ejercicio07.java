@@ -2,7 +2,7 @@ package ejercicios;
 import java.util.ArrayList;
 
 import Clases.Persona;
-public class Ejercicio7 {
+public class Ejercicio07 {
 	public static void main(String[] args) {
 		ArrayList <Persona> personas = new ArrayList<>();
 		Persona p1 = new Persona("Pepe","Rodriguez",22);

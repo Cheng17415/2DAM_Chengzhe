@@ -48,10 +48,11 @@ public class Ficheros {
 					Integer.valueOf(matriz[2]) >= 5&& 
 					Integer.valueOf(matriz[3]) >= 5
 				 ) {
-					bw1.write(linea += "\n");
-
+					bw1.write(linea);
+					bw1.newLine();
 				} else {
-					bw2.write(linea += "\n");
+					bw2.write(linea);
+					bw2.newLine();
 				}
 				linea = br1.readLine();
 			}
@@ -107,8 +108,6 @@ public class Ficheros {
 			String linea;
 			while ((linea = br.readLine()) != null) {
 				String[] partes = linea.split(": ");
-				String nombre = partes[0];
-
 				String[] notasTexto = partes[1].split(" ");
 				int notaFisica = Integer.parseInt(notasTexto[0].split(":")[1]);
 				int notaQuimica = Integer.parseInt(notasTexto[1].split(":")[1]);
@@ -146,7 +145,6 @@ public class Ficheros {
 	}
 
 	public static void ficheroTexto() {
-		ArrayList<String> lista = new ArrayList<>();
 		String linea1 = "";
 		String linea2 = "";
 		try (BufferedReader br1 = new BufferedReader(new FileReader("textosA.dat"));
@@ -156,19 +154,21 @@ public class Ficheros {
 			linea2 = br2.readLine();
 
 			while (linea1 != null && linea2 != null) {// Si ninguno de los ha terminado y lee en forma alterna
-				bw1.write(linea1 + "\n");
-				bw1.write(linea2 + "\n");
-
+				bw1.write(linea1);
+				bw1.newLine();
+				bw1.write(linea2);
+				bw1.newLine();
 				linea1 = br1.readLine();
 				linea2 = br2.readLine();
 			}
 			while (linea1 != null) {
-				bw1.write(linea1 + "\n");
-				System.out.println("Pasa por aqui");
+				bw1.write(linea1);
+				bw1.newLine();
 				linea1 = br1.readLine();
 			}
 			while (linea2 != null) {
-				bw1.write(linea2 + "\n");
+				bw1.write(linea2);
+				bw1.newLine();
 				linea2 = br2.readLine();
 			}
 

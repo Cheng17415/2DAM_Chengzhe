@@ -9,14 +9,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Fich_02 {
-	//Leer dos ficheros de texto y obtener un tercer fichero que sea las lineas alternas de los dos ficheros
+	/*Leer dos ficheros de texto y obtener un tercer fichero
+	 *que sea las lineas alternas de los dos ficheros
+	 */
 	public static void main(String[] args) throws IOException{
 		ArrayList<String> lista = new ArrayList<String>();
-		try (
-				BufferedReader br = new BufferedReader(new FileReader("verduras.dat"));
-				BufferedReader br2 = new BufferedReader(new FileReader("frutas.dat"));
-				BufferedWriter bw = new BufferedWriter(new FileWriter("juntos.dat"));
-			){
+		try (BufferedReader br = new BufferedReader(new FileReader("verduras.dat"));
+			BufferedReader br2 = new BufferedReader(new FileReader("frutas.dat"));
+			BufferedWriter bw = new BufferedWriter(new FileWriter("juntos.dat"));){
 			String texto = br.readLine();
 			String texto2 = br2.readLine();
 

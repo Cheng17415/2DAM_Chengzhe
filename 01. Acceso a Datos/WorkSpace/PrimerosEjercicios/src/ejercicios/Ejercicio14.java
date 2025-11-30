@@ -6,10 +6,12 @@ import Clases.Biblioteca;
 
 public class Ejercicio14 {
 	public static Scanner sc = new Scanner(System.in);
+	/*Pedir por pantalla filas y columnas
+	Crear matriz bidimensional con esos datos rellenando datos de 0 a 10
+	Se pretende imprimir la matriz generada y que incluya el
+	valor de la suma por fila y por columna*/
+			
 	public static void main(String[] args) {
-		//Pedir por pantalla fila y columnas
-		//Crear matriz bidimensional con esos datos rellenando datos de 0 a 10
-		//Lo que se pretende imprimir la matriz generada y que se incluya el valor de la suma por fila y por columna
 		
 		System.out.println("¿Cuántas filas quieres que tenga la matriz?");
 		int filas = Integer.valueOf(sc.nextLine());

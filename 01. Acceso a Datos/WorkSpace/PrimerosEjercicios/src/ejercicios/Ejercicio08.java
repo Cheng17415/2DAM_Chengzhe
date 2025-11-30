@@ -11,7 +11,7 @@ import java.util.Scanner;
    	Preguntar la palabra en Castellano, mostrar en Ingles
    	Si no existe, introducir traduccion en Inglés */
 
-public class Ejercicio8 {
+public class Ejercicio08 {
 	public static Scanner sc = new Scanner(System.in);
 	public static HashMap<String, String> diccionario = new HashMap <>();
 	public static void main(String[] args) {
@@ -22,7 +22,7 @@ public class Ejercicio8 {
 		sc.close();
 		
 		/*	Formas de parsear en un Map
-		 * for (String c : diccionario.keySet()) System.out.println(c + " " + diccionario.get(c));
+		for (String c : diccionario.keySet()) System.out.println(c + " " + diccionario.get(c));
 		for (String c : diccionario.values()) System.out.println(c);
 		for (Entry<String,String> c : diccionario.entrySet()) {
 			System.out.println(c.getKey() + " " + c.getValue());
@@ -92,5 +92,4 @@ public class Ejercicio8 {
 			e1.printStackTrace();
 		}
 	}
-	
 }

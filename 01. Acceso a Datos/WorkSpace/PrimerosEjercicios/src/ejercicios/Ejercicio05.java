@@ -2,7 +2,7 @@ package ejercicios;
 
 import java.util.Scanner;
 
-public class Ejercicio5 {
+public class Ejercicio05 {
 	public static void main(String[] args) {
 		//Pedir por pantalla el número de mes y año
 		//Nombre del mes y cuántos días tiene ese mes en ese año

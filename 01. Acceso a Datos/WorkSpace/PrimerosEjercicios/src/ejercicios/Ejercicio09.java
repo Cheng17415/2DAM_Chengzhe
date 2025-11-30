@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import Clases.Persona;
 
-public class Ejercicio9 {
+public class Ejercicio09 {
 	//Ejercicio HashMap <String,Persona> DNI acceder a persona
 	public static Scanner sc = new Scanner(System.in);
 	public static void main(String[] args) {

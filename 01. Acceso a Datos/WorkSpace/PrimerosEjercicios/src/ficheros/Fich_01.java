@@ -13,10 +13,8 @@ public class Fich_01 {
 
 	public static void main(String[] args) throws IOException{
 		ArrayList<Integer> lista = new ArrayList<Integer>();
-		try (
-				BufferedReader br = new BufferedReader(new FileReader("numeros.dat"));
-				BufferedWriter bw = new BufferedWriter(new FileWriter("numeros_sort.dat"))
-			){
+		try (BufferedReader br = new BufferedReader(new FileReader("numeros.dat"));
+			BufferedWriter bw = new BufferedWriter(new FileWriter("numeros_sort.dat"))){
 			String linea = "";
 			linea = br.readLine();
 			while (linea != null) {
