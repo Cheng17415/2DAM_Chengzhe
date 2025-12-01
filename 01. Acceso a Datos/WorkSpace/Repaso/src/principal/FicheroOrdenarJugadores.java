@@ -34,8 +34,7 @@ public class FicheroOrdenarJugadores {
 				if(t.length >7) {
 					//Fecha Cumpleaños lo divido en YYYY, MM, DD
 					String [] fecha = t[3].split("/");
-					System.out.println(Arrays.toString(fecha));
-					lista.add(new Jugador(t[7], LocalDate.of(Integer.valueOf(fecha[0]), Integer.valueOf(fecha[1]), Integer.valueOf(fecha[2]))));
+					lista.add(new Jugador(t[7], LocalDate.of(Integer.valueOf(fecha[0]), Integer.valueOf(fecha[1]), Integer.valueOf(fecha[2])), linea));
 				}
 				
 			}
@@ -55,7 +54,8 @@ public class FicheroOrdenarJugadores {
 		try(BufferedWriter bw = new BufferedWriter(new FileWriter(ficheroSalida))) {
 			bw.write(header + "\n");
 			for (Jugador p : lista) {
-				bw.write(p.getClub() + "," + p.getFechaCumple() +"\n");
+				bw.write(p.getLineaOriginal());
+				bw.newLine();
 			}
 			System.out.println("Ordenado con éxito");
 		} catch(IOException e) {
