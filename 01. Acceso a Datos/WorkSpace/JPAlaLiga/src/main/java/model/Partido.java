@@ -90,7 +90,7 @@ public class Partido implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Partido [id=" + id + ", fecha=" + fecha + ", golLocal=" + golLocal + ", golVisitante=" + golVisitante
+		return "Partido [id=" + id.getIdjornada() + "," + id.getIdlocal() + "," + id.getIdvisitante()+ ", fecha=" + fecha + ", golLocal=" + golLocal + ", golVisitante=" + golVisitante
 				;
 	}
 	

@@ -1,50 +1,122 @@
 package principal;
 
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;	
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import model.Equipo;
+import model.Partido;
 
 public class Principal {
-	/*BD LIGA
-	Equipos
-	Partido
-	Crear un fichero que tenga una clasificacion en una jornada dada que se pasa como parámetro por teclado.
-	Leer de la base de datos y grabar 1. Atletico de Madrid 33
-	Jornada 7. Coger todos los partidos desde la 1 hasta la 7. Goles a favor y goles en contra
-	clasificacion.dat
-	Cabezera: Clasificacion en la jornada x:
-	Para cada jornada, unirlo*/
+	/*
+	 * BD LIGA Equipos Partido Crear un fichero que tenga una clasificacion en una
+	 * jornada dada que se pasa como parámetro por teclado. Leer de la base de datos
+	 * y grabar 1. Atletico de Madrid 33 Jornada 7. Coger todos los partidos desde
+	 * la 1 hasta la 7. Goles a favor y goles en contra clasificacion.dat Cabezera:
+	 * Clasificacion en la jornada x: Para cada jornada, unirlo
+	 */
 	static Scanner sc = new Scanner(System.in);
+
 	public static void main(String[] args) {
+		Map<String, Integer> resultados = new HashMap<>();
 		try {
 			System.out.println("¿Hasta que jornada quieres ver la clasificación?");
 			int jornada = Integer.valueOf(sc.nextLine());
 			
 			EntityManagerFactory emp = Persistence.createEntityManagerFactory("JPAlaLiga");
 			EntityManager em = emp.createEntityManager();
-			EntityTransaction transaccion = em.getTransaction();
-			transaccion.begin();
-			// WHERE p.IDLOCAL = e.IDEQUIPO"" AND p.IDJORNADA <= 1
-			TypedQuery<Equipo> consulta = em.createQuery("SELECT e FROM Equipo e JOIN e.partidos1 p WHERE p.id.idjornada <=:jornada", Equipo.class);
+			
+			// Nos da la consulta hasta determinada jornada
+			TypedQuery<Partido> consulta = em.createQuery("SELECT p FROM Partido p WHERE p.id.idjornada <=:jornada", Partido.class);
+			TypedQuery<Equipo> consulta2 = em.createQuery("SELECT e FROM Equipo e WHERE e.idequipo =:id", Equipo.class);
 			consulta.setParameter("jornada", jornada);
-			List<Equipo> lista = consulta.getResultList();
-			for (Equipo alumno : lista) {
-				System.out.println(alumno);
+			List<Partido> lista = consulta.getResultList();
+			int puntosLocal = 0, puntosVisitante = 0;
+			
+			for (Partido partido : lista) {
+				puntosLocal = calcularPuntos(partido.getGolLocal(), partido.getGolVisitante());
+				puntosVisitante =calcularPuntos(partido.getGolVisitante(),partido.getGolLocal());
+				
+				int equipo1id = partido.getId().getIdlocal();
+				int equipo2id = partido.getId().getIdvisitante();
+				
+				consulta2.setParameter("id", equipo1id);
+				String nombreEquipo1 = consulta2.getSingleResult().getNombre();
+				consulta2.setParameter("id", equipo2id);
+				String nombreEquipo2 = consulta2.getSingleResult().getNombre();
+				sumarPuntos(resultados,nombreEquipo1,puntosLocal);
+				sumarPuntos(resultados,nombreEquipo2,puntosVisitante);
 			}
+			
+			Map<String, Integer> ordenadoPorPuntos = resultados.entrySet()
+			        .stream()
+			        .sorted(Map.Entry.<String, Integer>comparingByValue().reversed()) // mayor a menor
+			        .collect(
+			                java.util.stream.Collectors.toMap(
+			                        Map.Entry::getKey,
+			                        Map.Entry::getValue,
+			                        (e1, e2) -> e1,
+			                        java.util.LinkedHashMap::new
+			                )
+			       );
+			
+			escribirFichero(ordenadoPorPuntos, jornada);
+			
 			em.close();
 			emp.close();
+			
 		} catch (Exception e){
 			System.out.println("Error:" + e.getMessage());
 		}
-		
-		
 	}
 
+
+	private static void escribirFichero(Map<String, Integer> ordenadoPorPuntos, int jornada) {
+		try(BufferedWriter bw = new BufferedWriter(new FileWriter("clasificacion.dat"))){
+			bw.write("Clasificacion jornada " + jornada);
+			bw.newLine();
+			int i = 1;
+			for (Map.Entry<String, Integer> entry : ordenadoPorPuntos.entrySet()) {
+				String s = String.format("%2d. %-20s %3d puntos", i++, entry.getKey(), entry.getValue());
+				bw.write(s);
+				bw.newLine();
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
+	public static int calcularPuntos(int golesFavor, int golesContra) {
+		int puntos = 0;
+		if (golesFavor > golesContra) {
+			puntos = 3;
+		} else if (golesFavor < golesContra) {
+			puntos = 0;
+		} else {
+			puntos = 1;
+		}
+		return puntos;
+	}
+	public static void sumarPuntos(Map<String, Integer> resultados, String nombre, int puntos) {
+		if(resultados.containsKey(nombre)) {
+			resultados.put(nombre, resultados.get(nombre) + puntos);
+		} else {
+			resultados.put(nombre, puntos);
+		}
+	}
 }
