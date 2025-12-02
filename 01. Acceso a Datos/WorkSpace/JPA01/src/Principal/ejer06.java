@@ -26,6 +26,7 @@ public class ejer06 {
 		}
 		transaccion.commit();
 		em.close();
+		emp.close();
 	}
 
 }

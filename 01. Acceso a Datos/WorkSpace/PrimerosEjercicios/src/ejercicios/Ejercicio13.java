@@ -3,12 +3,13 @@ package ejercicios;
 import java.util.Scanner;
 
 public class Ejercicio13 {
-
+	
+	/*Nota 1 trimestre Nota final que quiero .
+	Quiero saber cuanto tengo que sacar en el segundo trimestre
+	Nota final = 0.4 * primer + 0.6* segundo
+	Nota final -(0.4 * primer)/ 0.6 -  = segundo*/
 	public static void main(String[] args) {
-try (//		Nota 1 trimestre Nota final que quiero .Quiero saber cuanto tengo que sacar en el segundo trimestre
-				//Nota final = 0.4 * primer + 0.6* segundo
-				//Nota final -(0.4 * primer)/ 0.6 -  = segundo
-		Scanner sc = new Scanner(System.in)) {
+		try (Scanner sc = new Scanner(System.in)) {
 			System.out.println("¿Qué nota has sacado en el primer trimestre?");
 			double nota1 = Double.valueOf(sc.nextLine());
 			System.out.println("¿Qué nota quieres tener para el final?");
@@ -21,7 +22,6 @@ try (//		Nota 1 trimestre Nota final que quiero .Quiero saber cuanto tengo que s
 				System.out.printf("No podrás obtener esa nota ya que necesitas %.2f", nota2);
 			}
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

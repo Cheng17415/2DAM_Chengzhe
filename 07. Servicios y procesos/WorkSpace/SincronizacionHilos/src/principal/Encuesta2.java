@@ -6,6 +6,8 @@ import java.util.Set;
 public class Encuesta2 {
 	private static final int NUM_ZONAS = 20;
 	
+	/*Simular encuestas en 20 zonas. Cada resultado esta comprendido entre 1 y 9 o No contesta
+	 * Visualizar el numero de respuestas por zona y cuantas respuestas tienen el mismo numero*/
 	public static void main(String[] args) {
 		ResultadosEncuesta2 resultados = new ResultadosEncuesta2();
 		EncuestadorZona2[] encuestadores = new EncuestadorZona2[NUM_ZONAS];

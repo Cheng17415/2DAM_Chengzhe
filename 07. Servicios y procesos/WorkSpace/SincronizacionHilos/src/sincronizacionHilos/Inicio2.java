@@ -4,6 +4,8 @@ public class Inicio2 {
 	public static final int NUM_HILOS = 10;
 	public static final int CUENTA_TOTAL = 1_000_000_000;
 
+	/*Dividir una cuenta total en diferentes hilos
+	 * Es lenta ya que como esta sincronizado, solo un hilo puede entrar*/
 	public static void main(String[] args) {
 		Contador c = new Contador();
 		Tarea[] hilos = new Tarea[NUM_HILOS];

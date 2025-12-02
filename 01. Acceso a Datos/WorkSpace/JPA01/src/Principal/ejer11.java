@@ -16,8 +16,6 @@ public class ejer11 {
 		//Quitar 3 años a todos en la base de datos
 		EntityManagerFactory emp = Persistence.createEntityManagerFactory("JPAnuevo");
 		EntityManager em = emp.createEntityManager();
-		EntityTransaction transaccion = em.getTransaction();
-		transaccion.begin();
 		
 		TypedQuery<ALUMNOS> consulta = em.createQuery("SELECT distinct d FROM ALUMNOS d join fetch d.cursos c", ALUMNOS.class);
 		List<ALUMNOS> lista = consulta.getResultList();

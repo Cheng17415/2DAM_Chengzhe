@@ -10,18 +10,19 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Fich_05 {
-	//Hacer programa que se le pida el nombre del equipo y nos cree un fichero nombre equipo.csv que contenga los integrantes del equipo
+	/*Hacer programa que se le pida el nombre del equipo y cree un
+	 *fichero nombre equipo.csv que contenga los integrantes del equipo*/
 	public static void crearSubDirectorio(String directorio) {
 		//Ejemplo C:\FICHEROS
 		File fich = new File(directorio);
 		if(!fich.exists()) {
 			fich.mkdir();
-			System.out.println("Fichero creado con éxito");
+			System.out.println("Directorio creado con éxito");
 		}
 		else {
 			if(!fich.isDirectory()) fich.mkdir();
-			System.out.println("Fichero ya existe");
-			}
+			System.out.println("Directorio ya existe");
+		}
 	}
 	public static void main(String[] args) throws IOException {
 		String camino ="C:\\Ficheros";
@@ -35,8 +36,7 @@ public class Fich_05 {
 	public static void fichero(String club, String camino) throws IOException{
 		File f = new File(club + ".csv");
 		try (BufferedReader br = new BufferedReader(new FileReader("jugadores.csv"));
-				BufferedWriter bw = new BufferedWriter(new FileWriter(camino + "\\"+f)))
-			{
+				BufferedWriter bw = new BufferedWriter(new FileWriter(camino + "\\"+f))){
 			String[] lista = null;
 			String texto = br.readLine();
 			if(texto == null) {
@@ -54,8 +54,6 @@ public class Fich_05 {
 			
 		} catch (FileNotFoundException e) {
 			System.out.println("Fichero no encontrado");
-		}
-		
+		}	
 	}
-	
 }

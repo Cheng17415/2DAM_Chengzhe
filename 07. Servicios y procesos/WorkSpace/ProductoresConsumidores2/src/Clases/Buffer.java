@@ -1,4 +1,4 @@
-package Clases;
+	package Clases;
 
 public class Buffer {
 	private int[] buffer;

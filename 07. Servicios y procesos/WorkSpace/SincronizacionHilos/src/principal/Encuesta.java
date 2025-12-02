@@ -7,6 +7,8 @@ import java.util.Set;
 public class Encuesta {
 	private static final int NUM_ZONAS = 20;
 	
+	/*Simular encuestas en 20 zonas. Cada resultado esta comprendido entre 1 y 9 o No contesta
+	 * Visualizar el numero de respuestas por zona y cuantas respuestas tienen el mismo numero*/
 	public static void main(String[] args) {
 		ResultadosEncuesta resultados = new ResultadosEncuesta();
 		Thread[] encuestadores = new Thread[NUM_ZONAS];
@@ -92,7 +94,7 @@ class EncuestadorZona implements Runnable{
 	@Override
 	public void run() {
 		String respuesta;
-		System.out.printf(">>Encuestador para zona %s comienza.\n", this.idZona);
+		System.out.printf(">>Encuestador para %s comienza.\n", this.idZona);
 		int numRespuestas = aleatorio.alea(100, 200);
 		for (int i = 0; i < numRespuestas; i++) {
 			int puntuacion = aleatorio.alea(0, 9);

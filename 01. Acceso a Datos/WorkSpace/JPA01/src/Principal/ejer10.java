@@ -13,12 +13,8 @@ import model.ALUMNOS;
 public class ejer10 {
 
 	public static void main(String [] args) {
-		//Quitar 3 años a todos en la base de datos
 		EntityManagerFactory emp = Persistence.createEntityManagerFactory("JPAnuevo");
 		EntityManager em = emp.createEntityManager();
-		EntityTransaction transaccion = em.getTransaction();
-		transaccion.begin();
-		
 		TypedQuery<ALUMNOS> consulta = em.createQuery("SELECT distinct d FROM ALUMNOS d join d.cursos c", ALUMNOS.class);
 		List<ALUMNOS> lista = consulta.getResultList();
 		for (ALUMNOS alumno : lista) {
