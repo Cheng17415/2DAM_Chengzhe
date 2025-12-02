@@ -4,5 +4,5 @@
 /**
  * 
  */
-module Nuevo {
+module PrimerosEjercicios {
 }
