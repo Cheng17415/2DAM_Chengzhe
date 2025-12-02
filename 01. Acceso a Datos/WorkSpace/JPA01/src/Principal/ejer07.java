@@ -16,9 +16,6 @@ public class ejer07 {
 		
 		EntityManagerFactory emp = Persistence.createEntityManagerFactory("JPAnuevo");
 		EntityManager em = emp.createEntityManager();
-		EntityTransaction transaccion = em.getTransaction();
-		transaccion.begin();
-		
 		TypedQuery<ALUMNOS> consulta = em.createQuery("SELECT d FROM ALUMNOS d WHERE d.edad >:vedad", ALUMNOS.class);
 		consulta.setParameter("vedad", 40);
 		List<ALUMNOS> lista = consulta.getResultList();

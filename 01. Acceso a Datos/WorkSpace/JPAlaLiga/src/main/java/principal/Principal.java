@@ -23,8 +23,12 @@ public class Principal {
 	 * jornada dada que se pasa como parámetro por teclado. Leer de la base de datos
 	 * y grabar 1. Atletico de Madrid 33 Jornada 7. Coger todos los partidos desde
 	 * la 1 hasta la 7. Goles a favor y goles en contra clasificacion.dat Cabezera:
-	 * Clasificacion en la jornada x: Para cada jornada, unirlo
+	 * Clasificacion en la jornada x:
 	 */
+	
+	/*El JOIN FETCH le indica al proveedor de persistencia (como Hibernate) que no
+	 *  solo una a las tablas, sino que también traiga y cargue inmediatamente los 
+	 *  datos de la entidad relacionada en la misma consulta SELECT*/
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
@@ -37,8 +41,11 @@ public class Principal {
 			EntityManager em = emp.createEntityManager();
 			
 			// Nos da la consulta hasta determinada jornada
-			TypedQuery<Partido> consulta = em.createQuery("SELECT p FROM Partido p WHERE p.id.idjornada <=:jornada", Partido.class);
-			TypedQuery<Equipo> consulta2 = em.createQuery("SELECT e FROM Equipo e WHERE e.idequipo =:id", Equipo.class);
+			TypedQuery<Partido> consulta = em.createQuery("SELECT p FROM Partido p"
+					+ " JOIN FETCH p.equipo1"
+					+ " JOIN FETCH p.equipo2"
+					+ " WHERE p.id.idjornada <=:jornada", Partido.class);
+
 			consulta.setParameter("jornada", jornada);
 			List<Partido> lista = consulta.getResultList();
 			int puntosLocal = 0, puntosVisitante = 0;
@@ -47,13 +54,9 @@ public class Principal {
 				puntosLocal = calcularPuntos(partido.getGolLocal(), partido.getGolVisitante());
 				puntosVisitante =calcularPuntos(partido.getGolVisitante(),partido.getGolLocal());
 				
-				int equipo1id = partido.getId().getIdlocal();
-				int equipo2id = partido.getId().getIdvisitante();
-				
-				consulta2.setParameter("id", equipo1id);
-				String nombreEquipo1 = consulta2.getSingleResult().getNombre();
-				consulta2.setParameter("id", equipo2id);
-				String nombreEquipo2 = consulta2.getSingleResult().getNombre();
+				String nombreEquipo1 = partido.getEquipo1().getNombre();
+				String nombreEquipo2 = partido.getEquipo2().getNombre();
+	
 				sumarPuntos(resultados,nombreEquipo1,puntosLocal);
 				sumarPuntos(resultados,nombreEquipo2,puntosVisitante);
 			}
@@ -102,7 +105,7 @@ public class Principal {
 
 
 	public static int calcularPuntos(int golesFavor, int golesContra) {
-		int puntos = 0;
+		int puntos;
 		if (golesFavor > golesContra) {
 			puntos = 3;
 		} else if (golesFavor < golesContra) {
