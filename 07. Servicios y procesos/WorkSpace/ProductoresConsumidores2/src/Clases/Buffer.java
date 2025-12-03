@@ -2,18 +2,16 @@
 
 public class Buffer {
 	private int[] buffer;
-	private int tamano;
 	private int contador = 0;
 	public Buffer(int tamano) {
 		super();
-		this.tamano = tamano;
 		buffer = new int[tamano];
 	}
 	
 	/**
 	 * @throws InterruptedException ************************/
 	public synchronized void producir(int valor) throws InterruptedException {
-		while(contador == tamano) {
+		while(contador == buffer.length - 1) {
 			System.out.println("Buffer lleno, el productor está esperando.");
 			wait();
 		}
