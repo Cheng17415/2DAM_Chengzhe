@@ -27,6 +27,8 @@ public class Inicio {
 		for (Hilo hilo : hilos) {
 			hilo.start();
 		}
+
+		
 		for (Hilo hilo : hilos) {
 			try {
 				hilo.join();

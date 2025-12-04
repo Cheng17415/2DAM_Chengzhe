@@ -27,7 +27,6 @@ public class AtletaLiso extends Thread{
 	}
 	@Override
 	public void run() {
-		super.run();
 		synchronized(pistoletazo) {
 			try {
 				pistoletazo.wait();
