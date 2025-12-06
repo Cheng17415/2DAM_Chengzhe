@@ -1,0 +1,4 @@
+1;Maria Lopez;cliente;Siempre viva;123456;email@email.com;7894561253;2
+2;Termo mate;proveedor;Maria Ester 15, Madrid;4561237;email@email.com;78945615;4
+3;Capivara;cliente;Santa Fe 20, Barcelona;741258696;email@test.com;789456;3
+4;Libreria pablito;proveedor;Santa Fe 12, Madrid;789456;email@email.com;78945612;4

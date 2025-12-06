@@ -1,0 +1,15 @@
+PRD001|Laptop Gamer|Electrónica|1200.50|15|ALM001|ACTIVO
+PRD002|Mouse Inalámbrico|Electrónica|25.99|50|ALM001|ACTIVO
+PRD003|Teclado Mecánico|Electrónica|89.99|30|ALM002|ACTIVO
+PRD004|Monitor 24"|Electrónica|350.00|20|ALM002|ACTIVO
+PRD005|Silla Ergonómica|Mobiliario|450.00|10|ALM003|ACTIVO
+PRD006|Escritorio Ejecutivo|Mobiliario|600.00|5|ALM003|ACTIVO
+PRD007|Impresora Láser|Oficina|300.00|8|ALM001|ACTIVO
+PRD008|Router WiFi|Electrónica|80.00|25|ALM002|ACTIVO
+PRD009|Tablet 10"|Electrónica|450.00|12|ALM005|ACTIVO
+PRD010|Auriculares Bluetooth|Electrónica|75.50|40|ALM005|ACTIVO
+PRD011|Teléfono Inalámbrico|Electrónica|65.00|18|ALM004|INACTIVO
+PRD012|Calculadora Científica|Oficina|45.00|35|ALM001|ACTIVO
+PRD013|Archivador de Acero|Oficina|120.00|22|ALM003|ACTIVO
+PRD014|Proyector HD|Electrónica|850.00|7|ALM002|ACTIVO
+PRD015|Scanner Documentos|Oficina|280.00|9|ALM001|ACTIVO

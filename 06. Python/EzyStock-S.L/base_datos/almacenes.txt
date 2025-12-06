@@ -1,0 +1,5 @@
+ALM001|Almacén Central|Av. Industrial 123|Juan Pérez|ACTIVO
+ALM002|Bodega Norte|Calle Comercio 456|María González|ACTIVO
+ALM003|Depósito Sur|Av. Logística 789|Carlos Rodríguez|ACTIVO
+ALM004|Centro de Distribución|Carretera Principal Km 5|Ana Martínez|INACTIVO
+ALM005|Almacén Express|Zona Franca Industrial|Luis Fernández|ACTIVO
