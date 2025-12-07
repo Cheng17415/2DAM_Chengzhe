@@ -24,11 +24,16 @@
     th,tr{
       width: 40px;
       height: 40px;
-      
+      margin:0px;
     }
     button{
+      margin:0px;
       width: 40px;
       height: 40px;
+      border: 1px solid black;
+    }
+    .hclick{
+      background-color: red;
     }
   </style>
 </head>
@@ -38,6 +43,8 @@
   <div id="tabla"></div>
   <script>
 
+    let tablero = [];
+    //Inicializar
     function inicio(){
       const letras = ' ABCDEFGHIJ';
       const destino = document.getElementById("tabla");
@@ -57,8 +64,7 @@
             let elemento = document.createElement('td');
             let boton = document.createElement('button');
             boton.id =`${letras[i]}${j}`;
-            let evento = ()=>clickBoton(boton);
-            boton.addEventListener('click',evento);
+            boton.addEventListener('click',manejarClick);
             row.append(elemento);
             elemento.append(boton);
           }
@@ -68,11 +74,65 @@
       destino.appendChild(tabla);
     }
 
-    function clickBoton(boton,evento){
-      boton.removeEventListener('click', eventListener);
-      console.log("Has pulsado " + boton.id);
+    function manejarClick(e){
+      const boton = e.target;
+      console.log(boton.id);
+      boton.removeEventListener('click', manejarClick);
+      boton.classList.add('hclick');
     }
-    window.addEventListener('load',()=>inicio());
+
+    //Logica juego
+    function colocarBarcos(){
+      const barcos = [1,1,2,3,4,5];
+      let direcciones =[[1,0],[0,1]];
+      barcos.forEach(num =>{
+        let colocado = false;
+        while(!colocado){
+          let fila = alea(0,9);
+          let columna = alea(0,9);
+          let direccion = direcciones[alea(0,direcciones.length -1)];
+          if(puedeColocar(fila,columna,num,direccion)){
+            colocar(fila,columna,num,direccion);
+            colocado = true;
+          }
+        }
+      });
+      console.log(tablero);
+    }
+
+    function puedeColocar(fila, col, tamaño, dir) {
+      for (let i = 0; i < tamaño; i++) {
+        let f = fila + dir[0] * i;
+        let c = col + dir[1] * i;
+
+        if (f < 0 || f >= 10 || c < 0 || c >= 10) return false;
+        if (tablero[f][c] === 1) return false;
+      }
+      return true;
+    }
+    function colocar(fila, col, tamaño, dir) {
+      for (let i = 0; i < tamaño; i++) {
+        let f = fila + dir[0] * i;
+        let c = col + dir[1] * i;
+        tablero[f][c] = 1;
+      }
+    }
+
+    function aleaLetra(){
+      const letras = 'ABCDEFGHIJ';
+      return letras[alea(0,letras.length-1)];
+    }
+    function alea(li, ls){
+      return parseInt(Math.random() * (ls - li + 1) + li);
+    }
+    function crearTableroLogico() {
+      tablero = Array.from({ length: 10 }, () => Array(10).fill(0));
+    }
+
+    window.addEventListener('load',()=>{
+      crearTableroLogico();
+      inicio();
+    });
   </script>
 </body>
 </html>
