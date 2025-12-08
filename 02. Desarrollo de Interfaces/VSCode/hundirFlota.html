@@ -8,7 +8,7 @@
     body{
       font-family: Arial, Helvetica, sans-serif;
       display: flex;
-      margin: 0;
+      margin: 0px;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -16,7 +16,7 @@
     #tabla{
       border: 2px solid rgb(66, 3, 255);
       border-radius: 12px;
-      margin: 20px auto;
+      margin: 0px;
       text-align: center;
       background: #53dbe5;
       padding: 25px 30px;
@@ -26,28 +26,49 @@
       height: 40px;
       margin:0px;
     }
-    button{
+    button.botonJuego{
       margin:0px;
       width: 40px;
       height: 40px;
       border: 1px solid black;
     }
-    .hclick{
+    #reset{
+      margin-bottom: 10px;
+      color: rgb(5, 5, 126);
+      background-color: rgb(136, 136, 249);
+      border: 1px solid rgb(66, 3, 255);
+    }
+    .hit{
       background-color: red;
+    }
+    .nhit{
+      background-color: gray;
+    }
+    #mensaje{
+      height: 50px;
+      font-weight: bold;
+      font-size: large;
     }
   </style>
 </head>
 
 <body>
   <h2>Hundir la flota</h2>
+  <div id="mensaje"></div>
+  <button id="reset">Resetear</button>
   <div id="tabla"></div>
   <script>
-
     let tablero = [];
+    //Tamaño de los barcos
+    const barcos = [1,1,2,3,4,5];
+    const numGanar = barcos.reduce((total, b) => total + b, 0);
+    let contadorHit = 0;
+
     //Inicializar
     function inicio(){
       const letras = ' ABCDEFGHIJ';
       const destino = document.getElementById("tabla");
+      destino.innerHTML = '';
       let tabla = document.createElement('table');
       for(let j = 0; j<=10;j++){
         let row = document.createElement('tr');
@@ -64,6 +85,7 @@
             let elemento = document.createElement('td');
             let boton = document.createElement('button');
             boton.id =`${letras[i]}${j}`;
+            boton.classList.add('botonJuego');
             boton.addEventListener('click',manejarClick);
             row.append(elemento);
             elemento.append(boton);
@@ -76,14 +98,40 @@
 
     function manejarClick(e){
       const boton = e.target;
-      console.log(boton.id);
       boton.removeEventListener('click', manejarClick);
-      boton.classList.add('hclick');
+
+      const columna = convertirLetraANum(boton.id[0]);
+      const fila = Number(boton.id.slice(1)) - 1;
+      if(comprobarHit(boton.id)){
+        boton.classList.add('hit');
+        tablero[fila][columna] = 2;
+        contadorHit++;
+        console.log("1. " + contadorHit + "2. " + numGanar)
+        if(contadorHit === numGanar){
+          console.log("Has ganado");
+          document.getElementById("mensaje").innerHTML = '¡Has ganado!';
+          setTimeout(()=>{resetearPartida()},2000);
+        }
+      } else{
+        boton.classList.add('nhit');
+        tablero[fila][columna] = -1;
+      }
+    }
+    
+    function comprobarHit(id){
+      if(!id) return false;
+
+      const j = convertirLetraANum(id.substring(0,1));
+      const i = Number(id.substring(1)) - 1;
+      return tablero[i][j] === 1;
+    }
+
+    function convertirLetraANum(letra){
+      return 'ABCDEFGHIJ'.indexOf(letra);
     }
 
     //Logica juego
     function colocarBarcos(){
-      const barcos = [1,1,2,3,4,5];
       let direcciones =[[1,0],[0,1]];
       barcos.forEach(num =>{
         let colocado = false;
@@ -117,11 +165,6 @@
         tablero[f][c] = 1;
       }
     }
-
-    function aleaLetra(){
-      const letras = 'ABCDEFGHIJ';
-      return letras[alea(0,letras.length-1)];
-    }
     function alea(li, ls){
       return parseInt(Math.random() * (ls - li + 1) + li);
     }
@@ -129,9 +172,20 @@
       tablero = Array.from({ length: 10 }, () => Array(10).fill(0));
     }
 
+    function resetearPartida(){
+      tablero = [];
+      contadorHit = 0;
+      document.getElementById('mensaje').innerHTML = '';
+      crearTableroLogico();
+      inicio();
+      colocarBarcos();
+    }
+
+    document.getElementById('reset').addEventListener('click',()=>resetearPartida());
     window.addEventListener('load',()=>{
       crearTableroLogico();
       inicio();
+      colocarBarcos();
     });
   </script>
 </body>
