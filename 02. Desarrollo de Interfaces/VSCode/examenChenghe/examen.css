@@ -1,0 +1,39 @@
+body{
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      margin: 0px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    #marco{
+        border: 1px solid blue;
+        border-radius: 10px;
+        margin-top: 20px;
+        text-align: center;
+        padding: 20px;
+        background-color: aqua;
+    }
+    #marcoCabez{
+        margin-bottom: 20px;
+    }
+    #textoConversor{
+        height: 20px;
+        margin-bottom: 10px;
+    }
+    #fieldOpciones{
+        border: 1px solid blue;
+        border-radius: 10px;
+        background-color: aquamarine;
+    }
+    #botonConvertir{
+        border: none;
+        background-color: rgb(84, 239, 187);
+        border-radius: 10px;
+        width: 100px;
+        height: 30px;
+        cursor: pointer;
+    }
+    #botonConvertir:hover{
+        background-color: orange;
+    }

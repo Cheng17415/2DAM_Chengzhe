@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+    Desarrollar una aplicación donde el usuario pueda seleccionar un Año y un Mes. 
+    Al seleccionar estos valores, la aplicación debe generar y mostrar una tabla $\text{HTML}$ que represente el calendario de ese mes, asegurando que:
+    - El primer día del mes caiga en el día de la semana correcto.
+    - El número total de días sea exacto (manejando 28, 29, 30 o 31 días).
+    -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario Dinámico</title>
+</head>
+<script>
+    let meses = [
+        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+        "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+    ]
+
+    let dias = ["L", "M", "X", "J", "V", "S", "D"];
+
+    function inicio() {
+        cargarSelectores();
+
+        let selectAño = document.getElementById("saños");
+        let selectMes = document.getElementById("smeses");
+
+        selectMes.addEventListener("change", function () {
+            let año = parseInt(selectAño.value);
+            let mes = parseInt(selectMes.value);
+
+            let info = document.getElementById("info");
+            let calendario = document.getElementById("calendario");
+
+            // Mostrar si es bisiesto o no
+            if (mes === 1) {   // febrero
+                info.textContent = bisiesto(año)
+                    ? `El año ${año} ES bisiesto — febrero tiene 29 días`
+                    : `El año ${año} NO es bisiesto — febrero tiene 28 días`;
+            } else {
+                info.textContent = `El mes seleccionado tiene ${fdias(año, mes)} días`;
+            }
+            // Crear el calendario
+            let tabla = crearTablaMes(año, mes);
+            calendario.innerHTML = "";
+            calendario.appendChild(tabla);
+        });
+    }
+
+    function bisiesto(n) {
+        return (n % 4 === 0 && n % 100 !== 0) || (n % 400 === 0);
+    }
+
+    function fdias(año, mes) {
+        let ndias = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        if (mes == 1) { // febrero
+            ndias[1] = bisiesto(año) ? 29 : 28;
+        }
+        return ndias[mes];
+    }
+
+    function cargarSelectores() {
+        let vanio = document.getElementById("saños");
+        let vmeses = document.getElementById("smeses");
+
+        //carga los años en las opciones select
+        for (let a = 2000; a <= 2025; a++) {
+            let nuevo = document.createElement("option");
+            nuevo.text = a;
+            nuevo.value = a;
+            vanio.appendChild(nuevo);
+
+        }
+        for (let i = 0; i < meses.length; i++) {
+            let nuevo = document.createElement("option");
+            nuevo.text = meses[i];
+            nuevo.value = i;
+            vmeses.appendChild(nuevo);
+        }
+    }
+
+    function crearTablaMes(año, mes) {
+        console.log("crearTablaMes", año, mes);
+        let tabla = document.createElement("table");
+
+        let caption = document.createElement("caption");
+        caption.textContent = meses[mes];
+        tabla.appendChild(caption);
+
+        // HEADER
+        let thead = document.createElement("thead");
+        let trHead = document.createElement("tr");
+
+        dias.forEach(d => {
+            const th = document.createElement("th");
+            th.textContent = d;
+            trHead.appendChild(th);
+        });
+        thead.appendChild(trHead);
+        tabla.appendChild(thead);
+
+        // BODY
+        const tbody = document.createElement("tbody");
+        let tr = document.createElement("tr");
+
+        let fecha = new Date(año, mes, 1);
+        let inicio = fecha.getDay() === 0 ? 6 : fecha.getDay() - 1;
+
+        for (let i = 0; i < inicio; i++) {
+            tr.appendChild(document.createElement("td"));
+
+        }
+
+        while (fecha.getMonth() === mes) {
+            const td = document.createElement("td");
+            td.textContent = fecha.getDate();
+            tr.appendChild(td);
+
+            const diaSemana = fecha.getDay() === 0 ? 6 : fecha.getDay() - 1;
+            if (diaSemana === 6) {
+                tbody.appendChild(tr);
+                tr = document.createElement("tr");
+            }
+
+            fecha.setDate(fecha.getDate() + 1);
+        }
+
+        tbody.appendChild(tr);
+        tabla.appendChild(tbody);
+
+        return tabla;
+    }
+    window.onload = () => {
+        inicio();
+    };
+</script>
+<style>
+    /* ======== ESTILO GENERAL ======== */
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f4f8;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* ======== CONTENEDOR PRINCIPAL ======== */
+    fieldset {
+        width: 380px;
+        background: white;
+        padding: 20px 25px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* ======== ETIQUETAS, SELECTS Y TEXTOS ======== */
+    label {
+        font-weight: bold;
+        font-size: 15px;
+        color: #333;
+    }
+
+    select {
+        width: 100%;
+        padding: 7px 10px;
+        margin-top: 6px;
+        border: 1px solid #bbb;
+        border-radius: 5px;
+        background: #fff;
+        font-size: 14px;
+        cursor: pointer;
+        transition: border 0.2s ease;
+    }
+
+    select:focus {
+        border-color: #4a6cf7;
+        outline: none;
+    }
+
+    /* ======== CAJA DEL CALENDARIO ======== */
+    #calendario {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* ======== TABLA DEL CALENDARIO ======== */
+    table {
+        border-collapse: collapse;
+        background: white;
+        width: 100%;
+        max-width: 350px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+    caption {
+        padding: 10px;
+        font-weight: bold;
+        background: #4a6cf7;
+        color: white;
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+
+    /* ======== ENCABEZADOS DE LA TABLA ======== */
+    th {
+        background: #e8e9ff;
+        padding: 8px;
+        text-align: center;
+        font-weight: bold;
+        border-bottom: 1px solid #d4d4f7;
+    }
+
+    /* ======== CELDAS DEL CALENDARIO ======== */
+    td {
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #eee;
+        height: 40px;
+    }
+
+    td:hover {
+        background: #f0f4ff;
+        cursor: pointer;
+    }
+
+    /* ======== TEXTO DE INFORMACIÓN ======== */
+    #info {
+        margin-top: 10px;
+        padding: 8px;
+        background: #eef3ff;
+        border-left: 4px solid #4a6cf7;
+        color: #333;
+        font-size: 14px;
+    }
+</style>
+
+<body>
+    <fieldset>
+        <label for="">Calendario dinámico</label><br></label>
+        <p>
+            <label for="">Año</label>
+            <select id="saños"></select>
+        </p>
+        <p>
+            <label for="">Meses</label>
+            <select id="smeses"></select>
+        <p id="resultado"></p>
+        </p>
+        <p id="info"></p>
+        <p>
+        <div id="calendario"></div>
+        </p>
+    </fieldset>
+</body>
+
+</html>
