@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #marco1990{
+            width: 400px;
+            height: 100%;
+            background-color: aqua;
+            margin:20px auto;
+            padding:10px;
+            line-height: 57px;
+        }
+        #coincidencias{
+            text-align: center;
+            font-size: 3rem;
+            background-color: red;
+            color:white;
+            width: 3rem;
+            margin:20px auto;
+        }
+    </style>
+    <script>
+      let posi=16,coincidencias=0;
+      let turno=true;
+      let numero_1="",numero_2="",imagen_1="",imagen_2="";
+      let lugar="./img/numeros/";
+      const ocultas=new Array(posi).fill("X");
+      /*********************************************************************************/
+      function alea(li,ls){ return Math.floor(Math.random()*(ls-li+1))+li;}
+      /*********************************************************************************/
+      function ponimagen(des,id){
+        let elem=document.createElement("img");
+        elem.setAttribute("src",`${lugar}fondo.jpg`);
+        elem.setAttribute("height",96);
+        elem.setAttribute("width",96);
+        elem.setAttribute("id",id);
+        des.appendChild(elem);
+        let ori=document.getElementById(id);
+        ori.addEventListener("dblclick",()=>{cambio(ori);});
+      }
+      /*********************************************************************************/
+      function inicio(){
+        for(i=1;i<=(posi/2);i++){
+            for(j=1;j<=2;j++){
+                colocado=true;
+                while(colocado){
+                    n=alea(1,posi)-1;
+                    if (ocultas[n]=="X"){
+                        ocultas[n]="imagen_"+i+"#"+j;
+                        colocado=false;
+                    }
+                }
+            }
+        }
+        let destino=document.getElementById("marco1990");
+        for(i=0;i<ocultas.length;i++)ponimagen(destino,ocultas[i]);
+      }
+      /*********************************************************************************/
+      function obtener_numero(cadena){
+        //cadena----->imagen_2#1
+        let pos1=cadena.indexOf("_")+1;
+        let pos2=cadena.indexOf("#");
+        return cadena.substr(pos1,pos2-pos1);
+      }
+      /*********************************************************************************/
+      function cambio(origen){
+       let m=obtener_numero(origen.id);
+       origen.src=`${lugar}numero_`+m+".png";
+      if (turno){
+        imagen_1=origen.id;
+        numero_1=m;
+      }else{
+        imagen_2=origen.id;
+        let i1=document.getElementById(imagen_1),i2=document.getElementById(imagen_2);
+        if (numero_1==m){
+            document.getElementById("coincidencias").innerHTML=++coincidencias;
+            i1.removeEventListener("dblclick",()=>{cambio(i1);})
+            i2.removeEventListener("dblclick",()=>{cambio(i2);})
+        }else{
+            setTimeout(()=>{
+               i1.src=`${lugar}fondo.jpg`;
+               i2.src=`${lugar}fondo.jpg`;
+            },500);
+        }
+      } 
+      turno=!turno
+      }
+      /*********************************************************************************/
+        window.onload=()=>{inicio();}
+    </script>
+</head>
+<body>
+    <div id="marco1990"></div>
+    <p id="coincidencias">0</p>
+</body>
+</html>
