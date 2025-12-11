@@ -40,7 +40,6 @@ function reset() {
     jugadas1 = [];
     jugadas2 = [];
     turno = 1;
-
     updateTablero();
     updateTurno();
 }

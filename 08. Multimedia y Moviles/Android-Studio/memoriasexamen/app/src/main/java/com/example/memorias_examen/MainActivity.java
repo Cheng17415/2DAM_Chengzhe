@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
     // Fondo de la carta (cuando está boca abajo)
     private final int fondo = R.drawable.ic_launcher_background; // Ojo: Cambia esto por tu imagen de reverso si tienes una
 
-    private ImageView[] casillas = new ImageView[16];
-    private int[] posiciones = new int[16];
+    private final ImageView[] casillas = new ImageView[16];
+    private final int[] posiciones = new int[16];
     private int numero1 = 0, numero2 = 0, vnumero1 = 0, vnumero2 = 0, contador = 0;
     private boolean turno;
     private boolean bloqueo = false; // Para evitar clicks rápidos mientras se voltean

@@ -1,0 +1,11 @@
+<resources>
+    <style name="CardStyle">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:src">@drawable/cloudy</item>
+    </style>
+
+</resources>
