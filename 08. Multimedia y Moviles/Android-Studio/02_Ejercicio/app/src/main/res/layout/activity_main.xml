@@ -40,5 +40,5 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/positive"
         app:layout_constraintTop_toBottomOf="@+id/imagen1"
-        android:backgroundTint="#FF5722"/>/>
+        android:backgroundTint="#FF5722"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

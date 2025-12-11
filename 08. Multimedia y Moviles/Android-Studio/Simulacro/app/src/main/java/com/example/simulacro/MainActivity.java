@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         lv.setOnItemClickListener((parent, view, position, id) -> {
             t1.setText(lv.getItemAtPosition(position).toString());
             res.setText(calcularResultados(et1, et2, t1.getText().toString()));
-
         });
         escuchador(et1);
         escuchador(et2);

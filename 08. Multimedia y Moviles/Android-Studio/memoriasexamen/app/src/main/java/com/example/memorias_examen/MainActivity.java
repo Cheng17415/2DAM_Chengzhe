@@ -54,12 +54,9 @@ public class MainActivity extends AppCompatActivity {
                     // Asignar imagen de fondo inicial
                     // casillas[k].setImageResource(R.drawable.tu_imagen_reverso);
 
-                    casillas[k].setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (!bloqueo) {
-                                elegido(v.getId());
-                            }
+                    casillas[k].setOnClickListener(v -> {
+                        if (!bloqueo) {
+                            elegido(v.getId());
                         }
                     });
                     k++;

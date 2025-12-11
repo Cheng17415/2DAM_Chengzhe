@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.commit();
         }
 
-        // --- END: ADD THIS CODE BLOCK ---
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

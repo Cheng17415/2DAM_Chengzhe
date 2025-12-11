@@ -26,16 +26,12 @@ public class MainActivity extends AppCompatActivity {
 
         boton = findViewById(R.id.boton);
 
-        boton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                FragmentManager f = getSupportFragmentManager();
-                FragmentTransaction ft = f.beginTransaction();
-                contador frag = new contador();
-                ft.add(R.id.fragmentox,frag);
-                ft.commit();
-            }
+        boton.setOnClickListener(v -> {
+            FragmentManager f = getSupportFragmentManager();
+            FragmentTransaction ft = f.beginTransaction();
+            contador frag = new contador();
+            ft.add(R.id.fragmentox,frag);
+            ft.commit();
         });
-
     }
 }

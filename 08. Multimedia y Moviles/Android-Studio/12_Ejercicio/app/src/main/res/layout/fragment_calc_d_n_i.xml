@@ -13,7 +13,7 @@
         android:layout_marginTop="45dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:inputType="textMultiLine"/>
+        android:hint="Introduce DNI o NIE"/>
 
     <Button
         android:id="@+id/calcLetra"
@@ -25,11 +25,11 @@
         android:text="Calcular letra"/>
 
     <TextView
-        android:id="@+id/contador"
+        android:id="@+id/resultado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@id/numDNI"
+        android:layout_below="@id/calcLetra"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:text=""
         android:textSize="30dp" />
 </RelativeLayout>
