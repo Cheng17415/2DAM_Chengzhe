@@ -7,7 +7,6 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import model.Cliente;
-import model.Comercial;
 import model.Pedido;
 public class Principal {
 

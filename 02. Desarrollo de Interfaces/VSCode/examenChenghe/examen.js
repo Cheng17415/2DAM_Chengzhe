@@ -24,7 +24,7 @@ function inicio() {
             opcion.id = `opc${elem1}${elem2}`;
             opcion.value = `${elem1}${elem2}`;
             fieldset.appendChild(opcion);
-
+            
             //Y también crear el label para ese input
             let label = document.createElement('label');
             label.for = `opc${elem1}${elem2}`;

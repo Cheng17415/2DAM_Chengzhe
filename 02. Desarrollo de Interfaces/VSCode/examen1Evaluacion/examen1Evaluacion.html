@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+   #marco {
+      width: 450px;
+      margin: 20px auto;
+      border: 1px solid black;
+      padding: 20px;
+      border: 10px black ridge;
+      border-radius: 25px;
+   }
+   input[type="number"] {     text-align: right;   }
+
+   input[type="radio"] {     margin: 5px 3px 5px 15px;   }
+
+   input[name=cunidades]:checked+label {
+      background-color: rgb(191, 198, 197);
+      color: white;
+      padding: 3px;
+   }
+   legend {
+      padding: 10px;
+      background-color: black;
+      color: white;
+      border-radius: 25px;
+   }
+   fieldset{margin-top: 40px;margin-bottom: 20px;}
+</style>    
+<script>
+    let munidades=["Celsius","Fahrenheit","Kelvin"];
+    function dime(letra){
+        for(let i=0;i<munidades.length;i++){
+            if (munidades[i].charAt(0)==letra)return munidades[i];
+        }    
+    }
+    function cambio(){
+        let n=document.querySelector("input[name=cunidades]:checked")?.value;
+        let v=parseFloat(document.getElementById("temperatura").value);
+        let w=0;
+        let cadena=dime(n.charAt(0));
+        let cadenadestino=dime(n.charAt(n.length-1));
+
+        switch(n){
+            case "C a F":
+                w=v*1.8+32;
+                break;
+            case "C a K":
+                w=v+273.15;
+                break; 
+            case "F a C":
+                w=(v-32) / 1.8;
+                break; 
+            case "F a K":
+                w = ((5/9) *(v-32)) + 273.15;
+                break; 
+            case "K a C":
+                w = v-273.15;
+                break; 
+            case "K a F":
+                w= (1.8*(v-273.15)) + 32;
+                break;                
+        }
+        document.getElementById("origen").innerHTML=`<b>${cadena}</b>`;
+        
+        document.getElementById("destino").innerHTML=
+        `${v} <b>${cadena}</b>=${w.toFixed(2)} <b>${cadenadestino}</b>`;
+
+        
+    }
+    function inicio(){
+        document.getElementById("temperatura").addEventListener("change",()=>{cambio();})
+        let target=document.getElementById("unidades");
+        for(let i=0;i<munidades.length;i++){
+            for(let j=0;j<munidades.length;j++){
+                if (i!=j)anadir(target,i,j);
+            }    
+        }
+        document.getElementsByName("cunidades")[0].checked=true;
+        cambio();
+    }
+    function anadir(dest,ii,jj){
+        let variable=munidades[ii].charAt(0)+" a "+munidades[jj].charAt(0);
+     
+        let input=document.createElement('input');
+        input.type='radio';
+        input.value=variable;
+        input.name="cunidades"
+        input.addEventListener("change",()=>{cambio();})
+
+        let label=document.createElement('label');
+        label.for=variable;
+        label.textContent=variable;
+        dest.appendChild(input);
+        dest.appendChild(label);
+    }
+    window.addEventListener("load",()=>{inicio();})
+</script>
+</head>
+<body>
+    <div id="marco">
+        <p style="text-align: center">
+            <label for="temperatura" id="origen">Celsius</label>
+            <input type="number" value="0" id="temperatura">
+        </p>
+        <p style="text-align: center">
+            <label for="unidad_origen" id="destino">Celsius 0 son 32 Kelvi</label>
+        </p>
+        <fieldset id="unidades">
+            <legend>Conversión Unidades</legend>
+        </fieldset>
+    </div>
+</body>
+</html>
