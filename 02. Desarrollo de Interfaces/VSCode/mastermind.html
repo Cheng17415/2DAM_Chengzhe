@@ -6,17 +6,66 @@
     <title>MasterMind</title>
     <style>
         body{
-            display: flex;
             justify-content: center;
             text-align: center;
+            background-color:beige
         }
-        
+        h2{
+            color: rgb(18, 194, 243);
+            text-shadow: 2px 0 #1500ff;
+        }
+        /*Esto va a servir para las esferas*/
+        .color{
+            height: 30px;
+            width: 30px;
+            border: 1px solid rgb(0, 0, 0);
+            border-radius: 50%;
+        }
+        #usuario{
+            display: flex;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
-    <div id="marco"></div>
+    <h2>MasterMind</h2>
+    <div id="marco">
+        
+    </div>
+    <p id="usuario"></p>
     <script>
+        let colores = ['R','A','V','Z','M','N'];
 
+        function inicio(){
+            let destino = document.getElementById('usuario');
+
+            colores.forEach( color =>{
+                let esfera = document.createElement('div');
+                esfera.classList.add('color');
+                esfera.id = color;
+                esfera.style.backgroundColor = determinarColor(color);
+                esfera.addEventListener('click',()=>{
+                    console.log("Has dado click");
+                });
+                destino.appendChild(esfera);
+            });
+            let deleteButton = document.createElement('button');
+            destino.appendChild(deleteButton)
+        }
+        
+        function determinarColor(color){
+            let detColores = {
+                R: 'rgb(255, 0, 0)',
+                A: 'rgb(255,255,0)',
+                V: 'rgb(0,255,0)',
+                Z: 'rgb(0,0,255)',
+                M: 'rgb(128,0,128)',
+                N: 'rgb(255,165,0)'
+            }
+            return detColores[color];
+        }
+        determinarColor('R')
+        window.addEventListener('load', ()=> inicio())
     </script>
 </body>
 </html>
