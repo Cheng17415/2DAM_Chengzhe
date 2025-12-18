@@ -1,71 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MasterMind</title>
     <style>
-        body{
+        body {
             justify-content: center;
             text-align: center;
-            background-color:beige
+            background-color: beige
         }
-        h2{
+
+        h2 {
+            font-size: 50px;
             color: rgb(18, 194, 243);
             text-shadow: 2px 0 #1500ff;
         }
+
         /*Esto va a servir para las esferas*/
-        .color{
-            height: 30px;
-            width: 30px;
+        #marco {
+            margin: 0 auto;
+            background-color: blue;
+        }
+
+        .esferasJuego,
+        .color,
+        .btnEliminar,
+        .esferasSolucion {
+            height: 50px;
+            width: 50px;
             border: 1px solid rgb(0, 0, 0);
             border-radius: 50%;
         }
-        #usuario{
+
+        .color,
+        .btnEliminar {
+            height: 70px;
+            width: 70px;
+            cursor: pointer;
+        }
+
+        .esferasJuego {
+            background-color: antiquewhite;
+        }
+
+        .btnEliminar {
+            color: white;
+            background-color: black;
+        }
+
+        .esferasSolucion{
+            display: inline-block;
+        }
+
+        #usuario {
             display: flex;
             justify-content: center;
         }
+
+        .R {
+            background-color: rgb(255, 0, 0);
+        }
+
+        .A {
+            background-color: rgb(255, 255, 0);
+        }
+
+        .V {
+            background-color: rgb(0, 255, 0);
+        }
+
+        .Z {
+            background-color: rgb(0, 0, 255);
+        }
+
+        .M {
+            background-color: rgb(128, 0, 128);
+        }
+
+        .N {
+            background-color: rgb(255, 165, 0);
+        }
     </style>
 </head>
+
 <body>
     <h2>MasterMind</h2>
-    <div id="marco">
-        
-    </div>
+    <p id="solucion"></p>
+    <table id="marco"></table>
     <p id="usuario"></p>
     <script>
-        let colores = ['R','A','V','Z','M','N'];
+        let colores = ['R', 'A', 'V', 'Z', 'M', 'N'];
+        let posi = 0;
+        let posj = 0;
+        let intentos = 8;
+        let cantidadBolas = 4;
+        let solucion = [];
+        let intentoUsuario = [];
 
-        function inicio(){
+        function inicio() {
+            generarTablero();
+            generarBolasSolucion();
             let destino = document.getElementById('usuario');
+            generarBotonColores(destino);
+            generarBotonElim(destino);
+            generarBolasRandom();
+        }
 
-            colores.forEach( color =>{
-                let esfera = document.createElement('div');
+        function generarTablero() {
+            let marco = document.getElementById('marco');
+            for (let i = intentos - 1; i >= 0; i--) {
+                let tr = document.createElement('tr');
+                marco.appendChild(tr);
+                for (let j = 0; j < cantidadBolas; j++) {
+                    let esfera = document.createElement('th');
+                    esfera.classList.add('esferasJuego');
+                    esfera.id = `esf${i}${j}`;
+                    tr.appendChild(esfera);
+                }
+            }
+        }
+        function generarBolasSolucion(){
+            let destino = document.getElementById('solucion');
+            for(let i = 0; i < cantidadBolas; i++){
+                let bola = document.createElement('span');
+                bola.classList.add('esferasSolucion');
+                bola.innerHTML = '?';
+                destino.appendChild(bola);
+            }
+        }
+        function generarBotonColores(destino) {
+            colores.forEach(color => {
+                let esfera = document.createElement('button');
                 esfera.classList.add('color');
+                esfera.classList.add(color);
                 esfera.id = color;
-                esfera.style.backgroundColor = determinarColor(color);
-                esfera.addEventListener('click',()=>{
-                    console.log("Has dado click");
-                });
+                esfera.type = 'button';
+                esfera.addEventListener('click', () => pulsarColor(esfera));
                 destino.appendChild(esfera);
             });
+        }
+        function generarBotonElim(destino) {
             let deleteButton = document.createElement('button');
-            destino.appendChild(deleteButton)
+            deleteButton.classList.add('btnEliminar');
+            deleteButton.type = 'button';
+            deleteButton.innerHTML = '←';
+            deleteButton.addEventListener('click', () => pulsarRetroceso());
+            destino.appendChild(deleteButton);
         }
-        
-        function determinarColor(color){
-            let detColores = {
-                R: 'rgb(255, 0, 0)',
-                A: 'rgb(255,255,0)',
-                V: 'rgb(0,255,0)',
-                Z: 'rgb(0,0,255)',
-                M: 'rgb(128,0,128)',
-                N: 'rgb(255,165,0)'
+        function pulsarColor(elem) {
+            if (posi >= intentos) return;
+            let bola = document.getElementById(`esf${posi}${posj}`);
+            bola.classList.add(elem.id);
+            if ((posj + 1) % cantidadBolas === 0) {
+                posi++;
+                posj = 0;
+                intentoUsuario.push(elem.id);
+                evaluar();
+                intentoUsuario = [];
+            } else {
+                posj++;
+                intentoUsuario.push(elem.id);
             }
-            return detColores[color];
         }
-        determinarColor('R')
-        window.addEventListener('load', ()=> inicio())
+
+        function pulsarRetroceso() {
+            if (posi === 0 && posj === 0) return;
+            if (posj === 0) {
+                posj = cantidadBolas - 1;
+                posi--;
+            } else {
+                posj--;
+            }
+            let bola = document.getElementById(`esf${posi}${posj}`);
+            bola.classList.forEach((e) => {
+                colores.forEach(color => {
+                    if (color === e) {
+                        bola.classList.remove(e);
+                    }
+                })
+            });
+        }
+
+        function generarBolasRandom() {
+            for (let i = 0; i < cantidadBolas; i++) {
+                solucion[i] = colores[alea(0, colores.length - 1)];
+            }
+        }
+
+        function evaluar(){
+            console.log("solucion " + solucion);
+            console.log("intento " + intentoUsuario);
+            let posExactas = 0, posAprox = 0;
+            let solucionClon = solucion.slice();
+            for (let i = 0; i < solucionClon.length; i++) {
+			if(solucionClon[i] === intentoUsuario[i]) {
+				solucionClon[i]='-';
+				intentoUsuario[i]='-';
+				posExactas++;
+			}
+		}
+		if(posExactas==solucion.length) {
+			return true;
+		}
+		for (let i = 0; i < solucionClon.length; i++) {
+			if(intentoUsuario[i]=='-')continue;
+			for (let j = 0; j < solucionClon.length; j++) {
+				if(solucionClon[j]=='-')continue;
+				if(solucionClon[i]==intentoUsuario[j]) {
+					solucionClon[j]='-';
+					intentoUsuario[i]='-';
+                    posAprox++;
+				}
+			}
+		}
+		console.log("Hay "+posExactas+" posiciones exactas y "+posAprox+" posiciones aproximadas");
+		return false;
+        }
+
+        function alea(li, ls) {
+            return Math.floor(Math.random() * (ls - li + 1) + li);
+        }
+        window.addEventListener('load', () => inicio())
     </script>
 </body>
+
 </html>
