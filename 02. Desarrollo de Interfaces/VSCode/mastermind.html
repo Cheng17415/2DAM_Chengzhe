@@ -12,22 +12,24 @@
             background-color: beige
         }
 
-        h2 {
+        #titulo {
             font-size: 50px;
             color: rgb(18, 194, 243);
             text-shadow: 2px 0 #1500ff;
+            display: inline-flex;
         }
 
         /*Esto va a servir para las esferas*/
-        #marco {
+        #tablero {
             margin: 0 auto;
             background-color: blue;
         }
 
-        .esferasJuego,
+        .casilla,
         .color,
         .btnEliminar,
-        .esferasSolucion {
+        .esferasSolucion,
+        #reset {
             height: 50px;
             width: 50px;
             border: 1px solid rgb(0, 0, 0);
@@ -41,7 +43,7 @@
             cursor: pointer;
         }
 
-        .esferasJuego {
+        .casilla {
             background-color: antiquewhite;
         }
 
@@ -50,13 +52,33 @@
             background-color: black;
         }
 
-        .esferasSolucion{
+        .esferasSolucion {
             display: inline-block;
+            background-color: antiquewhite;
+            align-content: center;
         }
 
         #usuario {
             display: flex;
             justify-content: center;
+        }
+
+        #reset {
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            width: 70px;
+            height: 70px;
+        }
+
+        #encabezado {
+            display: flex;
+            justify-content: center;
+            /* centra horizontalmente */
+            align-items: center;
+            /* centra verticalmente */
+            gap: 15px;
+            /* espacio entre título y botón */
         }
 
         .R {
@@ -86,79 +108,139 @@
 </head>
 
 <body>
-    <h2>MasterMind</h2>
+    <div id="encabezado">
+        <div id="titulo">MasterMind</div>
+        <button id="reset"></button>
+    </div>
+
     <p id="solucion"></p>
-    <table id="marco"></table>
+    <table id="tablero"></table>
     <p id="usuario"></p>
     <script>
         let colores = ['R', 'A', 'V', 'Z', 'M', 'N'];
         let posi = 0;
         let posj = 0;
-        let intentos = 8;
-        let cantidadBolas = 4;
+        const intentos = 8;
+        const cantidadBolas = 4;
         let solucion = [];
         let intentoUsuario = [];
 
         function inicio() {
+            const destino = document.getElementById('usuario');
             generarTablero();
-            generarBolasSolucion();
-            let destino = document.getElementById('usuario');
+            generarBolasInter();
             generarBotonColores(destino);
-            generarBotonElim(destino);
-            generarBolasRandom();
+            generarBotonRetro(destino);
+            generarSolucionAlea();
+            botonReset();
         }
 
         function generarTablero() {
-            let marco = document.getElementById('marco');
+            const tablero = document.getElementById('tablero');
+            tablero.innerHTML = '';
             for (let i = intentos - 1; i >= 0; i--) {
-                let tr = document.createElement('tr');
-                marco.appendChild(tr);
+                const fila = document.createElement('tr');
+                tablero.appendChild(fila);
+                //Celdas para las bolas del jugador
                 for (let j = 0; j < cantidadBolas; j++) {
-                    let esfera = document.createElement('th');
-                    esfera.classList.add('esferasJuego');
-                    esfera.id = `esf${i}${j}`;
-                    tr.appendChild(esfera);
+                    const celda = document.createElement('td');
+                    celda.id = `esf${i}-${j}`;
+                    celda.classList.add('casilla');
+                    fila.appendChild(celda);
                 }
+                //Celda para las pistas //TODO Arreglar
+                const celdaPistas = document.createElement('td');
+                const contenedorPistas = document.createElement('div');
+                contenedorPistas.id = `pistas-${i}`;
+                contenedorPistas.classList.add('pistas-contenedor');
+
+                for (let k = 0; k < cantidadBolas; k++) {
+                    const punto = document.createElement('div');
+                    punto.classList.add('pista-punto');
+                    contenedorPistas.appendChild(punto);
+                }
+
+                celdaPistas.appendChild(contenedorPistas);
+                fila.appendChild(celdaPistas);
+                tablero.appendChild(fila);
             }
+
         }
-        function generarBolasSolucion(){
-            let destino = document.getElementById('solucion');
-            for(let i = 0; i < cantidadBolas; i++){
-                let bola = document.createElement('span');
+        function generarBolasInter() {
+            const destino = document.getElementById('solucion');
+            for (let i = 0; i < cantidadBolas; i++) {
+                const bola = document.createElement('span');
                 bola.classList.add('esferasSolucion');
                 bola.innerHTML = '?';
                 destino.appendChild(bola);
             }
         }
+        function cambiarBolasInter() {
+            document.querySelectorAll('span').forEach((bola, index) => {
+                bola.innerHTML = '';
+                bola.classList.add(solucion[index]);
+            });
+        }
         function generarBotonColores(destino) {
             colores.forEach(color => {
-                let esfera = document.createElement('button');
-                esfera.classList.add('color');
-                esfera.classList.add(color);
+                const esfera = document.createElement('button');
+                esfera.classList.add('color', color);
                 esfera.id = color;
                 esfera.type = 'button';
-                esfera.addEventListener('click', () => pulsarColor(esfera));
+
+                esfera.handler = () => pulsarColor(esfera)
+                esfera.addEventListener('click', esfera.handler);
                 destino.appendChild(esfera);
             });
         }
-        function generarBotonElim(destino) {
-            let deleteButton = document.createElement('button');
+        function generarBotonRetro(destino) {
+            const deleteButton = document.createElement('button');
             deleteButton.classList.add('btnEliminar');
             deleteButton.type = 'button';
             deleteButton.innerHTML = '←';
-            deleteButton.addEventListener('click', () => pulsarRetroceso());
+            deleteButton.handler = () => pulsarRetroceso()
+            deleteButton.addEventListener('click', deleteButton.handler);
             destino.appendChild(deleteButton);
         }
+        function botonReset() {
+            const reset = document.getElementById('reset');
+            reset.textContent = 'Reset';
+            reset.addEventListener('click', resetJuego);
+        }
+
+
+        function resetJuego() {
+            // Reset variables
+            posi = 0;
+            posj = 0;
+            intentoUsuario = [];
+            solucion = [];
+
+            // Limpiar tablero
+            document.querySelectorAll('.casilla').forEach(celda => {
+                colores.forEach(color => celda.classList.remove(color));
+            });
+
+            // Ocultar solución
+            document.querySelectorAll('#solucion span').forEach(bola => {
+                bola.className = 'esferasSolucion';
+                bola.textContent = '?';
+            });
+
+            // Nueva solución
+            generarSolucionAlea();
+        }
+
+
         function pulsarColor(elem) {
             if (posi >= intentos) return;
-            let bola = document.getElementById(`esf${posi}${posj}`);
+            const bola = document.getElementById(`esf${posi}-${posj}`);
             bola.classList.add(elem.id);
             if ((posj + 1) % cantidadBolas === 0) {
                 posi++;
                 posj = 0;
                 intentoUsuario.push(elem.id);
                 evaluar();
-                intentoUsuario = [];
             } else {
                 posj++;
                 intentoUsuario.push(elem.id);
@@ -173,7 +255,7 @@
             } else {
                 posj--;
             }
-            let bola = document.getElementById(`esf${posi}${posj}`);
+            const bola = document.getElementById(`esf${posi}-${posj}`);
             bola.classList.forEach((e) => {
                 colores.forEach(color => {
                     if (color === e) {
@@ -181,43 +263,57 @@
                     }
                 })
             });
+            intentoUsuario.pop()
         }
 
-        function generarBolasRandom() {
+        function generarSolucionAlea() {
             for (let i = 0; i < cantidadBolas; i++) {
                 solucion[i] = colores[alea(0, colores.length - 1)];
             }
         }
 
-        function evaluar(){
-            console.log("solucion " + solucion);
-            console.log("intento " + intentoUsuario);
+        function evaluar() {
+
             let posExactas = 0, posAprox = 0;
             let solucionClon = solucion.slice();
+            let intentoUsuarioClon = intentoUsuario.slice(intentoUsuario.length - 4);
             for (let i = 0; i < solucionClon.length; i++) {
-			if(solucionClon[i] === intentoUsuario[i]) {
-				solucionClon[i]='-';
-				intentoUsuario[i]='-';
-				posExactas++;
-			}
-		}
-		if(posExactas==solucion.length) {
-			return true;
-		}
-		for (let i = 0; i < solucionClon.length; i++) {
-			if(intentoUsuario[i]=='-')continue;
-			for (let j = 0; j < solucionClon.length; j++) {
-				if(solucionClon[j]=='-')continue;
-				if(solucionClon[i]==intentoUsuario[j]) {
-					solucionClon[j]='-';
-					intentoUsuario[i]='-';
-                    posAprox++;
-				}
-			}
-		}
-		console.log("Hay "+posExactas+" posiciones exactas y "+posAprox+" posiciones aproximadas");
-		return false;
+                if (solucionClon[i] === intentoUsuarioClon[i]) {
+                    solucionClon[i] = '-';
+                    intentoUsuarioClon[i] = '-';
+                    posExactas++;
+                }
+            }
+            //El usuario ha acertado todos
+            if (posExactas == cantidadBolas) {
+                acertado();
+                return true;
+            }
+            for (let i = 0; i < solucionClon.length; i++) {
+                if (intentoUsuarioClon[i] == '-') continue;
+
+                for (let j = 0; j < solucionClon.length; j++) {
+                    if (solucionClon[j] == '-') continue;
+
+                    if (intentoUsuarioClon[i] === solucionClon[j]) {
+                        solucionClon[j] = '-';
+                        intentoUsuarioClon[i] = '-';
+                        posAprox++;
+                        break;
+                    }
+                }
+            }
+
+            return false;
         }
+
+        function acertado() {
+            document.querySelectorAll('.color, .btnEliminar').forEach(boton => {
+                boton.removeEventListener('click', boton.handler);
+            });
+            cambiarBolasInter();
+        }
+
 
         function alea(li, ls) {
             return Math.floor(Math.random() * (ls - li + 1) + li);
