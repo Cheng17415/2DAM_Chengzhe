@@ -30,8 +30,8 @@
         .btnRetroceso,
         .esferasSolucion,
         #reset {
-            height: 50px;
-            width: 50px;
+            height: 65px;
+            width: 65px;
             border: 1px solid rgb(0, 0, 0);
             border-radius: 50%;
         }
@@ -74,11 +74,25 @@
         #encabezado {
             display: flex;
             justify-content: center;
-            /* centra horizontalmente */
             align-items: center;
-            /* centra verticalmente */
             gap: 15px;
-            /* espacio entre título y botón */
+        }
+
+        .pista-punto {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin-bottom: 1px;
+            margin-right: 1px;
+            background-color: antiquewhite;
+            display: inline-block;
+        }
+
+        .pistas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            margin-top: 15px;
         }
 
         .R {
@@ -104,9 +118,8 @@
         .N {
             background-color: rgb(255, 165, 0);
         }
-        .pista-punto{
-            width: 20px;
-            height: 20px;
+
+        .B {
             background-color: white;
         }
     </style>
@@ -153,19 +166,15 @@
                     celda.classList.add('casilla');
                     fila.appendChild(celda);
                 }
-                //Celda para las pistas //TODO Arreglar
+                //Celda para las pistas
                 const celdaPistas = document.createElement('td');
-                const contenedorPistas = document.createElement('div');
-                contenedorPistas.id = `pistas-${i}`;
-                contenedorPistas.classList.add('pistas-contenedor');
-
-                for (let k = 0; k < cantidadBolas; k++) {
+                celdaPistas.id = `pistas-${i}`;
+                celdaPistas.classList.add('pistas');
+                for (let k = 1; k <= cantidadBolas; k++) {
                     const punto = document.createElement('div');
                     punto.classList.add('pista-punto');
-                    contenedorPistas.appendChild(punto);
+                    celdaPistas.appendChild(punto);
                 }
-
-                celdaPistas.appendChild(contenedorPistas);
                 fila.appendChild(celdaPistas);
                 tablero.appendChild(fila);
             }
@@ -181,7 +190,7 @@
             }
         }
         function cambiarBolasInter() {
-            document.querySelectorAll('span').forEach((bola, index) => {
+            document.querySelectorAll('#solucion span').forEach((bola, index) => {
                 bola.innerHTML = '';
                 bola.classList.add(solucion[index]);
             });
@@ -224,6 +233,11 @@
             // Limpiar tablero
             document.querySelectorAll('.casilla').forEach(celda => {
                 colores.forEach(color => celda.classList.remove(color));
+            });
+
+            // Limpiar pistas
+            document.querySelectorAll('.pista-punto').forEach(punto => {
+                punto.classList.remove('R', 'N');
             });
 
             // Ocultar solución
@@ -281,12 +295,18 @@
 
             let posExactas = 0, posAprox = 0;
             let solucionClon = solucion.slice();
-            let intentoUsuarioClon = intentoUsuario.slice(intentoUsuario.length - cantidadBolas);
+            let empieza = intentoUsuario.length - cantidadBolas;
+            let intentoUsuarioClon = intentoUsuario.slice(empieza);
+            let numPistaElem = empieza / cantidadBolas;
+            let pistasElem = document.querySelector(`#pistas-${numPistaElem}`);
+            let numPista = 0;
+
             for (let i = 0; i < solucionClon.length; i++) {
                 if (solucionClon[i] === intentoUsuarioClon[i]) {
                     solucionClon[i] = '-';
                     intentoUsuarioClon[i] = '-';
                     posExactas++;
+                    pistasElem.children[numPista++].classList.add('R');
                 }
             }
             //El usuario ha acertado todos
@@ -295,27 +315,26 @@
                 return true;
             }
             for (let i = 0; i < solucionClon.length; i++) {
-                if (intentoUsuarioClon[i] == '-') continue;
+                if (intentoUsuarioClon[i] === '-') continue;
 
                 for (let j = 0; j < solucionClon.length; j++) {
-                    if (solucionClon[j] == '-') continue;
+                    if (solucionClon[j] === '-') continue;
 
                     if (intentoUsuarioClon[i] === solucionClon[j]) {
                         solucionClon[j] = '-';
                         intentoUsuarioClon[i] = '-';
                         posAprox++;
+                        pistasElem.children[numPista].classList.add('N');
+                        numPista++;
                         break;
                     }
                 }
             }
-
+            //let restantes = cantidadBolas - numPista - 1;
             return false;
         }
 
         function acertado() {
-            document.querySelectorAll('.color, .btnEliminar').forEach(boton => {
-                boton.removeEventListener('click', boton.handler);
-            });
             cambiarBolasInter();
         }
 
