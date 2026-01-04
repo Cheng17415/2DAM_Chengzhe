@@ -27,7 +27,7 @@
 
         .casilla,
         .color,
-        .btnEliminar,
+        .btnRetroceso,
         .esferasSolucion,
         #reset {
             height: 50px;
@@ -37,7 +37,7 @@
         }
 
         .color,
-        .btnEliminar {
+        .btnRetroceso {
             height: 70px;
             width: 70px;
             cursor: pointer;
@@ -47,7 +47,7 @@
             background-color: antiquewhite;
         }
 
-        .btnEliminar {
+        .btnRetroceso {
             color: white;
             background-color: black;
         }
@@ -103,6 +103,11 @@
 
         .N {
             background-color: rgb(255, 165, 0);
+        }
+        .pista-punto{
+            width: 20px;
+            height: 20px;
+            background-color: white;
         }
     </style>
 </head>
@@ -195,7 +200,7 @@
         }
         function generarBotonRetro(destino) {
             const deleteButton = document.createElement('button');
-            deleteButton.classList.add('btnEliminar');
+            deleteButton.classList.add('btnRetroceso');
             deleteButton.type = 'button';
             deleteButton.innerHTML = '←';
             deleteButton.handler = () => pulsarRetroceso()
@@ -276,7 +281,7 @@
 
             let posExactas = 0, posAprox = 0;
             let solucionClon = solucion.slice();
-            let intentoUsuarioClon = intentoUsuario.slice(intentoUsuario.length - 4);
+            let intentoUsuarioClon = intentoUsuario.slice(intentoUsuario.length - cantidadBolas);
             for (let i = 0; i < solucionClon.length; i++) {
                 if (solucionClon[i] === intentoUsuarioClon[i]) {
                     solucionClon[i] = '-';
