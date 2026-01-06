@@ -1,0 +1,127 @@
+/* Estilo general */
+body {
+  justify-content: center;
+  text-align: center;
+  background-color: beige;
+}
+
+/* Título principal */
+#titulo {
+  font-size: 50px;
+  color: rgb(18, 194, 243);
+  text-shadow: 2px 0 #1500ff;
+  display: inline-flex;
+}
+
+/* Tablero y elementos */
+#tablero {
+  margin: 0 auto;
+  background-color: rgb(238, 55, 55);
+}
+
+.casilla,
+.color,
+.btnRetroceso,
+.esferasSolucion,
+#reset {
+  height: 65px;
+  width: 65px;
+  border: none;
+  border-radius: 50%;
+}
+
+.color,
+.btnRetroceso {
+  height: 70px;
+  width: 70px;
+  cursor: pointer;
+}
+
+.color,
+.esferasSolucion{
+  margin-right: 5px;
+}
+.casilla {
+  background-color: rgba(203, 19, 19, 0.904);
+}
+
+.btnRetroceso {
+  color: white;
+  background-color: black;
+}
+
+.esferasSolucion {
+  display: inline-block;
+  background-color: rgba(203, 19, 19, 0.904);
+  align-content: center;
+}
+
+/* Contenedor de usuario */
+#usuario {
+  display: flex;
+  justify-content: center;
+}
+
+/* Botón de reinicio */
+#reset {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  width: 70px;
+  height: 70px;
+}
+
+/* Encabezado */
+#encabezado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Pistas */
+.pista-punto {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-bottom: 1px;
+  margin-right: 1px;
+  background-color: antiquewhite;
+  display: inline-block;
+}
+
+.pistas {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  margin-top: 15px;
+}
+
+/* Colores */
+.R {
+  background-color: rgb(255, 0, 0);
+}
+
+.A {
+  background-color: rgb(255, 255, 0);
+}
+
+.V {
+  background-color: rgb(0, 255, 0);
+}
+
+.Z {
+  background-color: rgb(0, 0, 255);
+}
+
+.M {
+  background-color: rgb(128, 0, 128);
+}
+
+.N {
+  background-color: rgb(255, 165, 0);
+}
+
+.B {
+  background-color: white;
+}
