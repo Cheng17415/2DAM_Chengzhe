@@ -7,7 +7,7 @@ def obtenerCPs():
         with open(RUTA_CP, "r", encoding="utf-8") as f:
             for linea in f:
                 partes = linea.strip().split(",")
-                CPs[partes[0]] = partes[1]
+                CPs[int(partes[0])] = partes[1]
     except FileNotFoundError:
         print(f"Archivo '{RUTA_CP}' no encontrado.")
 

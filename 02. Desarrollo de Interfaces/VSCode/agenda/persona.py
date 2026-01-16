@@ -1,7 +1,12 @@
 from codigos_postales import obtenerProvincia
+from enum import Enum
+import os
 # Ruta del archivo de personas
-FICHERO_PERSONAS = "base_datos/agenda.txt"
+RUTA_ACTUAL = os.path.dirname(os.path.abspath(__file__))
+FICHERO_PERSONAS = os.path.join(RUTA_ACTUAL, "base_datos/agenda.txt")
+
 personas = []
+
 class Persona:
     #Constructor
     def __init__(self, dni,nombre, apellidos, direccion, codigoPostal, ciudad, telefono, email, descripcion):
@@ -10,7 +15,7 @@ class Persona:
         self.apellidos = apellidos
         self.direccion = direccion
         self.codigoPostal = codigoPostal
-        self.provincia = obtenerProvincia(codigoPostal[:2])
+        self.provincia = obtenerProvincia(int(codigoPostal[:2]))
         self.ciudad = ciudad
         self.telefono = telefono
         self.email = email
@@ -30,6 +35,13 @@ class Persona:
         ]
         return ";".join(map(str,valores))
 
+class EstadoPersona(Enum):
+    ACTIVO = "activo"
+    ALTA = "alta"
+    BAJA = "baja"
+    AMIGO = "amigo"
+    CONOCIDO = "conocido"
+
 # Funciones de persistencia
 def guardar_cambios():
     with open(FICHERO_PERSONAS, "w") as f:
@@ -45,7 +57,7 @@ def leer_fichero():
                 if len(partes) == 9:
                     personas.append(Persona(*partes))
     except FileNotFoundError:
-        print(f"Archivo '{FICHERO_PERSONAS}' no encontrado. Se creará al guardar.")
+        print(f"Archivo '{FICHERO_PERSONAS}' no encontrado.")
 
 def comprobarDNI(dni: str) -> bool:
     if not dni:
@@ -74,8 +86,26 @@ def comprobarDNI(dni: str) -> bool:
     if not numero.isdigit():
         return False
 
-    return letras[int(numero) % 23] == letra
+    return letras[int(numero) % 23] == letra 
+
+def existeDNI(dni):
+    return any(persona.dni == dni for persona in personas)
+
+def agregarPersona() -> None:
+    valido = False
+    dni = None
+    while not valido:
+        dni = input("Introduzca el DNI: ").strip()
+        valido = True
+        if not comprobarDNI(dni):
+            print("DNI no es válido")
+            valido = False
+        if existeDNI(dni):
+            print("DNI ya existe")
+            valido = False
+    nombre = input("Nombre: ").strip()
+    apellidos = input("Apellidos: ").strip()
+    direccion = input("Direccion: ").strip()
 
 leer_fichero()
 
-print(comprobarDNI('X9059350H'))
