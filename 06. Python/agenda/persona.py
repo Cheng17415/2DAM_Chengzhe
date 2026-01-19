@@ -1,4 +1,4 @@
-from codigos_postales import obtenerProvincia
+from codigos_postales import obtenerProvincia, verificarCP
 from enum import Enum
 import os
 # Ruta del archivo de personas
@@ -15,7 +15,7 @@ class Persona:
         self.apellidos = apellidos
         self.direccion = direccion
         self.codigoPostal = codigoPostal
-        self.provincia = obtenerProvincia(int(codigoPostal[:2]))
+        self.provincia = obtenerProvincia(codigoPostal)
         self.ciudad = ciudad
         self.telefono = telefono
         self.email = email
@@ -94,6 +94,7 @@ def existeDNI(dni):
 def agregarPersona() -> None:
     valido = False
     dni = None
+    codigoPostal = None
     while not valido:
         dni = input("Introduzca el DNI: ").strip()
         valido = True
@@ -106,6 +107,20 @@ def agregarPersona() -> None:
     nombre = input("Nombre: ").strip()
     apellidos = input("Apellidos: ").strip()
     direccion = input("Direccion: ").strip()
+    
+    valido = False
+    
+    while not valido:
+        codigoPostal = input("Codigo Postal: ").strip()
+        if verificarCP(codigoPostal):
+           valido = True
+    ciudad = input("Ciudad: ").strip()
+    telefono = input("Telefono: ").strip()
+    email = input("Email: ").strip()
+    
+    descripcion = input("Descripcion").strip()
 
 leer_fichero()
+if __name__ == "__main__":
+    agregarPersona()
 

@@ -12,6 +12,10 @@ def obtenerCPs():
         print(f"Archivo '{RUTA_CP}' no encontrado.")
 
 def obtenerProvincia(CP):
+    CP = int(CP[:2])
     return CPs.get(CP)
 
+def verificarCP(codigoPostal):
+    if len(codigoPostal) != 5 or not obtenerProvincia(codigoPostal): return False
+    return True
 obtenerCPs()
