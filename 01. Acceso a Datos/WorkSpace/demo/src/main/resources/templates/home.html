@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Titulo</title>
+</head>
+<body>
+
+<h1>Bienvenido</h1>
+<h2>Oferta de trabajo</h2>
+
+<h3 th:text="'Titulo: ' + ${nombre}"></h3>
+<h3 th:text="'Fecha Pub: ' + ${fecha}"></h3>
+<h3 th:text="'Salario Ofrecido: ' + ${salario}"></h3>
+<h3 th:text="'Vigente: ' + ${vigente}"></h3>
+
+</body>
+</html>
