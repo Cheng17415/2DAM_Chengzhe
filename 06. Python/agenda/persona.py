@@ -35,6 +35,9 @@ class Persona:
             self.descripcion.value
         ]
         return ";".join(map(str,valores))
+    
+    def to_str(self):
+        return self.dni, self.nombre,self.apellidos, self.direccion, self.codigoPostal, self.provincia, self.ciudad, self.telefono, self.email, self.descripcion.value
 
 class EstadoPersona(Enum):
     ACTIVO = "activo"
@@ -56,8 +59,14 @@ def leer_fichero():
             for linea in f:
                 partes = linea.strip().split(";")
                 if len(partes) == 9:
-                    print(len(partes), partes)
-                    #TODO Arreglar leerFichero
+                    try:
+                        estado = EstadoPersona(partes[8])
+                    except ValueError:
+                        print(f"Estado desconocido: {partes[8]}. Se asignará 'ACTIVO' por defecto.")
+                        estado = EstadoPersona.ACTIVO
+                    personas.append(Persona(
+                        *partes[:-1], estado # type: ignore
+                    ))
     except FileNotFoundError:
         print(f"Archivo '{FICHERO_PERSONAS}' no encontrado.")
 
@@ -121,49 +130,51 @@ def obtener_descripcion():
             continue
         return list(EstadoPersona)[num - 1]
 
-def agregarPersona() -> None:
-    dni = None
-    codigoPostal = None
+def pedir_con_validacion(mensaje, funcion_validadora, mensaje_error):
+    '''1º arg es el mensaje inicial;
+    2º arg es la funcion utilizada para validar;
+    3º arg es el mensaje cuando no es exitoso la validacion'''
     while True:
-        dni = input("Introduzca el DNI: ").strip()
-        if not comprobarDNI(dni):
-            print("DNI no es válido")
-            continue
-        if existeDNI(dni):
-            print("DNI ya existe")
-            continue
-        break
+        valor = input(mensaje).strip()
+        if funcion_validadora(valor):
+            return valor
+        print(mensaje_error)
+        
+def agregarPersona() -> None:
+    dni = pedir_con_validacion(
+        "Introduzca el DNI: ",
+        lambda d: comprobarDNI(d) and not existeDNI(d),
+        "DNI no es válido o no existe"
+    )
     nombre = input("Nombre: ").strip()
     apellidos = input("Apellidos: ").strip()
     direccion = input("Direccion: ").strip()
-    
-    while True:
-        codigoPostal = input("Codigo Postal: ").strip()
-        if not verificarCP(codigoPostal):
-           print("Codigo postal no es valido")
-           continue
-        break    
-
+    codigoPostal = pedir_con_validacion(
+        "Codigo Postal: ",
+        verificarCP,
+        "Codigo postal no es valido"
+    )
     ciudad = input("Ciudad: ").strip()
     telefono = input("Telefono: ").strip()
-    
-    while True:
-        email = input("Email: ").strip()
-        if not is_valid_email(email):
-            print("Email no es valido")
-            continue
-        break
+    email = pedir_con_validacion(
+        "Email: ",
+        is_valid_email,
+        "Email no es valido")
     descripcion = obtener_descripcion()
+    
     personas.append(Persona(
         dni, nombre, apellidos, direccion,
         codigoPostal, ciudad, telefono,
         email, descripcion
         )
     )
+    print("Persona anadida!")
     guardar_cambios()
 
 
 leer_fichero()
 if __name__ == "__main__":
+    for p in personas:
+        print(p.to_str())
     agregarPersona()
 
