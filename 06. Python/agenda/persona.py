@@ -1,6 +1,7 @@
 from codigos_postales import obtenerProvincia, verificarCP
 from enum import Enum
 import os
+import re
 # Ruta del archivo de personas
 RUTA_ACTUAL = os.path.dirname(os.path.abspath(__file__))
 FICHERO_PERSONAS = os.path.join(RUTA_ACTUAL, "base_datos/agenda.txt")
@@ -88,8 +89,34 @@ def comprobarDNI(dni: str) -> bool:
 
     return letras[int(numero) % 23] == letra 
 
-def existeDNI(dni):
+def existeDNI(dni) -> bool:
     return any(persona.dni == dni for persona in personas)
+
+def is_valid_email(email):
+
+    """Check if the email is a valid format."""
+
+    # Regular expression for validating an Email
+
+    regex = r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w+$'
+
+    # If the string matches the regex, it is a valid email
+
+    if re.match(regex, email):
+        return True
+    else:
+        return False
+
+def obtener_descripcion():
+    valido = False
+    while not valido:
+        print("Seleccione descripcion:")
+        for i,estado in enumerate(EstadoPersona,1):
+            print(f"\t{i}. {estado.value.capitalize()}")
+        num = input("-> ").strip()
+        if num.isdigit():
+            valido = True
+            ...
 
 def agregarPersona() -> None:
     valido = False
@@ -114,13 +141,23 @@ def agregarPersona() -> None:
         codigoPostal = input("Codigo Postal: ").strip()
         if verificarCP(codigoPostal):
            valido = True
+        else:
+            print("Codigo postal no es valido")
+
     ciudad = input("Ciudad: ").strip()
     telefono = input("Telefono: ").strip()
-    email = input("Email: ").strip()
     
-    descripcion = input("Descripcion").strip()
+    valido = False
+    while not valido:
+        email = input("Email: ").strip()
+        if is_valid_email(email):
+            valido = True
+        else:
+            print("Email no es valido")
+    
+    descripcion = obtener_descripcion()
 
 leer_fichero()
 if __name__ == "__main__":
-    agregarPersona()
+    obtener_descripcion()
 
