@@ -32,7 +32,7 @@ class Persona:
             self.ciudad,
             self.telefono,
             self.email,
-            self.descripcion
+            self.descripcion.value
         ]
         return ";".join(map(str,valores))
 
@@ -52,11 +52,12 @@ def guardar_cambios():
 def leer_fichero():
     personas.clear()
     try:
-        with open(FICHERO_PERSONAS, "r",encoding="utf-8") as f:
+        with open(FICHERO_PERSONAS, "r", encoding="utf-8") as f:
             for linea in f:
                 partes = linea.strip().split(";")
                 if len(partes) == 9:
-                    personas.append(Persona(*partes))
+                    print(len(partes), partes)
+                    #TODO Arreglar leerFichero
     except FileNotFoundError:
         print(f"Archivo '{FICHERO_PERSONAS}' no encontrado.")
 
@@ -108,56 +109,61 @@ def is_valid_email(email):
         return False
 
 def obtener_descripcion():
-    valido = False
-    while not valido:
+    while True:
         print("Seleccione descripcion:")
         for i,estado in enumerate(EstadoPersona,1):
             print(f"\t{i}. {estado.value.capitalize()}")
         num = input("-> ").strip()
-        if num.isdigit():
-            valido = True
-            ...
+        if not num.isdigit():
+            continue
+        num = int(num)
+        if num < 1 or num > len(EstadoPersona):
+            continue
+        return list(EstadoPersona)[num - 1]
 
 def agregarPersona() -> None:
-    valido = False
     dni = None
     codigoPostal = None
-    while not valido:
+    while True:
         dni = input("Introduzca el DNI: ").strip()
-        valido = True
         if not comprobarDNI(dni):
             print("DNI no es válido")
-            valido = False
+            continue
         if existeDNI(dni):
             print("DNI ya existe")
-            valido = False
+            continue
+        break
     nombre = input("Nombre: ").strip()
     apellidos = input("Apellidos: ").strip()
     direccion = input("Direccion: ").strip()
     
-    valido = False
-    
-    while not valido:
+    while True:
         codigoPostal = input("Codigo Postal: ").strip()
-        if verificarCP(codigoPostal):
-           valido = True
-        else:
-            print("Codigo postal no es valido")
+        if not verificarCP(codigoPostal):
+           print("Codigo postal no es valido")
+           continue
+        break    
 
     ciudad = input("Ciudad: ").strip()
     telefono = input("Telefono: ").strip()
     
-    valido = False
-    while not valido:
+    while True:
         email = input("Email: ").strip()
-        if is_valid_email(email):
-            valido = True
-        else:
+        if not is_valid_email(email):
             print("Email no es valido")
-    
+            continue
+        break
     descripcion = obtener_descripcion()
+    personas.append(Persona(
+        dni, nombre, apellidos, direccion,
+        codigoPostal, ciudad, telefono,
+        email, descripcion
+        )
+    )
+    guardar_cambios()
+
 
 leer_fichero()
 if __name__ == "__main__":
-    obtener_descripcion()
+    agregarPersona()
 
