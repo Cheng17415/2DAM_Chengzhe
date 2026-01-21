@@ -1,9 +1,6 @@
 package com.cheng.demo.model;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Vacante {
 	private Integer id;

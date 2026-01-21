@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+
+<body>
+    <h1 th:text="${vacante.id}"></h1>
+    <h1 th:text="${vacante.nombre}"></h1>
+    <h1 th:text="${vacante.fecha}"></h1>
+    <h1 th:text="${vacante.salario}"></h1>
+    <h1 th:text="${vacante.descripcion}"></h1>
+    <h1>
+        <img th:src="@{/images/{img} (img = ${vacante.imagen})}" width="136" height="136">
+    </h1>
+</body>
+
+</html>

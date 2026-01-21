@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+
+<body>
+    <h1 th:text="'Vacantes del año ' + ${year}"></h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Fecha</th>
+            <th>Salario</th>
+            <th>Descripcion</th>
+        </tr>
+        <tr th:each="vacante : ${vacantes}">
+            <td th:text="${vacante.id}"></td>
+            <td>
+                <img th:src="@{/images/{img} (img = ${vacante.imagen})}" width="136" height="136">
+            </td>
+            <td th:text="${vacante.nombre}"></td>
+            <td th:text="${vacante.fecha}"></td>
+            <td th:text="${vacante.salario}"></td>
+            <td th:text="${vacante.descripcion}"></td>
+        </tr>
+    </table>
+
+</body>
+
+</html>
