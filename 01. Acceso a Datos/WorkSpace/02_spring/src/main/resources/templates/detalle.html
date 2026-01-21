@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Tabla de multiplicar</title>
+</head>
+<body>
+    <table>
+        <tr th:each="i : ${#numbers.sequence(1,9)}">
+            <td th:text="${i}"></td>
+            <td th:text="x"></td>
+            <td th:text="${num}"></td>
+            <td>=</td>
+            <td th:text="${i} * ${num}"></td>
+        </tr>
+    </table>
+</body>
+</html>
