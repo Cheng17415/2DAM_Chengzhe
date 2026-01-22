@@ -1,5 +1,5 @@
 from codigos_postales import obtenerProvincia,verificarCP
-import dni
+from dni import obtener_DNI, comprobarDNI,existeDNI, anadir_o_cambiar_DNI
 from enum import Enum
 import os
 import re
@@ -10,9 +10,16 @@ FICHERO_PERSONAS = os.path.join(RUTA_ACTUAL, "base_datos/agenda.txt")
 personas = []
 
 class Persona:
+    #ID global de las personas
+    cont_id= 1
     #Constructor
-    def __init__(self, dni,nombre, apellidos, direccion, codigoPostal, ciudad, telefono, email, descripcion):
-        self.dni = dni
+    def __init__(self, nombre, apellidos, direccion, codigoPostal, ciudad, telefono, email, descripcion,
+                 id = None):
+        if id is None:
+            self.id = Persona.cont_id
+        else:
+            self.id = int(id)
+        Persona.cont_id = max(Persona.cont_id, self.id + 1)
         self.nombre = nombre
         self.apellidos = apellidos
         self.direccion = direccion
@@ -25,7 +32,7 @@ class Persona:
     
     def to_file(self) ->str:
         valores = [
-            self.dni,
+            self.id,
             self.nombre,
             self.apellidos,
             self.direccion,
@@ -39,7 +46,7 @@ class Persona:
     
     def to_str(self) -> str:
         return (
-        f"DNI: {self.dni}\n"
+        f"DNI: {obtener_DNI(self.id)}\n"
         f"Nombre: {self.nombre} {self.apellidos}\n"
         f"Dirección: {self.direccion}\n"
         f"Código Postal: {self.codigoPostal} ({self.provincia})\n"
@@ -124,7 +131,7 @@ def pedir_con_validacion(mensaje, funcion_validadora, mensaje_error):
 def agregarPersona() -> None:
     dni = pedir_con_validacion(
         "Introduzca el DNI: ",
-        lambda d: dni.comprobarDNI(d) and not dni.existeDNI(d),
+        lambda d: comprobarDNI(d) and not existeDNI(d),
         "DNI no es válido o ya existe"
     )
     nombre = input("Nombre: ").strip()
@@ -143,13 +150,14 @@ def agregarPersona() -> None:
         "Email no es valido"
     )
     descripcion = obtener_descripcion()
-
-    personas.append(Persona(
-        dni, nombre, apellidos, direccion,
+    persona = Persona(
+        nombre, apellidos, direccion,
         codigoPostal, ciudad, telefono,
         email, descripcion
-    ))
-    print("Persona añadida!")
+    )
+    personas.append(persona)
+    anadir_o_cambiar_DNI(persona.id, dni)
+    print("Persona añadida con éxito!")
     guardar_cambios()
 
 def leer_lista_personas():
@@ -164,11 +172,76 @@ def leer_lista_personas():
         print(persona.to_str())
 
 def modificar_persona():
-    dni = input("DNI/NIE de persona a modificar").strip()
+    dni = input("Introduce el DNI/NIE de la persona a modificar: ").upper()
+
+    if not existeDNI(dni):
+        print("No existe ninguna persona con ese DNI")
+        return
+
+    id_persona = comprobarDNI(dni)
+
+    for persona in personas:
+        if persona.id == id_persona:
+            print("\nPersona encontrada:")
+            print(persona)
+
+            print("\n--- Introduce los nuevos datos (ENTER para mantener) ---")
+
+            nuevo_nombre = input(f"Nombre ({persona.nombre}): ")
+            if nuevo_nombre:
+                persona.nombre = nuevo_nombre
+
+            nuevos_apellidos = input(f"Apellidos ({persona.apellidos}): ")
+            if nuevos_apellidos:
+                persona.apellidos = nuevos_apellidos
+
+            nueva_direccion = input(f"Dirección ({persona.direccion}): ")
+            if nueva_direccion:
+                persona.direccion = nueva_direccion
+
+            nuevo_telefono = input(f"Teléfono ({persona.telefono}): ")
+            if nuevo_telefono:
+                persona.telefono = nuevo_telefono
+
+            nuevo_email = input(f"Email ({persona.email}): ")
+            if nuevo_email:
+                persona.email = nuevo_email
+
+            guardar_cambios()
+            print("Persona modificada correctamente")
+            return
+
+
+def eliminar_persona():
+    dni = input("Introduce el DNI/NIE de la persona a eliminar: ").upper()
+
+    if not existeDNI(dni):
+        print("No existe ninguna persona con ese DNI")
+        return
+
+    id_persona = comprobarDNI(dni)
+
+    for persona in personas:
+        if persona.id == id_persona:
+            print("\nPersona encontrada:")
+            print(persona)
+
+            confirmacion = input("¿Seguro que deseas eliminarla? (s/n): ").lower()
+
+            if confirmacion == "s":
+                personas.remove(persona)
+                guardar_cambios()
+                anadir_o_cambiar_DNI(dni, None)
+                print("🗑️ Persona eliminada correctamente")
+            else:
+                print("Operación cancelada")
+
+            return
+
 
 leer_fichero()
 if __name__ == "__main__":
-    #agregarPersona()
+    agregarPersona()
     leer_lista_personas()
     
     '''dni.txt -> DNI, IDPersona

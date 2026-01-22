@@ -1,20 +1,29 @@
 import os
 # Ruta del archivo de dni
 RUTA_ACTUAL = os.path.dirname(os.path.abspath(__file__))
-RUTA_CP = os.path.join(RUTA_ACTUAL, "base_datos/dni.txt")
+FECHERO_DNI = os.path.join(RUTA_ACTUAL, "base_datos/dni.txt")
 DNIs = {}
+
 def obtenerDNIs():
     DNIs.clear()
     try:
-        with open(RUTA_CP, "r", encoding="utf-8") as f:
+        with open(FECHERO_DNI, "r", encoding="utf-8") as f:
             for linea in f:
                 partes = linea.strip().split(";")
                 DNIs[int(partes[0])] = partes[1]
     except FileNotFoundError:
-        print(f"Archivo '{RUTA_CP}' no encontrado.")
+        print(f"Archivo '{FECHERO_DNI}' no encontrado.")
 
-def obtener_DNI(id):
-    return DNIs.get(id)
+def guardar_cambios_dni():
+    try:
+        with open(FECHERO_DNI, "w", encoding="utf-8") as f:
+            total_items = len(DNIs)
+            for i, (k, v) in enumerate(DNIs.items()):
+                f.write(f"{k};{v}")
+                if i < total_items - 1:
+                    f.write("\n")
+    except IOError as e:
+        print(f"Error al guardar los cambios en el archivo '{FECHERO_DNI}': {e}")
 
 def comprobarDNI(dni: str) -> bool:
     if not dni:
@@ -45,11 +54,20 @@ def comprobarDNI(dni: str) -> bool:
 
     return letras[int(numero) % 23] == letra 
 
+def obtener_DNI(id):
+    return DNIs.get(id)
+
 def existeDNI(dni) -> bool:
     return any(dni == v for v in DNIs.values())
-  
-'''def existeDNI(dni) -> bool:
-return any(persona.dni == dni for persona in personas)'''
+
+def anadir_o_cambiar_DNI(id, dni):
+    DNIs[int(id)] = dni
+    guardar_cambios_dni()
+
+def eliminarDNI(id):
+    del DNIs[int(id)]
+    guardar_cambios_dni()
+    
 obtenerDNIs()
 if __name__ == "__main__":
   print("Has iniciado el proyecto en dni.py")
