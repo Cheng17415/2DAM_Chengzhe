@@ -9,8 +9,7 @@ public class Vacante {
 	private Date Fecha;
 	private Double salario;
 	private Integer destacado;
-	private String imagen = "no-image.jpg";
-	
+	private String imagen = "no-image.png";
 	
 	public Vacante() {
 		super();
@@ -62,7 +61,4 @@ public class Vacante {
 		return "Vacante [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", Fecha=" + Fecha
 				+ ", salario=" + salario + ", destacado=" + destacado + ", imagen=" + imagen + "]";
 	}
-	
-	
-	
 }

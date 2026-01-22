@@ -36,8 +36,18 @@ class Persona:
         ]
         return ";".join(map(str,valores))
     
-    def to_str(self):
-        return self.dni, self.nombre,self.apellidos, self.direccion, self.codigoPostal, self.provincia, self.ciudad, self.telefono, self.email, self.descripcion.value
+    def to_str(self) -> str:
+        return (
+        f"DNI: {self.dni}\n"
+        f"Nombre: {self.nombre} {self.apellidos}\n"
+        f"Dirección: {self.direccion}\n"
+        f"Código Postal: {self.codigoPostal} ({self.provincia})\n"
+        f"Ciudad: {self.ciudad}\n"
+        f"Teléfono: {self.telefono}\n"
+        f"Email: {self.email}\n"
+        f"Descripción: {self.descripcion.value.capitalize()}\n"
+        f"{'-'*40}"
+        )
 
 class EstadoPersona(Enum):
     ACTIVO = "activo"
@@ -171,10 +181,20 @@ def agregarPersona() -> None:
     print("Persona anadida!")
     guardar_cambios()
 
+def leer_lista_personas():
+    if not personas:
+        print("No hay personas registradas.")
+        return
+
+    print("\nLISTADO DE PERSONAS")
+    print("=" * 40)
+
+    for persona in personas:
+        print(persona.to_str())
+
 
 leer_fichero()
 if __name__ == "__main__":
-    for p in personas:
-        print(p.to_str())
     agregarPersona()
+    leer_lista_personas()
 

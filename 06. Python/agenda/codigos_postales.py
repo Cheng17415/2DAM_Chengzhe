@@ -1,4 +1,7 @@
-RUTA_CP = "agenda/base_datos/codigos_postales.txt"
+import os
+# Ruta del archivo de personas
+RUTA_ACTUAL = os.path.dirname(os.path.abspath(__file__))
+RUTA_CP = os.path.join(RUTA_ACTUAL, "base_datos/codigos_postales.txt")
 CPs = {}
 
 def obtenerCPs():
