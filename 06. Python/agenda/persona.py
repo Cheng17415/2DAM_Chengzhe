@@ -1,4 +1,5 @@
-from codigos_postales import obtenerProvincia, verificarCP
+from codigos_postales import obtenerProvincia,verificarCP
+import dni
 from enum import Enum
 import os
 import re
@@ -80,37 +81,7 @@ def leer_fichero():
     except FileNotFoundError:
         print(f"Archivo '{FICHERO_PERSONAS}' no encontrado.")
 
-def comprobarDNI(dni: str) -> bool:
-    if not dni:
-        return False
 
-    dni = dni.strip().upper()
-
-    if len(dni) != 9:
-        return False
-
-    letras = "TRWAGMYFPDXBNJZSQVHLCKE"
-    letrasNIE = {"X": "0", "Y": "1", "Z": "2"}
-
-    numero = dni[:-1]
-    letra = dni[-1]
-
-    if not letra.isalpha():
-        return False
-
-    # NIE
-    if numero[0].isalpha():
-        if numero[0] not in letrasNIE:
-            return False
-        numero = letrasNIE[numero[0]] + numero[1:]
-
-    if not numero.isdigit():
-        return False
-
-    return letras[int(numero) % 23] == letra 
-
-def existeDNI(dni) -> bool:
-    return any(persona.dni == dni for persona in personas)
 
 def is_valid_email(email):
 
@@ -153,8 +124,8 @@ def pedir_con_validacion(mensaje, funcion_validadora, mensaje_error):
 def agregarPersona() -> None:
     dni = pedir_con_validacion(
         "Introduzca el DNI: ",
-        lambda d: comprobarDNI(d) and not existeDNI(d),
-        "DNI no es válido o no existe"
+        lambda d: dni.comprobarDNI(d) and not dni.existeDNI(d),
+        "DNI no es válido o ya existe"
     )
     nombre = input("Nombre: ").strip()
     apellidos = input("Apellidos: ").strip()
@@ -169,16 +140,16 @@ def agregarPersona() -> None:
     email = pedir_con_validacion(
         "Email: ",
         is_valid_email,
-        "Email no es valido")
+        "Email no es valido"
+    )
     descripcion = obtener_descripcion()
-    
+
     personas.append(Persona(
         dni, nombre, apellidos, direccion,
         codigoPostal, ciudad, telefono,
         email, descripcion
-        )
-    )
-    print("Persona anadida!")
+    ))
+    print("Persona añadida!")
     guardar_cambios()
 
 def leer_lista_personas():
@@ -192,9 +163,16 @@ def leer_lista_personas():
     for persona in personas:
         print(persona.to_str())
 
+def modificar_persona():
+    dni = input("DNI/NIE de persona a modificar").strip()
 
 leer_fichero()
 if __name__ == "__main__":
-    agregarPersona()
+    #agregarPersona()
     leer_lista_personas()
+    
+    '''dni.txt -> DNI, IDPersona
+agenda.txt -> IDPersona, ...
+Al escribir la persona al fichero, 
+Al leer cada persona del fichero, rescatar el DNI de dni.txt'''
 

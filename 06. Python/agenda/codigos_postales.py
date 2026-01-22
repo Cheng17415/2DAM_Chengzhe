@@ -1,5 +1,5 @@
 import os
-# Ruta del archivo de personas
+# Ruta del archivo de codigos_postales
 RUTA_ACTUAL = os.path.dirname(os.path.abspath(__file__))
 RUTA_CP = os.path.join(RUTA_ACTUAL, "base_datos/codigos_postales.txt")
 CPs = {}
@@ -9,7 +9,7 @@ def obtenerCPs():
     try:
         with open(RUTA_CP, "r", encoding="utf-8") as f:
             for linea in f:
-                partes = linea.strip().split(",")
+                partes = linea.strip().split(";")
                 CPs[int(partes[0])] = partes[1]
     except FileNotFoundError:
         print(f"Archivo '{RUTA_CP}' no encontrado.")
