@@ -1,2 +1,7 @@
-65004204V;Cheng;Po;Calle Rocio Zamora;28012;Madrid;644309157;chenzg.he@gmail.com;amigo
-12345678Z;Enrique;de los;Alfajores;21000;Huelva;93485653;enrique123@gmail.com;alta
+2;Cheng;Se;Calle Antonio;28011;Madrid;92348576;cheng.se@gmail.com;baja
+3;Enrique;De los;Calle Enrique;50432;Valdejalon;293847567;enrique.delos@correo.com;conocido
+4;Lucía;García Pérez;Avenida de la Constitucion 15;28001;Madrid;600111222;lucia.garcia@email.com;amigo
+5;Marcos;Rodríguez Ruiz;Calle Mayor 42;08001;Eixample;611222333;marcos.rodriguez@servidor.es;activo
+6;Elena;Martínez Soler;Calle de la Paz 7;41001;Ecija;622333444;elena.mtz@correo.com;alta
+7;Javier;López Ramos;Paseo de la Castellana 120;28046;Madrid;633444555;javi.lopez88@gmail.com;conocido
+8;Sara;Vázquez Castro;Rúa Nova 3;15701;Xallas;644555666;sara.vazquez@icloud.com;baja

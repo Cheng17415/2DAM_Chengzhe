@@ -61,12 +61,21 @@ def existeDNI(dni) -> bool:
     return any(dni == v for v in DNIs.values())
 
 def anadir_o_cambiar_DNI(id, dni):
-    DNIs[int(id)] = dni
+    DNIs[id] = dni
     guardar_cambios_dni()
 
-def eliminarDNI(id):
-    del DNIs[int(id)]
-    guardar_cambios_dni()
+def eliminarDNI(dni):
+    id_to_remove = None
+    for key, value in DNIs.items():
+        if value == dni:
+            id_to_remove = key
+            break
+
+    if id_to_remove is not None:
+        del DNIs[id_to_remove]
+        guardar_cambios_dni()
+    else:
+        print(f"DNI '{dni}' no encontrado en el sistema.")
     
 obtenerDNIs()
 if __name__ == "__main__":

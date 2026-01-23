@@ -1,11 +1,14 @@
 from codigos_postales import obtenerProvincia,verificarCP
-from dni import obtener_DNI, comprobarDNI,existeDNI, anadir_o_cambiar_DNI
+from dni import obtener_DNI, comprobarDNI,existeDNI, anadir_o_cambiar_DNI, eliminarDNI, obtenerDNIs
 from enum import Enum
 import os
 import re
 # Ruta del archivo de personas
 RUTA_ACTUAL = os.path.dirname(os.path.abspath(__file__))
 FICHERO_PERSONAS = os.path.join(RUTA_ACTUAL, "base_datos/agenda.txt")
+
+# Ensure DNIs are loaded before accessing them
+obtenerDNIs()
 
 personas = []
 
@@ -14,7 +17,7 @@ class Persona:
     cont_id= 1
     #Constructor
     def __init__(self, nombre, apellidos, direccion, codigoPostal, ciudad, telefono, email, descripcion,
-                 id = None):
+                 id=None):
         if id is None:
             self.id = Persona.cont_id
         else:
@@ -28,7 +31,11 @@ class Persona:
         self.ciudad = ciudad
         self.telefono = telefono
         self.email = email
-        self.descripcion = descripcion
+        try:
+            self.descripcion = EstadoPersona(descripcion)
+        except ValueError:
+            print(f"Descripción desconocida: {descripcion}. Se asignará 'ACTIVO'.")
+            self.descripcion = EstadoPersona.ACTIVO
     
     def to_file(self) ->str:
         valores = [
@@ -45,8 +52,11 @@ class Persona:
         return ";".join(map(str,valores))
     
     def to_str(self) -> str:
+        dni = obtener_DNI(self.id)
+        if dni is None:
+            print(f"Debug: DNI no se ha encontrado {self.id}")
         return (
-        f"DNI: {obtener_DNI(self.id)}\n"
+        f"DNI: {dni}\n"
         f"Nombre: {self.nombre} {self.apellidos}\n"
         f"Dirección: {self.direccion}\n"
         f"Código Postal: {self.codigoPostal} ({self.provincia})\n"
@@ -78,13 +88,32 @@ def leer_fichero():
                 partes = linea.strip().split(";")
                 if len(partes) == 9:
                     try:
-                        estado = EstadoPersona(partes[8])
-                    except ValueError:
-                        print(f"Estado desconocido: {partes[8]}. Se asignará 'ACTIVO' por defecto.")
-                        estado = EstadoPersona.ACTIVO
-                    personas.append(Persona(
-                        *partes[:-1], estado # type: ignore
-                    ))
+                        # 1. Extraer los datos por posición según el archivo
+                        id_fichero = partes[0]
+                        nombre = partes[1]
+                        apellidos = partes[2]
+                        direccion = partes[3]
+                        cp = partes[4]
+                        ciudad = partes[5]
+                        tel = partes[6]
+                        email = partes[7]
+                        
+                        # 2. Validar el Enum
+                        try:
+                            estado = EstadoPersona(partes[8])
+                        except ValueError:
+                            print(f"Estado desconocido: {partes[8]}. Se asignará 'ACTIVO'.")
+                            estado = EstadoPersona.ACTIVO
+                        
+                        # 3. Crear la instancia con los argumentos en el orden de __init__
+                        persona_nueva = Persona(
+                            nombre, apellidos, direccion, cp, ciudad, 
+                            tel, email, estado, id=id_fichero
+                        )
+                        personas.append(persona_nueva)
+                        
+                    except Exception as e:
+                        print(f"Error procesando línea: {e}")
     except FileNotFoundError:
         print(f"Archivo '{FICHERO_PERSONAS}' no encontrado.")
 
@@ -156,7 +185,10 @@ def agregarPersona() -> None:
         email, descripcion
     )
     personas.append(persona)
+
+    # Add the new DNI to the DNIs dictionary
     anadir_o_cambiar_DNI(persona.id, dni)
+
     print("Persona añadida con éxito!")
     guardar_cambios()
 
@@ -183,7 +215,7 @@ def modificar_persona():
     for persona in personas:
         if persona.id == id_persona:
             print("\nPersona encontrada:")
-            print(persona)
+            print(persona.to_str())
 
             print("\n--- Introduce los nuevos datos (ENTER para mantener) ---")
 
@@ -218,34 +250,28 @@ def eliminar_persona():
     if not existeDNI(dni):
         print("No existe ninguna persona con ese DNI")
         return
-
-    id_persona = comprobarDNI(dni)
-
+    
     for persona in personas:
-        if persona.id == id_persona:
+        if obtener_DNI(persona.id) == dni:
             print("\nPersona encontrada:")
-            print(persona)
+            print(persona.to_str())
 
             confirmacion = input("¿Seguro que deseas eliminarla? (s/n): ").lower()
 
             if confirmacion == "s":
                 personas.remove(persona)
                 guardar_cambios()
-                anadir_o_cambiar_DNI(dni, None)
-                print("🗑️ Persona eliminada correctamente")
+                eliminarDNI(dni)
+                print("Persona eliminada correctamente")
             else:
                 print("Operación cancelada")
-
             return
+
+    print("No se encontró ninguna persona con ese DNI")
 
 
 leer_fichero()
 if __name__ == "__main__":
     agregarPersona()
     leer_lista_personas()
-    
-    '''dni.txt -> DNI, IDPersona
-agenda.txt -> IDPersona, ...
-Al escribir la persona al fichero, 
-Al leer cada persona del fichero, rescatar el DNI de dni.txt'''
 
