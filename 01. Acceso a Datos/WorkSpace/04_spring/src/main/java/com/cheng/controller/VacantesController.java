@@ -1,4 +1,4 @@
-package com.rayosoft.controller;
+package com.cheng.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.rayosoft.model.Vacante;
-import com.rayosoft.service.ICategoriasService;
-import com.rayosoft.service.IVacantesService;
-import com.rayosoft.util.Utileria;
+import com.cheng.model.Vacante;
+import com.cheng.service.ICategoriasService;
+import com.cheng.service.IVacantesService;
+import com.cheng.util.Utileria;
 
 @Controller
 @RequestMapping("/vacantes")

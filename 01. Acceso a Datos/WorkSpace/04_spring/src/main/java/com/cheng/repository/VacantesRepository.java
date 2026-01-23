@@ -1,10 +1,10 @@
-package com.rayosoft.repository;
+package com.cheng.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.rayosoft.model.Vacante;
+import com.cheng.model.Vacante;
 
 public interface VacantesRepository extends JpaRepository<Vacante, Integer>{
 	//Show AOT-generated Implementation, Query, etc..

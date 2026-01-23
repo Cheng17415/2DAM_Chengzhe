@@ -1,8 +1,8 @@
-package com.rayosoft.repository;
+package com.cheng.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.rayosoft.model.Categoria;
+import com.cheng.model.Categoria;
 public interface CategoriasRepository extends JpaRepository<Categoria, Integer>{
 
 }

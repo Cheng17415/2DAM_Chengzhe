@@ -1,8 +1,8 @@
-package com.rayosoft.repository;
+package com.cheng.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.rayosoft.model.Usuario;
+import com.cheng.model.Usuario;
 
 public interface UsuariosRepository extends JpaRepository<Usuario, Integer>{
 

@@ -1,4 +1,4 @@
-package com.rayosoft.controller;
+package com.cheng.controller;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.rayosoft.model.Vacante;
-import com.rayosoft.service.IVacantesService;
+import com.cheng.model.Vacante;
+import com.cheng.service.IVacantesService;
 
 @Controller
 public class HomeController {

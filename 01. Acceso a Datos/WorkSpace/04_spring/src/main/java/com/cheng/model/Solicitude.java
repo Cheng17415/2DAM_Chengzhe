@@ -1,4 +1,4 @@
-package com.rayosoft.model;
+package com.cheng.model;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
