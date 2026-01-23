@@ -1,5 +1,6 @@
 from codigos_postales import obtenerProvincia,verificarCP
 from dni import obtener_DNI, comprobarDNI,existeDNI, anadir_o_cambiar_DNI, eliminarDNI, obtenerDNIs
+import dni
 from enum import Enum
 import os
 import re
@@ -83,7 +84,7 @@ def guardar_cambios():
 def leer_fichero():
     personas.clear()
     try:
-        with open(FICHERO_PERSONAS, "r", encoding="utf-8") as f:
+        with open(FICHERO_PERSONAS, "r", encoding="latin-1") as f:
             for linea in f:
                 partes = linea.strip().split(";")
                 if len(partes) == 9:
@@ -204,13 +205,26 @@ def leer_lista_personas():
         print(persona.to_str())
 
 def modificar_persona():
-    dni = input("Introduce el DNI/NIE de la persona a modificar: ").upper()
+    dni_buscar = input("Introduce el DNI/NIE de la persona a modificar: ").upper()
 
-    if not existeDNI(dni):
+    if not comprobarDNI(dni_buscar):
+        print("DNI/NIE inválido")
+        return
+
+    if not existeDNI(dni_buscar):
         print("No existe ninguna persona con ese DNI")
         return
 
-    id_persona = comprobarDNI(dni)
+    # Buscar el ID a partir del DNI
+    id_persona = None
+    for key, value in dni.DNIs.items():
+        if value == dni_buscar:
+            id_persona = key
+            break
+
+    if id_persona is None:
+        print("No se encontró el DNI en el sistema")
+        return
 
     for persona in personas:
         if persona.id == id_persona:

@@ -1,18 +1,18 @@
-01;Araba/Álava
+01;Araba/alava
 02;Albacete
 03;Alicante
-04;Almería
-05;Ávila
+04;Almeria
+05;Avila
 06;Badajoz
 07;Illes Balears
 08;Barcelona
 09;Burgos
-10;Cáceres
-11;Cádiz
-12;Castellón
+10;Caceres
+11;Cáadiz
+12;Castellon
 13;Ciudad Real
-14;Córdoba
-15;Coruña
+14;Cordoba
+15;Coruna
 16;Cuenca
 17;Girona
 18;Granada
@@ -20,13 +20,13 @@
 20;Gipuzkoa
 21;Huelva
 22;Huesca
-23;Jaén
-24;León
+23;Jaen
+24;Leon
 25;Lleida
 26;La Rioja
 27;Lugo
 28;Madrid
-29;Málaga
+29;Malaga
 30;Murcia
 31;Navarra
 32;Ourense

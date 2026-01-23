@@ -7,7 +7,7 @@ CPs = {}
 def obtenerCPs():
     CPs.clear()
     try:
-        with open(RUTA_CP, "r", encoding="utf-8") as f:
+        with open(RUTA_CP, "r", encoding="latin-1") as f:
             for linea in f:
                 partes = linea.strip().split(";")
                 CPs[int(partes[0])] = partes[1]

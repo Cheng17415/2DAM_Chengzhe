@@ -1,0 +1,172 @@
+BBDD - MySQL
+-Vincularlo a Python con FastAPI a Pagina Web
+
+Tabla Usuario:
+	- usuario_id INT AUTO_INCREMENT PRIMARY KEY
+	- dni VARCHAR(9) UNIQUE
+	- Nombre
+	- Apellido
+	- Direccion
+	- Codigo Postal
+	- Telefono
+	- Correo (UNIQUE)
+	- password_hash VARCHAR(255) [bcrypt o passlib]
+	- rol_id (FK)
+	- fecha_creacion
+	- activo (Boolean)
+
+Tabla Rol:
+	- rol_id (PK)
+	- nombre (Invitado, Usuario, Vendedor, Desarrollador)
+	
+Tabla Producto:
+	- producto_ID (PK)
+	- nombre
+	- descripcion
+	- precio
+	- stock
+	- imagen_url (puede ser nulo)
+	- activo Boolean
+	- fecha_creacion
+
+Tabla Carrito:
+	- carrito_ID(PK)
+	- usuario_id (FK)
+	- Estado (Activo, Desactivo)
+	- Fecha_creacion
+	
+Tabla Producto_Carrito(M*N):
+	- carrito_ID(PK, FK)
+	- producto_ID(PK, FK)
+	- cantidad
+
+Tabla OpcionesEnvio:
+	- opciones_id (PK)
+	- dias INT
+	- precio
+
+Tabla Pedido:
+	- pedido_id (PK)
+	- usuario_id (FK)
+	- fecha
+	- total
+	- estado (Pendiente, Pagado, Enviado, Entregado)
+	- opcion_envio_id (FK)
+	
+Tabla Pedido_Detalle:
+	- pedido_id (PK, FK)
+	- producto_id (PK, FK)
+	- precio_unitario
+	- cantidad
+
+Los invitados pueden ver los productos, pero no pueden añadirlo al carrito.
+
+Flujo usuarios
+	Ver los productos
+			|
+	Es rol invitado		-> Sí	->	Pedir registrarse o iniciar sesión
+						-> No	->	Tiene carrito activo	-> Si	-> generar carrito -> Tabla Producto_Carrito añadir producto y carrito
+															-> No	-> Tabla Producto_Carrito añadir producto y carrito
+
+Flujo carrito
+	Ver el carrito
+		|
+	Tiene productos
+	
+	CREATE SCHEMA ecommerce;
+USE ecommerce;
+
+CREATE TABLE rol (
+    rol_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL UNIQUE
+);
+
+INSERT INTO rol (nombre) VALUES
+('Invitado'),
+('Usuario'),
+('Vendedor'),
+('Desarrollador');
+
+CREATE TABLE usuario (
+    usuario_id INT AUTO_INCREMENT PRIMARY KEY,
+    dni VARCHAR(9) UNIQUE,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
+    direccion VARCHAR(60),
+    codigo_postal VARCHAR(10),
+    telefono VARCHAR(20),
+    email VARCHAR(70) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    rol_id INT NOT NULL,
+    activo BOOLEAN DEFAULT TRUE,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (rol_id) REFERENCES rol(rol_id)
+);
+
+CREATE TABLE opciones_envio (
+    opciones_id INT AUTO_INCREMENT PRIMARY KEY,
+    dias INT NOT NULL,
+    precio DECIMAL(10,2) NOT NULL
+);
+
+CREATE TABLE producto (
+    producto_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    descripcion TEXT,
+    precio DECIMAL(10,2) NOT NULL,
+    stock INT NOT NULL,
+    imagen_url VARCHAR(255),
+    activo BOOLEAN DEFAULT TRUE,
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CHECK (stock >= 0 AND precio >= 0)
+);
+
+CREATE TABLE carrito (
+    carrito_id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    estado ENUM('ACTIVO','CERRADO') DEFAULT 'ACTIVO',
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES usuario(usuario_id)
+);
+
+CREATE TABLE producto_carrito (
+    carrito_id INT NOT NULL,
+    producto_id INT NOT NULL,
+    cantidad INT NOT NULL,
+
+    PRIMARY KEY (carrito_id, producto_id),
+
+    FOREIGN KEY (carrito_id) REFERENCES carrito(carrito_id),
+    FOREIGN KEY (producto_id) REFERENCES producto(producto_id),
+    CHECK (cantidad >=0)
+);
+
+CREATE TABLE pedido (
+    pedido_id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    opcion_envio_id INT NOT NULL,
+    total DECIMAL(10,2) NOT NULL,
+    estado ENUM('PENDIENTE','PAGADO','ENVIADO','ENTREGADO','CANCELADO') DEFAULT 'PENDIENTE',
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (usuario_id) REFERENCES usuario(usuario_id),
+    FOREIGN KEY (opcion_envio_id) REFERENCES opciones_envio(opciones_id),
+    CHECK (total >= 0)
+);
+
+CREATE TABLE pedido_detalle (
+    pedido_id INT NOT NULL,
+    producto_id INT NOT NULL,
+    precio_unitario DECIMAL(10,2) NOT NULL,
+    cantidad INT NOT NULL,
+
+    PRIMARY KEY (pedido_id, producto_id),
+
+    FOREIGN KEY (pedido_id) REFERENCES pedido(pedido_id),
+    FOREIGN KEY (producto_id) REFERENCES producto(producto_id),
+    CHECK (cantidad >= 0)
+);
+
+
+
