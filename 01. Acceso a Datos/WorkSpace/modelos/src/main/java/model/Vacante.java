@@ -1,4 +1,4 @@
-package com.rayosoft.model;
+package model;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
@@ -12,30 +12,45 @@ import java.util.List;
  */
 @Entity
 @Table(name="vacantes")
+@NamedQuery(name="Vacante.findAll", query="SELECT v FROM Vacante v")
 public class Vacante implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
-	private String nombre;
+	private int id;
+
+	@Lob
 	private String descripcion;
-	private Date fecha;
-	private Double salario;
-	private Integer destacado;
-	private String imagen = "no-image.png";
-	private String estatus;
+
+	private int destacado;
+
+	@Lob
 	private String detalles;
 
-	//@Transient
-	@OneToOne
+	private String estatus;
+
+	@Temporal(TemporalType.DATE)
+	private Date fecha;
+
+	private String imagen;
+
+	private String nombre;
+
+	private double salario;
+
+	//bi-directional many-to-one association to Solicitude
+	@OneToMany(mappedBy="vacante")
+	private List<Solicitude> solicitudes;
+
+	//bi-directional many-to-one association to Categoria
+	@ManyToOne
 	@JoinColumn(name="idCategoria")
 	private Categoria categoria;
 
 	public Vacante() {
 	}
 
-	public Integer getId() {
+	public int getId() {
 		return this.id;
 	}
 
@@ -51,7 +66,7 @@ public class Vacante implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public Integer getDestacado() {
+	public int getDestacado() {
 		return this.destacado;
 	}
 
@@ -99,12 +114,34 @@ public class Vacante implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public Double getSalario() {
+	public double getSalario() {
 		return this.salario;
 	}
 
 	public void setSalario(double salario) {
 		this.salario = salario;
+	}
+
+	public List<Solicitude> getSolicitudes() {
+		return this.solicitudes;
+	}
+
+	public void setSolicitudes(List<Solicitude> solicitudes) {
+		this.solicitudes = solicitudes;
+	}
+
+	public Solicitude addSolicitude(Solicitude solicitude) {
+		getSolicitudes().add(solicitude);
+		solicitude.setVacante(this);
+
+		return solicitude;
+	}
+
+	public Solicitude removeSolicitude(Solicitude solicitude) {
+		getSolicitudes().remove(solicitude);
+		solicitude.setVacante(null);
+
+		return solicitude;
 	}
 
 	public Categoria getCategoria() {
@@ -114,16 +151,5 @@ public class Vacante implements Serializable {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
-	public void reset() {
-		this.imagen = null;
-	}
 
-	@Override
-	public String toString() {
-		return "Vacante [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", destacado=" + destacado
-				+ ", detalles=" + detalles + ", estatus=" + estatus + ", fecha=" + fecha + ", imagen=" + imagen
-				+ ", salario=" + salario + ", categoria=" + categoria + "]";
-	}
-	
 }

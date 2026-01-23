@@ -1,7 +1,7 @@
-package com.rayosoft.model;
+package model;
 
 import java.io.Serializable;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.List;
 
 
@@ -11,6 +11,7 @@ import java.util.List;
  */
 @Entity
 @Table(name="categorias")
+@NamedQuery(name="Categoria.findAll", query="SELECT c FROM Categoria c")
 public class Categoria implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -18,9 +19,14 @@ public class Categoria implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
+	@Lob
 	private String descripcion;
 
 	private String nombre;
+
+	//bi-directional many-to-one association to Vacante
+	@OneToMany(mappedBy="categoria")
+	private List<Vacante> vacantes;
 
 	public Categoria() {
 	}
@@ -49,5 +55,26 @@ public class Categoria implements Serializable {
 		this.nombre = nombre;
 	}
 
+	public List<Vacante> getVacantes() {
+		return this.vacantes;
+	}
+
+	public void setVacantes(List<Vacante> vacantes) {
+		this.vacantes = vacantes;
+	}
+
+	public Vacante addVacante(Vacante vacante) {
+		getVacantes().add(vacante);
+		vacante.setCategoria(this);
+
+		return vacante;
+	}
+
+	public Vacante removeVacante(Vacante vacante) {
+		getVacantes().remove(vacante);
+		vacante.setCategoria(null);
+
+		return vacante;
+	}
 
 }
