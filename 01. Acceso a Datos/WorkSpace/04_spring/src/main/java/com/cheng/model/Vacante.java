@@ -3,13 +3,7 @@ package com.cheng.model;
 import java.io.Serializable;
 import jakarta.persistence.*;
 import java.util.Date;
-import java.util.List;
 
-
-/**
- * The persistent class for the vacantes database table.
- * 
- */
 @Entity
 @Table(name="vacantes")
 public class Vacante implements Serializable {

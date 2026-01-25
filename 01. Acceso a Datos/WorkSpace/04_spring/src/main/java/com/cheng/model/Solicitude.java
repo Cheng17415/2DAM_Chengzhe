@@ -1,14 +1,11 @@
 package com.cheng.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+
 import jakarta.persistence.*;
 import java.util.Date;
 
-
-/**
- * The persistent class for the solicitudes database table.
- * 
- */
 @Entity
 @Table(name="solicitudes")
 @NamedQuery(name="Solicitude.findAll", query="SELECT s FROM Solicitude s")
@@ -24,8 +21,7 @@ public class Solicitude implements Serializable {
 	@Lob
 	private String comentarios;
 
-	@Temporal(TemporalType.DATE)
-	private Date fecha;
+	private LocalDate fecha;
 
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
@@ -64,11 +60,11 @@ public class Solicitude implements Serializable {
 		this.comentarios = comentarios;
 	}
 
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return this.fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 

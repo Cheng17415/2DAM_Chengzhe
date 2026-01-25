@@ -2,13 +2,7 @@ package com.cheng.model;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
-import java.util.List;
 
-
-/**
- * The persistent class for the categorias database table.
- * 
- */
 @Entity
 @Table(name="categorias")
 public class Categoria implements Serializable {
@@ -16,7 +10,7 @@ public class Categoria implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	private String descripcion;
 
@@ -25,11 +19,11 @@ public class Categoria implements Serializable {
 	public Categoria() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

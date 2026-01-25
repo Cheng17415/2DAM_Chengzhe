@@ -6,11 +6,6 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-
-/**
- * The persistent class for the usuarios database table.
- * 
- */
 @Entity
 @Table(name="usuarios")
 @NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
