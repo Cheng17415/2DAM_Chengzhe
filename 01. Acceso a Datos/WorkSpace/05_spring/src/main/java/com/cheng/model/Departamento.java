@@ -60,14 +60,14 @@ public class Departamento implements Serializable {
 
 	public Empleado addEmp(Empleado emp) {
 		getEmps().add(emp);
-		emp.setDepartamento(this);
+		emp.setDept(this);
 
 		return emp;
 	}
 
 	public Empleado removeEmp(Empleado emp) {
 		getEmps().remove(emp);
-		emp.setDepartamento(null);
+		emp.setDept(null);
 
 		return emp;
 	}

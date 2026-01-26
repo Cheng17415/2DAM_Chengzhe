@@ -3,6 +3,8 @@ package com.cheng.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -17,7 +19,8 @@ public class Empleado implements Serializable {
 	private Float comm;
 
 	private String ename;
-
+	
+	@DateTimeFormat(pattern ="dd-MM-yyyy")
 	private LocalDate hiredate;
 
 	private String job;
@@ -101,12 +104,12 @@ public class Empleado implements Serializable {
 		this.sal = sal;
 	}
 
-	public Departamento getDepartamento() {
+	public Departamento getDept() {
 	    return dept;
 	}
 
-	public void setDepartamento(Departamento departamento) {
-	    this.dept = departamento;
+	public void setDept(Departamento dept) {
+	    this.dept = dept;
 	}
 
 

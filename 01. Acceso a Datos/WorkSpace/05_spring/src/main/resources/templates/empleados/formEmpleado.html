@@ -1,143 +1,119 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
-
     <title>Empleado</title>
-    <!-- Bootstrap core CSS -->
+
     <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-    <!-- Custom styles for this template -->
     <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
     <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
-    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" >
-  </head>
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+</head>
 
-  <body>
+<body>
 
-    <header th:insert="~{fragments/menu :: menu-principal}"></header>
+<header th:insert="~{fragments/menu :: menu-principal}"></header>
 
-    <main role="main">     
-      <hr>
-      <div class="container"> 
+<main class="container mt-4">
 
-        <div class="card">
-          <h4 class="card-header"><strong>Datos del empleado</strong></h4>              
-          <div class="card-body">
-            <form th:action="@{/empleados/save}" method="post" th:object="${empleado}" enctype="multipart/form-data">  
-             
-              <div th:if="${#fields.hasErrors('*')}"class='alert alert-danger' role='alert'>
-					Por favor corrija los siguientes errores:
-					<ul>
-					<li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
-					</ul>
-				  </div>	
-                       
-              <div class="row">
-                <div class="col-md-3"> 
-                  <div class="form-group">
-                    <label for="ename">Nombre</label>
-                    <input type="hidden" th:field="*{empno}" >
-                    <input type="text" class="form-control" th:field="*{ename}" id="ename" name="ename" placeholder="Nombre del empleado" required="required">
-                  </div>
-                </div>
-                <div class="col-md-9"> 
-                  <div class="form-group">
-                    <label for="job">Trabajo</label>
-                    <input type="text" class="form-control" th:field="*{job}" id="job" name="job" placeholder="Puesto de trabajo" required="required">
-                  </div> 
-                </div>    
-              </div>    
-              <div class="row">
-                <div class="col-md-3"> 
-                  <div class="form-group">
-                    <label for="mgr">Id Superior Directo</label>
-					<input type="number" class="form-control" th:field="*{mgr}" id="mgr" name="mgr" placeholder="7839">
-                  </div>
-                </div>
-				<div class="col-md-9"> 
-				  <div class="form-group">
-					<label for="sal">Salario</label>
-					<input type="text" class="form-control" th:field="*{sal}" name="sal" id="sal" placeholder="Salario" required="required">
-				  </div>
-				</div>    
-			  </div><!--Seguir modificando a partir de aqui-->
-			  <div class="row"> 
-                <div class="col-md-3"> 
-                  <div class="form-group">
-                    <label for="estatus">Estatus</label>
-                    <select class="form-control" th:field="*{estatus}" name="estatus" id="estatus">
-					  <option value="Creada">Creada</option>
-                      <option value="Aprobada">Aprobada</option>
-                      <option value="Eliminada">Eliminada</option>	
-                    </select>
-                  </div>
-                </div>
-                <div class="col-md-3"> 
-                  <div class="form-group">
-                    <label for="fecha">Fecha de Publicación</label>
-                    <input type="text" class="form-control" th:field="*{fecha}" name="fecha" id="fecha" placeholder="Fecha de publicacion" required="required">
-                  </div>  
-                </div>
-                <div class="col-md-3"> 
-                  <div class="form-check">
-                    <label class="form-check-label" for="destacado0"></label><br>
-                    <input class="form-check-input" type="radio" th:field="*{destacado}" name="destacado" id="destacado" value="1" checked="checked">
-                    <label class="form-check-label" for="destacado1">Destacado</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" th:field="*{destacado}" name="destacado" id="destacado" value="0">
-                    <label class="form-check-label" for="destacado2">No Destacado</label>
-                  </div>
-                </div>
-              </div>    
-              <div class="row">
-                <div class="col-md-3"> 
-                  <div class="form-group">
-                    <label for="archivoImagen">Imagen</label>
-                    <input type="file" class="form-control-file" name="archivoImagen" id="archivoImagen">
-                  </div>
-                </div>
-              </div> 
-              <hr>
-              <div class="row">
-                <div class="col-md-9"> 
-                  <div class="form-group">
-                    <label for="detalles"><strong>Detalles</strong></label>          
-                    <textarea class="form-control" th:field="*{detalles}" name="detalles" id="detalles" rows="7"></textarea>
-                  </div> 
-                </div> 
-                <!--<div class="col-md-3">
-                  <label for="imagen">Imagen/Logo</label>
-                  <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vacante.imagen}) }" alt="Generic placeholder image" width="200" height="200">            
-                </div>-->
-              </div> 
-              <button type="submit" class="btn btn-primary">Guardar</button>  
-            </form>
-          </div>
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">👤 Datos del empleado</h5>
         </div>
-      </div> <!-- /container -->
 
-    </main>
+        <div class="card-body">
 
-    <footer th:insert="~{fragments/footer :: pie-pagina}" class="footer"></footer>
+            <form th:action="@{/empleados/save}" method="post" th:object="${empleado}">
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>     
-    <script>
-      
-      $(function () {
-          $("#fecha").datepicker({dateFormat: 'dd-mm-yy'});
-        }
-      );
+                <!-- ERRORES -->
+                <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                    <strong>Por favor corrija los errores:</strong>
+                    <ul class="mb-0">
+                        <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+                    </ul>
+                </div>
 
-    </script>
-  </body>
+                <!-- IDENTIFICADOR -->
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label class="form-label">Número empleado</label>
+                        <input type="number" class="form-control" th:field="*{empno}">
+                    </div>
+                </div>
+
+                <!-- DATOS PERSONALES -->
+                <h6 class="text-primary border-bottom pb-1">Datos personales</h6>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" class="form-control" th:field="*{ename}" placeholder="Nombre del empleado">
+                    </div>
+
+                    <div class="col-md-8">
+                        <label class="form-label">Puesto</label>
+                        <input type="text" class="form-control" th:field="*{job}" placeholder="Puesto de trabajo">
+                    </div>
+                </div>
+
+                <!-- LABORAL -->
+                <h6 class="text-primary border-bottom pb-1">Información laboral</h6>
+
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label class="form-label">Supervisor</label>
+                        <input type="number" class="form-control" th:field="*{mgr}" placeholder="7839">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label">Salario</label>
+                        <input type="number" step="0.01" class="form-control" th:field="*{sal}">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label">Comisión</label>
+                        <input type="number" step="0.01" class="form-control" th:field="*{comm}">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label">Fecha contrato</label>
+                        <input type="text" class="form-control" id="fecha" th:field="*{hiredate}">
+                    </div>
+                </div>
+
+                <!-- DEPARTAMENTO -->
+                <h6 class="text-primary border-bottom pb-1">Departamento</h6>
+
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <label class="form-label">Número departamento</label>
+                        <input type="number" class="form-control" th:field="*{dept.deptno}" placeholder="10">
+                    </div>
+                </div>
+
+                <!-- BOTONES -->
+                <div class="d-flex justify-content-end gap-2">
+                    <a th:href="@{/empleados}" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</main>
+
+<footer th:insert="~{fragments/footer :: pie-pagina}" class="footer"></footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+
+<script>
+    $(function () {
+        $("#fecha").datepicker({ dateFormat: 'dd-mm-yy' });
+    });
+</script>
+
+</body>
 </html>
