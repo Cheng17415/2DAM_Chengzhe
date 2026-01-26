@@ -1,95 +1,119 @@
 package com.cheng.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Empleado {
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "EMP")
+public class Empleado implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name="empno")
 	private Integer empno;
+
+	private Float comm;
+
 	private String ename;
-	private String job;
-	private Integer mgr;
-	private Double sal;
-	private Integer comm;
-	private Integer deptno;
+
 	private LocalDate hiredate;
-	private String img = "no-image.png";
+
+	private String job;
+
+	private Integer mgr;
+
+	private Float sal;
 	
+	//bi-directional many-to-one association to Dept
+	@ManyToOne
+	@JoinColumn(name="deptno")
+	private Departamento dept;
+
 	public Empleado() {
-		super();
 	}
-	
-	public Empleado(int empno, String ename, String job, Integer mgr, double d, Integer comm, Integer deptno,
-			LocalDate hiredate, String img) {
+
+	public Empleado(int empno, String ename, String job, Integer mgr, Float sal, Float comm, LocalDate hiredate){
 		super();
 		this.empno = empno;
+		this.comm = comm;
 		this.ename = ename;
+		this.hiredate = hiredate;
 		this.job = job;
 		this.mgr = mgr;
-		this.sal = d;
-		this.comm = comm;
-		this.deptno = deptno;
-		this.hiredate = hiredate;
-		this.img = img;
+		this.sal = sal;
 	}
 
 	public Integer getEmpno() {
-		return empno;
+		return this.empno;
 	}
+
 	public void setEmpno(Integer empno) {
 		this.empno = empno;
 	}
-	public String getEname() {
-		return ename;
+
+	public Float getComm() {
+		return this.comm;
 	}
+
+	public void setComm(Float comm) {
+		this.comm = comm;
+	}
+
+	public String getEname() {
+		return this.ename;
+	}
+
 	public void setEname(String ename) {
 		this.ename = ename;
 	}
-	public String getJob() {
-		return job;
-	}
-	public void setJob(String job) {
-		this.job = job;
-	}
-	public Integer getMgr() {
-		return mgr;
-	}
-	public void setMgr(Integer mgr) {
-		this.mgr = mgr;
-	}
-	public Double getSal() {
-		return sal;
-	}
-	public void setSal(Double sal) {
-		this.sal = sal;
-	}
-	public Integer getComm() {
-		return comm;
-	}
-	public void setComm(Integer comm) {
-		this.comm = comm;
-	}
-	public Integer getDeptno() {
-		return deptno;
-	}
-	public void setDeptno(Integer deptno) {
-		this.deptno = deptno;
-	}
+
 	public LocalDate getHiredate() {
-		return hiredate;
+		return this.hiredate;
 	}
+
 	public void setHiredate(LocalDate hiredate) {
 		this.hiredate = hiredate;
 	}
-	public String getImg() {
-		return img;
+
+	public String getJob() {
+		return this.job;
 	}
-	public void setImg(String img) {
-		this.img = img;
+
+	public void setJob(String job) {
+		this.job = job;
 	}
+
+	public Integer getMgr() {
+		return this.mgr;
+	}
+
+	public void setMgr(Integer mgr) {
+		this.mgr = mgr;
+	}
+
+	public Float getSal() {
+		return this.sal;
+	}
+
+	public void setSal(Float sal) {
+		this.sal = sal;
+	}
+
+	public Departamento getDepartamento() {
+	    return dept;
+	}
+
+	public void setDepartamento(Departamento departamento) {
+	    this.dept = departamento;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Empleado [empno=" + empno + ", ename=" + ename + ", job=" + job + ", mgr=" + mgr + ", sal=" + sal
-				+ ", comm=" + comm + ", deptno=" + deptno + ", hiredate=" + hiredate + ", img=" + img + "]";
+		return "empno=" + empno + ", comm=" + comm + ", ename=" + ename + ", hiredate=" + hiredate + ", job=" + job
+				+ ", mgr=" + mgr + ", sal=" + sal;
 	}
-	
-	
+
 }

@@ -12,11 +12,11 @@
 </head>
 
 <body>
-    <header th:insert="fragments/menu :: menu-principal"></header>
+    <header th:insert="~{fragments/menu :: menu-principal}"></header>
     <main role="main">
-        
+        <h1>Bienvenido!</h1>
     </main>
-    <footer th:insert="fragments/footer :: pie-pagina"></footer>
+    <footer th:insert="~{fragments/footer :: pie-pagina}"></footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
