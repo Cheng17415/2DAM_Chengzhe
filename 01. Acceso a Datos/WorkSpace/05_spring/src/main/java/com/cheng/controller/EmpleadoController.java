@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cheng.service.IEmpleadoService;
 
@@ -21,4 +23,17 @@ public class EmpleadoController {
 		return "empleados/listEmpleados";
 	}
 	
+	@GetMapping("/edit/{id}")
+	public String editar(@PathVariable int id, Model model) {
+		model.addAttribute("empleado", serviciosEmpleados.buscarPorId(id));
+		return "empleados/formEmpleado";
+	}
+	
+	@GetMapping("/delete/{id}")
+	public String eliminar(@PathVariable int id, RedirectAttributes atr) {
+		System.out.println("Eliminando Empleado con id " + id);
+		serviciosEmpleados.eliminar(id);
+		atr.addFlashAttribute("msg", "Empleado con id " + id + " fue eliminado");
+		return "redirect:/empleados/index";
+	}
 }
