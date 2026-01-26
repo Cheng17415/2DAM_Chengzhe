@@ -1,1 +1,3 @@
 hibernate-release-5.4.33.Final
+target/
+bin/

@@ -1,0 +1,119 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Empleado</title>
+
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+</head>
+
+<body>
+
+<header th:insert="~{fragments/menu :: menu-principal}"></header>
+
+<main class="container mt-4">
+
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">👤 Datos del empleado</h5>
+        </div>
+
+        <div class="card-body">
+
+            <form th:action="@{/empleados/save}" method="post" th:object="${empleado}">
+
+                <!-- ERRORES -->
+                <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                    <strong>Por favor corrija los errores:</strong>
+                    <ul class="mb-0">
+                        <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+
+                <!-- IDENTIFICADOR -->
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label class="form-label">Número empleado</label>
+                        <input type="number" class="form-control" th:field="*{empno}">
+                    </div>
+                </div>
+
+                <!-- DATOS PERSONALES -->
+                <h6 class="text-primary border-bottom pb-1">Datos personales</h6>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" class="form-control" th:field="*{ename}" placeholder="Nombre del empleado">
+                    </div>
+
+                    <div class="col-md-8">
+                        <label class="form-label">Puesto</label>
+                        <input type="text" class="form-control" th:field="*{job}" placeholder="Puesto de trabajo">
+                    </div>
+                </div>
+
+                <!-- LABORAL -->
+                <h6 class="text-primary border-bottom pb-1">Información laboral</h6>
+
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label class="form-label">Supervisor</label>
+                        <input type="number" class="form-control" th:field="*{mgr}" placeholder="7839">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label">Salario</label>
+                        <input type="number" step="0.01" class="form-control" th:field="*{sal}">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label">Comisión</label>
+                        <input type="number" step="0.01" class="form-control" th:field="*{comm}">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label">Fecha contrato</label>
+                        <input type="text" class="form-control" id="fecha" th:field="*{hiredate}">
+                    </div>
+                </div>
+
+                <!-- DEPARTAMENTO -->
+                <h6 class="text-primary border-bottom pb-1">Departamento</h6>
+
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <label class="form-label">Número departamento</label>
+                        <input type="number" class="form-control" th:field="*{dept.deptno}" placeholder="10">
+                    </div>
+                </div>
+
+                <!-- BOTONES -->
+                <div class="d-flex justify-content-end gap-2">
+                    <a th:href="@{/empleados}" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</main>
+
+<footer th:insert="~{fragments/footer :: pie-pagina}" class="footer"></footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+
+<script>
+    $(function () {
+        $("#fecha").datepicker({ dateFormat: 'dd-mm-yy' });
+    });
+</script>
+
+</body>
+</html>

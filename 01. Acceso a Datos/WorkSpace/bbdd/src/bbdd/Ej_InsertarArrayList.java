@@ -9,27 +9,27 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import clases.Empleado;
+import clases.Empl;
 
 public class Ej_InsertarArrayList {
 	
 	private static final String SQL_INSERTAR = "INSERT INTO empleados(nombre, salario, fecha) VALUES (?,?,?);";
 	
-	private static void llenar(ArrayList<Empleado> l) {
-		l.add(new Empleado("Juan Ignacio",5000,LocalDateTime.of(2025,8,10,12,23,20)));
-		l.add(new Empleado("Juan Carlos",4000,LocalDateTime.of(2015,9,10,12,23,20)));
-		l.add(new Empleado("Juan Andres",6000,LocalDateTime.of(2022,10,10,12,23,20)));
-		l.add(new Empleado("Pedro Porras",7000,LocalDateTime.of(2020,11,10,12,23,20)));
-		l.add(new Empleado("Burrito Sabanero",1000,LocalDateTime.of(2020,12,10,12,23,20)));
+	private static void llenar(ArrayList<Empl> l) {
+		l.add(new Empl("Juan Ignacio",5000,LocalDateTime.of(2025,8,10,12,23,20)));
+		l.add(new Empl("Juan Carlos",4000,LocalDateTime.of(2015,9,10,12,23,20)));
+		l.add(new Empl("Juan Andres",6000,LocalDateTime.of(2022,10,10,12,23,20)));
+		l.add(new Empl("Pedro Porras",7000,LocalDateTime.of(2020,11,10,12,23,20)));
+		l.add(new Empl("Burrito Sabanero",1000,LocalDateTime.of(2020,12,10,12,23,20)));
 	}
 	
 	public static void main(String[] args) {
-		ArrayList <Empleado> listaEmp = new ArrayList<>();
+		ArrayList <Empl> listaEmp = new ArrayList<>();
 		llenar(listaEmp);
 		int filas = 0;
 		try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/clase", "root", "root");
 				PreparedStatement sentencia = conn.prepareStatement(SQL_INSERTAR);) {
-			for(Empleado e: listaEmp) {
+			for(Empl e: listaEmp) {
 				sentencia.setString(1, e.getNombre());
 				sentencia.setBigDecimal(2, new BigDecimal(e.getSalario()));
 				sentencia.setTimestamp(3, Timestamp.valueOf(e.getFecha()));

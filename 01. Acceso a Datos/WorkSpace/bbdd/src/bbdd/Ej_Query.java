@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import clases.Empleado;
+import clases.Empl;
 
 
 public class Ej_Query {
@@ -14,7 +14,7 @@ public class Ej_Query {
 	private static final String SQL_QUERY = "SELECT * FROM EMPLEADOS";
 	
 	public static void main(String[] args) {
-		Empleado emp = null;
+		Empl emp = null;
 		int id;
 		String nombre;
 		double salario;
@@ -28,7 +28,7 @@ public class Ej_Query {
 				nombre = resultados.getString(2);
 				salario = resultados.getDouble(3);
 				fecha = resultados.getTimestamp(4);
-				emp = new Empleado(id,nombre,salario,fecha.toLocalDateTime());
+				emp = new Empl(id,nombre,salario,fecha.toLocalDateTime());
 				System.out.println(emp);
 			}
 			
