@@ -27,6 +27,11 @@ public class EmpleadoController {
 		return "empleados/listEmpleados";
 	}
 	
+	@GetMapping("/create")
+	public String crear(Empleado empleado, Model model) {
+		return "empleados/formEmpleado";
+	}
+	
 	@GetMapping("/edit/{id}")
 	public String editar(@PathVariable int id, Model model) {
 		model.addAttribute("empleado", serviciosEmpleados.buscarPorId(id));
@@ -46,10 +51,6 @@ public class EmpleadoController {
 		return "redirect:/empleados/index";
 	}
 	
-	@GetMapping("/create")
-	public String crear(Empleado empleado, Model model) {
-		return "empleados/formEmpleado";
-	}
 	@GetMapping("/delete/{id}")
 	public String eliminar(@PathVariable int id, RedirectAttributes atr) {
 		System.out.println("Eliminando Empleado con id " + id);

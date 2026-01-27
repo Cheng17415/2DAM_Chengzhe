@@ -1,0 +1,77 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Departamentos</title>
+
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+</head>
+
+<body>
+
+<header th:insert="~{fragments/menu :: menu-principal}"></header>
+
+<main class="container mt-4">
+
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">👤 Datos del departamento</h5>
+        </div>
+
+        <div class="card-body">
+
+            <form th:action="@{/departamentos/save}" method="post" th:object="${departamento}">
+
+                <!-- ERRORES -->
+                <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                    <strong>Por favor corrija los errores:</strong>
+                    <ul class="mb-0">
+                        <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+
+                <!-- IDENTIFICADOR -->
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label class="form-label">Número departamento</label>
+                        <input type="number" class="form-control" th:field="*{deptno}">
+                    </div>
+                </div>
+
+                <!-- DATOS PERSONALES -->
+                <h6 class="text-primary border-bottom pb-1">Datos departamento</h6>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" class="form-control" th:field="*{dname}" placeholder="Nombre del departamento">
+                    </div>
+
+                    <div class="col-md-8">
+                        <label class="form-label">Localización</label>
+                        <input type="text" class="form-control" th:field="*{loc}" placeholder="Localización">
+                    </div>
+                </div>
+
+                <!-- BOTONES -->
+                <div class="d-flex justify-content-end gap-2">
+                    <a th:href="@{/departamentos}" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</main>
+
+<footer th:insert="~{fragments/footer :: pie-pagina}" class="footer"></footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

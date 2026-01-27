@@ -75,9 +75,6 @@ public class Departamento implements Serializable {
 	@Override
 	public String toString() {
 		String cadena =  "deptno=" + deptno + ", dname=" + dname + ", loc=" + loc + "\n";
-		for (Empleado emp : emps) {
-			cadena += emp + "\n";
-		}
 		return cadena;
 	}
 	

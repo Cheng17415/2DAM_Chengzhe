@@ -13,9 +13,33 @@
 
 <body>
     <header th:insert="~{fragments/menu :: menu-principal}"></header>
-    <main role="main">
-        <h1>Bienvenido!</h1>
-    </main>
+    <main role="main" class="container mt-5">
+
+    <div class="jumbotron">
+        <h1 class="display-4">Bienvenido a GestApp</h1>
+        <p class="lead">
+            Desde esta aplicación podrás administrar los empleados y departamentos de forma sencilla y rápida.
+        </p>
+        <hr class="my-4">
+        <p>
+            Utiliza el menú superior para acceder a las distintas opciones disponibles:
+        </p>
+        <ul>
+            <li>Consultar el listado de empleados/departamentos</li>
+            <li>Crear nuevos empleados/departamentos</li>
+            <li>Editar o eliminar empleados/departamentos existentes</li>
+        </ul>
+        <p>
+        	Si no le aparecen las opciones, procúrese de:
+        </p>
+        <ul>
+            <li>Iniciar sesión</li>
+            <li>Registrar</li>
+        </ul>
+    </div>
+
+</main>
+
     <footer th:insert="~{fragments/footer :: pie-pagina}"></footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

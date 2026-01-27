@@ -34,13 +34,14 @@ public class DatabaseWebSecurity {
 			.requestMatchers("/bootstrap/**", "/images/**", "/tinymce/**", "/logos/**").permitAll()
 	
 			// Las vistas públicas no requieren autenticación
-			.requestMatchers("/", "/login","/empleados/**","/departamentos/**" ,"/signup", "/search", "/bcrypt/**", "/about", "/vacantes/view/**").permitAll()
+			.requestMatchers("/", "/login","/signup", "/search", "/bcrypt/**", "/about", "/vacantes/view/**").permitAll()
 	
 			// Asignar permisos a URLs por ROLES
-			.requestMatchers("/solicitudes/create/**", "/solicitudes/save/**").hasAuthority("USUARIO")
+			.requestMatchers("/solicitudes/create/**", "/solicitudes/save/**","/departamentos/index/**","/empleados/index/**").hasAuthority("USUARIO")
 			.requestMatchers("/solicitudes/**").hasAnyAuthority("SUPERVISOR", "ADMINISTRADOR")
 			.requestMatchers("/categorias/**").hasAnyAuthority("SUPERVISOR", "ADMINISTRADOR")
 			.requestMatchers("/usuarios/**").hasAnyAuthority("ADMINISTRADOR")
+			.requestMatchers("/empleados/**","/departamentos/**").hasAnyAuthority("SUPERVISOR","ADMINISTRADOR")
 	
 			// Todas las demás URLs de la Aplicación requieren autenticación
 			.anyRequest().authenticated());
