@@ -1,14 +1,17 @@
 fun main() {
-    generarTablero()
+    var posicion: String
+    var esta: Boolean
     do{
         println("¿Dónde está el alfil? ej(E5) ")
-        val posicion: String = readln()
-        val esta: Boolean = estaEnTablero(posicion.trim())
+        posicion = readln()
+        esta = estaEnTablero(posicion.trim())
     } while(!esta)
-
-    //y = mx + a
-    //y = x + a
+    val posiciones = posicionesDisponibles(posicion)
+    for(pos in posiciones){
+        println(pos)
+    }
 }
+
 fun estaEnTablero(posicion : String): Boolean{
     if (posicion.length !=2){
         println("La longitud es diferente de 2")
@@ -16,17 +19,47 @@ fun estaEnTablero(posicion : String): Boolean{
     }
     val letra: Char = posicion[0].uppercaseChar()
     val num: Int = posicion[1].digitToInt()
-    if (letra in 'A'..'H' && num in 0..8){
+    if (letra in 'A'..'H' && num in 1..8){
         return true
     }
     println("La posición del alfil no es válido")
     return false
 }
-fun generarTablero(){
-    for(i in 1 ..8){
-        for (j in 'a' .. 'h'){
-            print("$j$i ")
+fun posicionesDisponibles(posi: String): MutableList<String> {
+
+    val x = letraANum(posi[0])
+    val y = posi[1].digitToInt()
+
+    val a = y - x
+    val b = y + x
+
+    val posiciones = mutableListOf<String>()
+
+    for (xe in 1..8) {
+
+        val ye1 = xe + a
+        if (ye1 in 1..8 && !(xe == x && ye1 == y)) {
+            posiciones.add("${numALetra(xe)}$ye1")
         }
-        println()
+
+        val ye2 = -xe + b
+        if (ye2 in 1..8 && !(xe == x && ye2 == y)) {
+            posiciones.add("${numALetra(xe)}$ye2")
+        }
     }
+
+    return posiciones
+}
+
+fun letraANum(letra: Char): Int{
+    val abecedario: String = "ABCDEFGH"
+    val letraMayus = letra.uppercaseChar()
+    if (letraMayus !in abecedario){
+        return -1
+    }
+    return abecedario.indexOf(letraMayus) + 1
+}
+fun numALetra(num: Int): Char{
+    val abecedario: String = "ABCDEFGH"
+    return abecedario[num - 1]
 }
