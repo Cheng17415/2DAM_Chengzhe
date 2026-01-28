@@ -39,7 +39,6 @@ public class DatabaseWebSecurity {
 			// Asignar permisos a URLs por ROLES
 			.requestMatchers("/solicitudes/create/**", "/solicitudes/save/**","/departamentos/index/**","/empleados/index/**").hasAuthority("USUARIO")
 			.requestMatchers("/solicitudes/**").hasAnyAuthority("SUPERVISOR", "ADMINISTRADOR")
-			.requestMatchers("/categorias/**").hasAnyAuthority("SUPERVISOR", "ADMINISTRADOR")
 			.requestMatchers("/usuarios/**").hasAnyAuthority("ADMINISTRADOR")
 			.requestMatchers("/empleados/**","/departamentos/**").hasAnyAuthority("SUPERVISOR","ADMINISTRADOR")
 	

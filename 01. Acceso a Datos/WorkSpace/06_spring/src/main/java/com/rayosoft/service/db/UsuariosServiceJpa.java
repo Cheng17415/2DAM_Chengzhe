@@ -39,6 +39,7 @@ public class UsuariosServiceJpa implements IUsuariosService{
 	public List<Usuario> buscarRegistrados() {		
 		return usuariosRepo.findByFechaRegistroNotNull();
 	}
+	//O se hace todo bien, o no se guarda nada
 	@Transactional
 	@Override
 	public int bloquear(int idUsuario) {
