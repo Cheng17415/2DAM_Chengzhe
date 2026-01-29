@@ -73,7 +73,7 @@ Flujo carrito
 		|
 	Tiene productos
 	
-	CREATE SCHEMA ecommerce;
+CREATE SCHEMA ecommerce;
 USE ecommerce;
 
 CREATE TABLE rol (

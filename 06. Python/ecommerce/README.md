@@ -1,3 +1,5 @@
+# Ecommerce
+***
 backend/
 │
 ├── app/
@@ -14,12 +16,12 @@ backend/
 │   │   └── init_db.py
 │   │
 │   ├── models/             # SQLAlchemy (BBDD)
-│   │   ├── usuario.py
-│   │   ├── rol.py
-│   │   ├── producto.py
 │   │   ├── carrito.py
+│   │   ├── envio.py
 │   │   ├── pedido.py
-│   │   └── envio.py
+│   │   ├── producto.py
+│   │   ├── rol.py
+│   │   └── usuario.py
 │   │
 │   ├── schemas/            # Pydantic (entrada / salida)
 │   │   ├── usuario.py
@@ -60,3 +62,6 @@ backend/
 ├── .env
 ├── requirements.txt
 └── README.md
+
+Instalación de dependencias:
+pip install -r requirements.txt
