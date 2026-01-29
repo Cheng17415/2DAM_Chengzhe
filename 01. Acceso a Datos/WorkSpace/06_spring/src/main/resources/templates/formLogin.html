@@ -39,7 +39,7 @@
 			      </div>
 			      
 			      <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
-                  
+                  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                   <label for="username" class="sr-only">Username</label>
                   <input type="text" name="username" id="username" class="form-control" placeholder="Username" required autofocus><br>
                   <label for="password" class="sr-only">Password</label>

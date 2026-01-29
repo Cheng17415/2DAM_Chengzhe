@@ -3,12 +3,18 @@ package com.cheng.controller;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cheng.service.IDepartamentoService;
@@ -17,7 +23,7 @@ import com.cheng.service.IUsuarioService;
 import com.cheng.model.Perfil;
 import com.cheng.model.Usuario;
 
-import ch.qos.logback.core.model.Model;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -41,19 +47,20 @@ public class HomeController {
 
 	@GetMapping("/index")
 	public String mostrarIndex(Authentication auth, HttpSession session) {
-		String username = auth.getName();
-
-		for (GrantedAuthority rol : auth.getAuthorities()) {
-			System.out.println("ROL" + rol.getAuthority());
-		}
-
-		if (session.getAttribute("usuario") == null) {
-			Usuario usuario = serviceUsu.buscarPorUsername(username);
-			usuario.setPassword(null);
-			// System.out.println("Usuario: " + usuario);
-			session.setAttribute("usuario", usuario);
-		}
-		return "redirect:/";
+	    if (auth == null) {
+	        return "redirect:/login";
+	    }
+	    
+	    String username = auth.getName();
+	    // Verifica si el servicio no está devolviendo NULL
+	    Usuario usuario = serviceUsu.buscarPorUsername(username);
+	    
+	    if (usuario != null) {
+	        usuario.setPassword(null);
+	        session.setAttribute("usuario", usuario);
+	    }
+	    
+	    return "redirect:/";
 	}
 
 	@GetMapping("/signup")
@@ -78,5 +85,32 @@ public class HomeController {
 	@GetMapping("/login")
 	public String mostrarLogin() {
 		return "formLogin";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request) {
+		SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
+		logoutHandler.logout(request, null, null);
+		return "redirect:/";
+	}
+	
+	@GetMapping("/about")
+	public String mostrarAcerca() {			
+		return "acerca";
+	}
+	
+	@GetMapping("/bcrypt/{texto}")
+    @ResponseBody
+   	public String encriptar(@PathVariable("texto") String texto) {    	
+   		return texto + " Encriptado en Bcrypt: " + codificador.encode(texto);
+   	}
+	
+	/**
+	 * InitBinder para Strings si los detecta vacios en el Data Binding los settea a NULL
+	 * @param binder
+	 */
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+	    binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
 	}
 }

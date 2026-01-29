@@ -17,12 +17,13 @@ public class DatabaseWebSecurity {
 	
 	@Bean
 	public UserDetailsManager usersCustom(DataSource dataSource) {
-		JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
-		users.setUsersByUsernameQuery("select username, password, estatus from Usuarios where username=?");
-		users.setAuthoritiesByUsernameQuery("select u.username, p.perfil from UsuarioPerfil up " + 
-											"inner join Usuarios u on u.id = up.idUsuario "	+ 
-											"inner join Perfiles p on p.id = up.idPerfil " + "where u.username = ?");
-		return users;
+	    JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
+	    users.setUsersByUsernameQuery("select username, password, estatus from Usuarios where username=?");
+	    users.setAuthoritiesByUsernameQuery("select u.username, p.perfil from UsuarioPerfil up " +
+	                                        "inner join Usuarios u on u.id = up.idUsuario " +
+	                                        "inner join Perfiles p on p.id = up.idPerfil " + 
+	                                        "where u.username = ?");
+	    return users;
 	}
 
 	@Bean
@@ -34,11 +35,10 @@ public class DatabaseWebSecurity {
 			.requestMatchers("/bootstrap/**", "/images/**", "/tinymce/**", "/logos/**").permitAll()
 	
 			// Las vistas públicas no requieren autenticación
-			.requestMatchers("/", "/login","/signup", "/search", "/bcrypt/**", "/about", "/vacantes/view/**").permitAll()
+			.requestMatchers("/", "/login","/signup", "/search", "/bcrypt/**", "/about").permitAll()
 	
 			// Asignar permisos a URLs por ROLES
-			.requestMatchers("/solicitudes/create/**", "/solicitudes/save/**","/departamentos/index/**","/empleados/index/**").hasAuthority("USUARIO")
-			.requestMatchers("/solicitudes/**").hasAnyAuthority("SUPERVISOR", "ADMINISTRADOR")
+			.requestMatchers("/departamentos/index/**","/empleados/index/**", "/usuarios/index/**").hasAnyAuthority("USUARIO","SUPERVISOR","ADMINISTRADOR")
 			.requestMatchers("/usuarios/**").hasAnyAuthority("ADMINISTRADOR")
 			.requestMatchers("/empleados/**","/departamentos/**").hasAnyAuthority("SUPERVISOR","ADMINISTRADOR")
 	
