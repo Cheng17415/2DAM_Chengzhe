@@ -32,10 +32,10 @@ public class DatabaseWebSecurity {
 		http.authorizeHttpRequests(authorize -> authorize
 
 			// Los recursos estáticos no requieren autenticación
-			.requestMatchers("/bootstrap/**", "/images/**", "/tinymce/**", "/logos/**").permitAll()
+			.requestMatchers("/bootstrap/**", "/img/**", "/tinymce/**").permitAll()
 	
 			// Las vistas públicas no requieren autenticación
-			.requestMatchers("/", "/login","/signup", "/search", "/bcrypt/**", "/about").permitAll()
+			.requestMatchers("/", "/login","/signup", "/search", "/bcrypt/**", "/about", "/index").permitAll()
 	
 			// Asignar permisos a URLs por ROLES
 			.requestMatchers("/departamentos/index/**","/empleados/index/**", "/usuarios/index/**").hasAnyAuthority("USUARIO","SUPERVISOR","ADMINISTRADOR")
@@ -46,7 +46,10 @@ public class DatabaseWebSecurity {
 			.anyRequest().authenticated());
 
 		// El formulario de Login no requiere autenticacion
-		http.formLogin(form -> form.loginPage("/login").permitAll());
+		http.formLogin(form -> form
+				.loginPage("/login")
+				.defaultSuccessUrl("/", true)
+				.permitAll());
 		
 		return http.build();
 	}

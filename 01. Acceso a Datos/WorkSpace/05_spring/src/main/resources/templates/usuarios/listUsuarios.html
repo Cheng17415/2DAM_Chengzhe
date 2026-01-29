@@ -41,9 +41,9 @@
               </thead>
               <tbody>
                 <tr th:each="usuario : ${usuarios}">
-                  <td th:text="${usuario.nombre}">Iván Eliseo Tinajero Díaz</td>
-                  <td th:text="${usuario.username}">itinajero</td>                  
-                  <td th:text="${usuario.email}">ivanetinajero@gmail.com</td>
+                  <td th:text="${usuario.nombre}"></td>
+                  <td th:text="${usuario.username}"></td>                  
+                  <td th:text="${usuario.email}"></td>
                   <td th:text="${usuario.estatus == 1 ? 'Activo' : 'Bloqueado' }">Activo</td>
                   
                   <td>
