@@ -59,7 +59,9 @@ private class Libro constructor(private var ISBN: String, private var Titulo: St
 
 fun main(){
     var libro1 = Libro("ISBNQUBWER", "Don quijote", "Cervantes", 34.54f)
-    print(libro1)
+    println(libro1)
     libro1.setISBN("QUETAL")
-    print(libro1)
+    println(libro1)
+    var libro2 = Libro("QUETAL", "Don quijote", "Cervantes", 34.54f)
+    if(libro1 == libro2) println("Son iguales") else println("No son iguales")
 }
