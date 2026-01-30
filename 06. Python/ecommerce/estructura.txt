@@ -187,13 +187,13 @@ INSERT INTO producto
 (nombre, descripcion, precio, stock, imagen_url)
 VALUES
 ('Portátil Gaming', 'Portátil potente para gaming y desarrollo', 1299.99, 10,
-'https://example.com/portatil.jpg'),
+'portatil.jpg'),
 
 ('Ratón Inalámbrico', 'Ratón ergonómico con batería recargable', 29.99, 50,
-'https://example.com/raton.jpg'),
+'raton.jpg'),
 
 ('Teclado Mecánico', 'Teclado mecánico RGB', 89.99, 30,
-'https://example.com/teclado.jpg');
+'teclado.jpg');
 INSERT INTO carrito (usuario_id, estado)
 VALUES
 (1, 'ACTIVO'),
@@ -209,7 +209,7 @@ INSERT INTO pedido
 VALUES
 (1, 2, 1359.97, 'PAGADO'),
 (2, 3, 89.99, 'PENDIENTE');
-
+x
 
 INSERT INTO pedido_detalle
 (pedido_id, producto_id, precio_unitario, cantidad)

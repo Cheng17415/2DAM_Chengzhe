@@ -25,8 +25,6 @@ ecommerce/
 │       ├── carrito.py
 │       └── pedido.py
 │   
-│   
-│
 ├── .env
 ├── requirements.txt
 └── README.md
