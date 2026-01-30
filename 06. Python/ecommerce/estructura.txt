@@ -168,5 +168,56 @@ CREATE TABLE pedido_detalle (
     CHECK (cantidad >= 0)
 );
 
+INSERT INTO usuario
+(dni, nombre, apellido, direccion, codigo_postal, telefono, email, password_hash, rol_id)
+VALUES
+('12345678A', 'Juan', 'Pérez', 'Calle Mayor 10', '28001', '600123456', 'juan@email.com',
+'$2b$12$hashfalsojuan', 2),
+
+('87654321B', 'Ana', 'García', 'Av. España 25', '28002', '600654321', 'ana@email.com',
+'$2b$12$hashfalsoana', 2),
+
+('11223344C', 'Carlos', 'Admin', 'Calle Backend 1', '28003', '699999999', 'admin@email.com',
+'$2b$12$hashfalsoadmin', 4);
+INSERT INTO opciones_envio (dias, precio) VALUES
+(1, 9.99),
+(3, 4.99),
+(7, 0.00);
+INSERT INTO producto
+(nombre, descripcion, precio, stock, imagen_url)
+VALUES
+('Portátil Gaming', 'Portátil potente para gaming y desarrollo', 1299.99, 10,
+'https://example.com/portatil.jpg'),
+
+('Ratón Inalámbrico', 'Ratón ergonómico con batería recargable', 29.99, 50,
+'https://example.com/raton.jpg'),
+
+('Teclado Mecánico', 'Teclado mecánico RGB', 89.99, 30,
+'https://example.com/teclado.jpg');
+INSERT INTO carrito (usuario_id, estado)
+VALUES
+(1, 'ACTIVO'),
+(2, 'ACTIVO');
+
+INSERT INTO producto_carrito (carrito_id, producto_id, cantidad) VALUES
+(1, 1, 1),
+(1, 2, 2),
+(2, 3, 1);
+
+INSERT INTO pedido
+(usuario_id, opcion_envio_id, total, estado)
+VALUES
+(1, 2, 1359.97, 'PAGADO'),
+(2, 3, 89.99, 'PENDIENTE');
+
+
+INSERT INTO pedido_detalle
+(pedido_id, producto_id, precio_unitario, cantidad)
+VALUES
+(1, 1, 1299.99, 1),
+(1, 2, 29.99, 2),
+(2, 3, 89.99, 1);
+
+
 
 
