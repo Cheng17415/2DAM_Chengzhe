@@ -1,3 +1,4 @@
+from app.models.rol import Rol
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, TIMESTAMP
 from sqlalchemy.orm import relationship
 from app.db.base import Base
@@ -19,3 +20,6 @@ class Usuario(Base):
 
     rol_id = Column(Integer, ForeignKey("rol.rol_id"))
     rol = relationship("Rol")
+    
+    def __str__(self):
+        return f"\t{self.usuario_id:<3}|{self.nombre:<3}|{self.email:<3}"
