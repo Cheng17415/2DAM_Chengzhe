@@ -1,5 +1,6 @@
 from app.models.usuario import Usuario
 from app.db.database import SessionLocal
+#from rich.console import Console
 
 def get_all_usuarios():
     #Crea una nueva sesion del database
@@ -21,4 +22,4 @@ def imprimir_usuarios():
   print("\tLista de Usuarios\n")
   print("\tID|Nombre|Email")
   for usuario in usuarios:
-    print(usuario)
+    print(usuario.obtenerUsuario())

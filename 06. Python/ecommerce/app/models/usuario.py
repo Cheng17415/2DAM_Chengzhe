@@ -22,4 +22,6 @@ class Usuario(Base):
     rol = relationship("Rol")
     
     def __str__(self):
-        return f"\t{self.usuario_id:<3}|{self.nombre:<3}|{self.email:<3}"
+        return f"{self.usuario_id}|{self.nombre}|{self.email}"
+    def obtenerUsuario(self):
+        return self.usuario_id, self.dni, self.nombre,self.apellido,self.direccion, self.codigo_postal, self.telefono, self.email, self.password_hash, self.activo, self.fecha_creacion
