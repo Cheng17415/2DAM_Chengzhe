@@ -1,4 +1,5 @@
 import app.crud.usuario_CRUD as usuario_CRUD
+from app.service.usuario_service import obtener_usu_id
 from rich.console import Console
 from rich.panel import Panel
 from rich.align import Align
@@ -34,8 +35,20 @@ def menu_usuario():
         usuario_CRUD.crear_usuario()
       case 2:
         usuario_CRUD.imprimir_usuarios()
-      #case 3:
-        #usuario_CRUD.editar_usuario
+      case 3:
+        uid = int(input("ID del usuario a editar: "))
+        if obtener_usu_id(uid) is None:
+          print(f"No existe usuario con ID {uid}")
+          continue
+        nombre = input("Nuevo nombre (enter para no cambiar): ")
+        apellido = input("Nuevo apellido (enter para no cambiar): ")
+        direccion = input("Nueva direccion (enter para no cambiar): ")
+        codigo_postal = input("Nuevo codigo postal (enter para no cambiar): ")
+        telefono = input("Nuevo numero de telefono (enter para no cambiar): ")
+        email = input("Nuevo email (enter para no cambiar): ")
+        usuario_CRUD.editar_usuario(uid, nombre, apellido,
+                                    direccion, codigo_postal,
+                                    telefono, email)
       #case 4:
         #usuario_CRUD.eliminar_usuario
       case 0:

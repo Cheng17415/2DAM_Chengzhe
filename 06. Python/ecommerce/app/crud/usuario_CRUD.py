@@ -4,16 +4,7 @@ from app.db.database import SessionLocal
 from rich.console import Console
 from rich.table import Table
 from datetime import datetime
-def obtener_usuarios():
-    #Crea una nueva sesion del database
-    session = SessionLocal()
-    try:
-        #SELECT * FROM usuario
-        usuarios = session.query(Usuario).all()
-        return usuarios
-    finally:
-        #Cerrar sesion
-        session.close()   
+from app.service.usuario_service import obtener_usuarios, obtener_usu_id
 
 def imprimir_usuarios():
   usuarios = obtener_usuarios()
@@ -65,4 +56,68 @@ def crear_usuario():
     console.print(f"[red]Error al crear usuario: {e}[/red]")
   finally:
     session.close()
-  
+
+def editar_usuario(
+    usuario_id: int,
+    nombre: str | None = None,
+    apellido: str | None = None,
+    direccion: str | None = None,
+    codigo_postal: str | None = None,
+    telefono: str | None = None,
+    email: str | None = None,
+):
+    session = SessionLocal()
+    console = Console()
+    try:
+        usuario = session.query(Usuario).filter_by(usuario_id=usuario_id).first()
+        
+        if not usuario:
+            console.print("[red]Usuario no encontrado[/red]")
+            return False
+
+        if nombre is not None:
+            usuario.nombre = nombre # type: ignore
+        if apellido is not None:
+            usuario.apellido = apellido # type: ignore
+        if direccion is not None:
+            usuario.direccion = direccion # type: ignore
+        if codigo_postal is not None:
+            usuario.codigo_postal = codigo_postal # type: ignore
+        if telefono is not None:
+            usuario.telefono = telefono # type: ignore
+        if email is not None:
+            usuario.email = email # type: ignore
+
+        session.commit()
+        console.print("[green]Usuario actualizado correctamente[/green]")
+        return True
+
+    except Exception as e:
+        session.rollback()
+        console.print(f"[red]Error al editar usuario: {e}[/red]")
+        return False
+    finally:
+        session.close()
+
+def desactivar_usuario(usuario_id: int):
+    session = SessionLocal()
+    console = Console()
+    try:
+        usuario = session.query(Usuario).filter_by(usuario_id=usuario_id).first()
+
+        if not usuario:
+            console.print("[red]Usuario no encontrado[/red]")
+            return False
+
+        usuario.activo = False # type: ignore
+        session.commit()
+
+        console.print("[green]Usuario desactivado correctamente[/green]")
+        return True
+
+    except Exception as e:
+        session.rollback()
+        console.print(f"[red]Error al desactivar usuario: {e}[/red]")
+        return False
+    finally:
+        session.close()
