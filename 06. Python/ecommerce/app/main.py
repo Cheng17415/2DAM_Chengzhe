@@ -5,10 +5,10 @@ RUTA_ACTUAL = os.path.dirname(os.path.abspath(__file__))
 PARENT_DIR = os.path.abspath(os.path.join(RUTA_ACTUAL, ".."))
 sys.path.append(PARENT_DIR)
 
-
+from app.menu.menu import menu_usuario
 from app.models.usuario import Usuario
-from app.crud.usuarioCRUD import imprimir_usuarios
+from app.crud.usuario_CRUD import imprimir_usuarios
 
 
 if __name__ == "__main__":
-    imprimir_usuarios()
+    menu_usuario()

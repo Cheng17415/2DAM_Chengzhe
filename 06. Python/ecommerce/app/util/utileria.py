@@ -1,6 +1,10 @@
 import re
+import getpass
+import bcrypt
 from app.db.database import SessionLocal
 from app.models.usuario import Usuario
+
+
 def comprobarDNI(dni: str) -> bool:
     if not dni:
         return False
@@ -29,11 +33,13 @@ def comprobarDNI(dni: str) -> bool:
         return False
 
     return letras[int(numero) % 23] == letra
+
 def comprobarEmail(email: str) -> bool:
     # Expresión regular básica para email
     patron = r"^[\w\.-]+@[\w\.-]+\.\w+$"
 
     if not re.match(patron, email):
+        print("Error en el regex")
         return False
 
     session = SessionLocal()
@@ -41,7 +47,7 @@ def comprobarEmail(email: str) -> bool:
         existe = session.query(Usuario).filter(
             Usuario.email == email
         ).first()
-
+        print(existe)
         return existe is None
     finally:
         session.close()
@@ -65,7 +71,22 @@ def pedir_no_vacio(mensaje):
         
 def pedir_contrasena(mensaje):
     while True:
-        valor = input(mensaje).strip()
-        #TODO Implementar
+        #Contrasena para que no se vea en la terminal
+        contrasena = getpass.getpass(mensaje)
+        if len(contrasena) >= 5:
+            continue
+        print("La contrasena debe tener al menos 5 caracteres.")
+        repetir_contrasena = getpass.getpass("Confirme la contrasena")
+        if contrasena!= repetir_contrasena:
+            print("Las contrasenas no coinciden")
+            continue
+        
+        return contrasena
 
-#TODO Implementar hash_password(contrasena)
+def hash_contrasena(contrasena):
+    contrasena_bytes = contrasena.encode("utf-8")
+    hashed = bcrypt.hashpw(contrasena_bytes, bcrypt.gensalt())
+    return hashed.decode("utf-8")
+
+def verificar_contrasena(contrasena, hash_guardado):
+    return bcrypt.checkpw(contrasena.encode("utf-8"), hash_guardado.encode("utf-8"))
