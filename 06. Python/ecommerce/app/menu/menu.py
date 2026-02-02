@@ -36,21 +36,24 @@ def menu_usuario():
       case 2:
         usuario_CRUD.imprimir_usuarios()
       case 3:
-        uid = int(input("ID del usuario a editar: "))
-        if obtener_usu_id(uid) is None:
-          print(f"No existe usuario con ID {uid}")
+        id = int(input("ID del usuario a editar: "))
+        usuario = obtener_usu_id(id)
+        if usuario is None:
+          print(f"No existe usuario con ID {id}")
           continue
-        nombre = input("Nuevo nombre (enter para no cambiar): ")
-        apellido = input("Nuevo apellido (enter para no cambiar): ")
-        direccion = input("Nueva direccion (enter para no cambiar): ")
-        codigo_postal = input("Nuevo codigo postal (enter para no cambiar): ")
-        telefono = input("Nuevo numero de telefono (enter para no cambiar): ")
-        email = input("Nuevo email (enter para no cambiar): ")
-        usuario_CRUD.editar_usuario(uid, nombre, apellido,
+        nombre = input(f"Nuevo nombre ({usuario.nombre}): ")
+        apellido = input(f"Nuevo apellido ({usuario.apellido}): ")
+        direccion = input(f"Nueva direccion ({usuario.direccion or 'Vacio'}): ")
+        codigo_postal = input(f"Nuevo codigo postal ({usuario.codigo_postal or 'Vacio'}): ")
+        telefono = input(f"Nuevo numero de telefono ({usuario.telefono or 'Vacio'}): ")
+        email = input(f"Nuevo email ({usuario.email}): ")
+        usuario_CRUD.editar_usuario(id, nombre, apellido,
                                     direccion, codigo_postal,
                                     telefono, email)
-      #case 4:
-        #usuario_CRUD.eliminar_usuario
+      case 4:
+        id = int(input("ID del usuario a desactivar: "))
+        usuario_CRUD.desactivar_usuario(id)
       case 0:
         console.print("[bold cyan]Volviendo al menu anterior[/bold cyan]")
         break
+    input("Pulse enter para continuar...")

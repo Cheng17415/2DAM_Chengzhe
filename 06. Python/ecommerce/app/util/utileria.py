@@ -47,7 +47,6 @@ def comprobarEmail(email: str) -> bool:
         existe = session.query(Usuario).filter(
             Usuario.email == email
         ).first()
-        print(existe)
         return existe is None
     finally:
         session.close()
@@ -73,10 +72,10 @@ def pedir_contrasena(mensaje):
     while True:
         #Contrasena para que no se vea en la terminal
         contrasena = getpass.getpass(mensaje)
-        if len(contrasena) >= 5:
+        if len(contrasena) < 5:
+            print("La contrasena debe tener al menos 5 caracteres.")
             continue
-        print("La contrasena debe tener al menos 5 caracteres.")
-        repetir_contrasena = getpass.getpass("Confirme la contrasena")
+        repetir_contrasena = getpass.getpass("Confirme la contrasena: ")
         if contrasena!= repetir_contrasena:
             print("Las contrasenas no coinciden")
             continue

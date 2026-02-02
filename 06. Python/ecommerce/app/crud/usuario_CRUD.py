@@ -33,7 +33,7 @@ def crear_usuario():
   
   email = util.pedir_con_validacion(
     "Introduzca el email: ",
-    util.comprobarDNI,
+    util.comprobarEmail,
     "Email no valido"
   )
   contrasena = util.pedir_contrasena("Introduzca la contrasena: ")
@@ -66,6 +66,14 @@ def editar_usuario(
     telefono: str | None = None,
     email: str | None = None,
 ):
+
+    nombre = None if nombre is None or nombre.strip() == "" else nombre
+    apellido = None if apellido is None or apellido.strip() == "" else apellido
+    direccion = None if direccion is None or direccion.strip() == "" else direccion
+    codigo_postal = None if codigo_postal is None or codigo_postal.strip() == "" else codigo_postal
+    telefono = None if telefono is None or telefono.strip() == "" else telefono
+    email = None if email is None or email.strip() == "" else email
+
     session = SessionLocal()
     console = Console()
     try:
