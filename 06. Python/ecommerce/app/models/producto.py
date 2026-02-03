@@ -9,6 +9,19 @@ class Producto(Base):
     descripcion = Column(String(500))
     precio = Column(DECIMAL(10, 2), nullable=False)
     stock = Column(Integer, nullable=False)
-    imagen_url = Column(String(255))
     activo = Column(Boolean, default=True)
     fecha_creacion = Column(TIMESTAMP)
+
+    def __str__(self):
+        return f"{self.producto_id}|{self.nombre}|{self.precio}"
+
+    def obtenerProducto(self) -> tuple[str, ...]:
+        return (
+            str(self.producto_id),
+            str(self.nombre),
+            str(self.descripcion or ""),
+            str(self.precio),
+            str(self.stock),
+            str(self.activo),
+            str(self.fecha_creacion),
+        )

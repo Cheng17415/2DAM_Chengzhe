@@ -84,17 +84,17 @@ def editar_usuario(
             return False
 
         if nombre is not None:
-            usuario.nombre = nombre # type: ignore
+            usuario.nombre = nombre
         if apellido is not None:
-            usuario.apellido = apellido # type: ignore
+            usuario.apellido = apellido
         if direccion is not None:
-            usuario.direccion = direccion # type: ignore
+            usuario.direccion = direccion
         if codigo_postal is not None:
-            usuario.codigo_postal = codigo_postal # type: ignore
+            usuario.codigo_postal = codigo_postal
         if telefono is not None:
-            usuario.telefono = telefono # type: ignore
+            usuario.telefono = telefono
         if email is not None:
-            usuario.email = email # type: ignore
+            usuario.email = email
 
         session.commit()
         console.print("[green]Usuario actualizado correctamente[/green]")
@@ -117,7 +117,7 @@ def desactivar_usuario(usuario_id: int):
             console.print("[red]Usuario no encontrado[/red]")
             return False
 
-        usuario.activo = False # type: ignore
+        usuario.activo = False
         session.commit()
 
         console.print("[green]Usuario desactivado correctamente[/green]")
