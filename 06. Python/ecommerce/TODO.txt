@@ -1,0 +1,11 @@
+1. acceder como invitado -> Solo tener acceso a listar productos
+
+usuario -> Añadir producto al carrito, decidir la cantidad.
+		Modificar datos propios, desactivar cuenta. Por Email
+
+vendedor -> Todo lo anterior + crear productos + listar sus productos
+		+ Dar de baja producto + modificar productos
+
+administrador -> Listar usuarios, cambiar información de usuarios
+
+Iniciar sesión devuelva la ID?
