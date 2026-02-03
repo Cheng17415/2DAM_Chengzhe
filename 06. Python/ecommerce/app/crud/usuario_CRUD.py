@@ -4,7 +4,8 @@ from app.db.database import SessionLocal
 from rich.console import Console
 from rich.table import Table
 from datetime import datetime
-from app.service.usuario_service import obtener_usuarios, obtener_usu_id
+from app.service.usuario_service import obtener_usuarios, obtener_usu_email 
+from app.util.utileria import verificar_contrasena
 
 def imprimir_usuarios():
   usuarios = obtener_usuarios()
@@ -135,3 +136,37 @@ def desactivar_usuario(usuario_id: int):
         return False
     finally:
         session.close()
+
+def iniciar_sesion():
+    email = input("Introduzca su email: ")
+    usuario = obtener_usu_email(email)
+    console = Console()
+    if not usuario.activo:  # type: ignore
+        console.print("[red]Usuario desactivado. No se puede iniciar sesion[/red]")
+        return False
+    if not usuario:
+        console.print("[red]Usuario no encontrado[/red]")
+        return False
+    
+    contrasena = input("Introduzca su contrasena: ")
+    if verificar_contrasena(contrasena, usuario.password_hash):
+        console.print(f"[green]Bienvenido de nuevo {usuario.nombre}[/green]")
+    else:
+        console.print(f"[red]Contrasena incorrecta[/red]")
+        
+def iniciar_sesion_invitado():
+    console = Console()
+    try:
+        usuario = obtener_usu_email("invitado@invitado.com")
+        if not usuario.activo:  # type: ignore
+            console.print("[red]Usuario desactivado. No se puede iniciar sesion[/red]")
+            return False
+        if not usuario:
+            console.print("[red]Usuario no encontrado[/red]")
+            return False
+        if verificar_contrasena("invitado", usuario.password_hash):
+            console.print(f"[green]Bienvenido de nuevo {usuario.nombre}[/green]")
+        else:
+            console.print(f"[red]Contrasena incorrecta[/red]")
+    except Exception:
+        console.print("[red]Ha habido un error[/red]")

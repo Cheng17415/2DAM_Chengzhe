@@ -18,7 +18,7 @@ def existe_dni(dni: str):
     try:
         #SELECT * FROM usuario
         return session.query(Usuario).filter(
-          Usuario.dni == dni.strip()
+          Usuario.dni == dni.strip().upper()
           ).first() is not None
     finally:
         #Cerrar sesion
@@ -28,5 +28,12 @@ def obtener_usu_id(usuario_id):
   session = SessionLocal()
   try:
     return session.query(Usuario).filter_by(usuario_id=usuario_id).first()
+  finally:
+    session.close()
+
+def obtener_usu_email(email):
+  session = SessionLocal()
+  try:
+    return session.query(Usuario).filter_by(email=email).first()
   finally:
     session.close()

@@ -117,11 +117,11 @@ def menu_inicio_sesion():
     num_opcion = mostrar_menu(opciones, "MENU")
     match num_opcion:
       case 1:
-        ...
+        usuario_CRUD.iniciar_sesion()
       case 2:
         usuario_CRUD.crear_usuario()
       case 3:
-        ...
+        usuario_CRUD.iniciar_sesion_invitado()
       case 0:
         console.print("[bold cyan]Saliendo del sistema[/bold cyan]")
         break

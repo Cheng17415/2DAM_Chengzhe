@@ -68,12 +68,6 @@ CREATE TABLE rol (
     nombre VARCHAR(50) NOT NULL UNIQUE
 );
 
-INSERT INTO rol (nombre) VALUES
-('Invitado'),
-('Usuario'),
-('Vendedor'),
-('Desarrollador');
-
 CREATE TABLE usuario (
     usuario_id INT AUTO_INCREMENT PRIMARY KEY,
     dni VARCHAR(9) UNIQUE,
@@ -154,6 +148,12 @@ CREATE TABLE pedido_detalle (
     CHECK (cantidad >= 0)
 );
 
+INSERT INTO rol (nombre) VALUES
+('Invitado'),
+('Usuario'),
+('Vendedor'),
+('Desarrollador');
+
 INSERT INTO usuario
 (dni, nombre, apellido, direccion, codigo_postal, telefono, email, password_hash, rol_id)
 VALUES
@@ -169,6 +169,8 @@ VALUES
 ('96857432Q', 'Pepe', 'Hardware', 'Calle Hardware 5', '28021', '649994854',
 'pepe.hardware@hardware.es', '$2b$12$g35tBhdcV9EKnMnBG8akAet8A0dCwizkK7twIs9UkZtTs0aFCtyNK, 3);
 
+INSERT INTO usuario (nombre, apellido, email, password_hash, rol_id) VALUES
+('Invitado', 'Invitado', 'invitado@invitado.com', '$2a$12$m2Lp.51Gk2eowN4z5Cxz3.kZiMhcXee3onV81uKgMCJIEQ.DquXfy', 1)
 INSERT INTO opciones_envio (dias, precio) VALUES
 (1, 9.99),
 (3, 4.99),

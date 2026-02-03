@@ -3,7 +3,7 @@ import getpass
 import bcrypt
 from app.db.database import SessionLocal
 from app.models.usuario import Usuario
-
+from app.service.usuario_service import existe_dni
 
 def comprobarDNI(dni: str) -> bool:
     if not dni:
@@ -11,6 +11,9 @@ def comprobarDNI(dni: str) -> bool:
 
     dni = dni.strip().upper()
 
+    if existe_dni(dni):
+        return False
+    
     if len(dni) != 9:
         return False
 
@@ -33,7 +36,7 @@ def comprobarDNI(dni: str) -> bool:
         return False
 
     return letras[int(numero) % 23] == letra
-
+    
 def comprobarEmail(email: str) -> bool:
     # Expresión regular básica para email
     patron = r"^[\w\.-]+@[\w\.-]+\.\w+$"
