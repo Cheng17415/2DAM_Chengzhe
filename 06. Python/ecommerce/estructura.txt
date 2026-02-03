@@ -1,5 +1,4 @@
 BBDD - MySQL
--Vincularlo a Python con FastAPI a Pagina Web
 
 Tabla Usuario:
 	- usuario_id INT AUTO_INCREMENT PRIMARY KEY
@@ -59,19 +58,7 @@ Tabla Pedido_Detalle:
 	- precio_unitario
 	- cantidad
 
-Los invitados pueden ver los productos, pero no pueden añadirlo al carrito.
-
-Flujo usuarios
-	Ver los productos
-			|
-	Es rol invitado		-> Sí	->	Pedir registrarse o iniciar sesión
-						-> No	->	Tiene carrito activo	-> Si	-> generar carrito -> Tabla Producto_Carrito añadir producto y carrito
-															-> No	-> Tabla Producto_Carrito añadir producto y carrito
-
-Flujo carrito
-	Ver el carrito
-		|
-	Tiene productos
+Código para crear la estructura con datos en MySQL
 	
 CREATE SCHEMA ecommerce;
 USE ecommerce;
@@ -116,7 +103,6 @@ CREATE TABLE producto (
     descripcion TEXT,
     precio DECIMAL(10,2) NOT NULL,
     stock INT NOT NULL,
-    imagen_url VARCHAR(255),
     activo BOOLEAN DEFAULT TRUE,
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CHECK (stock >= 0 AND precio >= 0)
@@ -171,29 +157,31 @@ CREATE TABLE pedido_detalle (
 INSERT INTO usuario
 (dni, nombre, apellido, direccion, codigo_postal, telefono, email, password_hash, rol_id)
 VALUES
-('12345678A', 'Juan', 'Pérez', 'Calle Mayor 10', '28001', '600123456', 'juan@email.com',
+('12345678Z', 'Juan', 'Perez', 'Calle Mayor 10', '28001', '600123456', 'juan@email.com',
 '$2b$12$hashfalsojuan', 2),
 
-('87654321B', 'Ana', 'García', 'Av. España 25', '28002', '600654321', 'ana@email.com',
+('87654321X', 'Ana', 'García', 'Av. España 25', '28002', '600654321', 'ana@email.com',
 '$2b$12$hashfalsoana', 2),
 
-('11223344C', 'Carlos', 'Admin', 'Calle Backend 1', '28003', '699999999', 'admin@email.com',
-'$2b$12$hashfalsoadmin', 4);
+('11223344B', 'Carlos', 'Admin', 'Calle Backend 1', '28003', '699999999', 'admin@email.com',
+'$2b$12$hashfalsoadmin', 4),
+
+('96857432Q', 'Pepe', 'Hardware', 'Calle Hardware 5', '28021', '649994854',
+'pepe.hardware@hardware.es', '$2b$12$g35tBhdcV9EKnMnBG8akAet8A0dCwizkK7twIs9UkZtTs0aFCtyNK, 3);
+
 INSERT INTO opciones_envio (dias, precio) VALUES
 (1, 9.99),
 (3, 4.99),
 (7, 0.00);
+
 INSERT INTO producto
 (nombre, descripcion, precio, stock, imagen_url)
 VALUES
-('Portátil Gaming', 'Portátil potente para gaming y desarrollo', 1299.99, 10,
-'portatil.jpg'),
+('Portátil Gaming', 'Portátil potente para gaming y desarrollo', 1299.99, 10),
 
-('Ratón Inalámbrico', 'Ratón ergonómico con batería recargable', 29.99, 50,
-'raton.jpg'),
+('Ratón Inalámbrico', 'Ratón ergonómico con batería recargable', 29.99, 50),
 
-('Teclado Mecánico', 'Teclado mecánico RGB', 89.99, 30,
-'teclado.jpg');
+('Teclado Mecánico', 'Teclado mecánico RGB', 89.99, 30);
 INSERT INTO carrito (usuario_id, estado)
 VALUES
 (1, 'ACTIVO'),

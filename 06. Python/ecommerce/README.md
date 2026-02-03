@@ -29,5 +29,9 @@ ecommerce/
 ├── requirements.txt
 └── README.md
 
-Instalación de dependencias:
-pip install -r requirements.txt
+Este proyecto está realizado dentro de un entorno virtual.
+Pasos para ejecutar el programa desde CMD
+1. Acceder a la carpeta principal ecommerce
+2. venv\Scripts\activate.bat
+3. pip install -r requirements.txt
+4. python .\app\main.py

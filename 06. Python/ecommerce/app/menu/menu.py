@@ -40,10 +40,11 @@ def menu_principal():
       case 2:
         menu_producto()
       case 0:
-        console.print("[bold cyan]Saliendo del Sistema[/bold cyan]")
+        console.print("[bold cyan]Saliendo del sistema[/bold cyan]")
         break
     if num_opcion != 0:
       input("Pulse enter para continuar...")
+
 def menu_usuario():
   opciones = ["Crear usuario", "Listar usuarios", "Editar usuario", "Eliminar usuario"]
   while True:
@@ -110,3 +111,19 @@ def menu_producto():
         break
     input("Pulse enter para continuar...")
 
+def menu_inicio_sesion():
+  opciones = ["Iniciar sesion", "Registrarse", "Entrar como invitado"]
+  while True:
+    num_opcion = mostrar_menu(opciones, "MENU")
+    match num_opcion:
+      case 1:
+        ...
+      case 2:
+        usuario_CRUD.crear_usuario()
+      case 3:
+        ...
+      case 0:
+        console.print("[bold cyan]Saliendo del sistema[/bold cyan]")
+        break
+    if num_opcion != 0:
+      input("Pulse enter para continuar...")

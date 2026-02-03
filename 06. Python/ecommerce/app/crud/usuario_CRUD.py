@@ -21,6 +21,7 @@ def imprimir_usuarios():
   console.print(table)
 
 def crear_usuario():
+  console = Console()
   dni = util.pedir_con_validacion(
     "Introduzca el DNI: ",
     util.comprobarDNI,
@@ -36,13 +37,18 @@ def crear_usuario():
     util.comprobarEmail,
     "Email no valido"
   )
+  try:
+    rol_id = int(input("Introduzca su rol:\n\t1. Usuario\n\t2. Vendedor\n")) + 1
+  except Exception as e:
+      console.print("[red]Error al introducir el rol. Usando Usuario por defecto[/red]")
+      rol_id = 2
   contrasena = util.pedir_contrasena("Introduzca la contrasena: ")
   contrasena_hash = util.hash_contrasena(contrasena)
   usuario = Usuario(dni= dni, nombre = nombre, apellido = apellido,
                     direccion = direccion, codigo_postal = codigo_postal,
                     telefono = telefono, email = email,
                     password_hash = contrasena_hash, 
-                    activo = True, fecha_creacion = datetime.now(), rol_id = 2)
+                    activo = True, fecha_creacion = datetime.now(), rol_id = rol_id)
   
   session = SessionLocal()
   console = Console()
@@ -84,17 +90,17 @@ def editar_usuario(
             return False
 
         if nombre is not None:
-            usuario.nombre = nombre
+            usuario.nombre = nombre# type: ignore
         if apellido is not None:
-            usuario.apellido = apellido
+            usuario.apellido = apellido# type: ignore
         if direccion is not None:
-            usuario.direccion = direccion
+            usuario.direccion = direccion# type: ignore
         if codigo_postal is not None:
-            usuario.codigo_postal = codigo_postal
+            usuario.codigo_postal = codigo_postal# type: ignore
         if telefono is not None:
-            usuario.telefono = telefono
+            usuario.telefono = telefono# type: ignore
         if email is not None:
-            usuario.email = email
+            usuario.email = email# type: ignore
 
         session.commit()
         console.print("[green]Usuario actualizado correctamente[/green]")
@@ -117,7 +123,7 @@ def desactivar_usuario(usuario_id: int):
             console.print("[red]Usuario no encontrado[/red]")
             return False
 
-        usuario.activo = False
+        usuario.activo = False # type: ignore
         session.commit()
 
         console.print("[green]Usuario desactivado correctamente[/green]")
