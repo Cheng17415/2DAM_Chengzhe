@@ -9,3 +9,5 @@ vendedor -> Todo lo anterior + crear productos + listar sus productos
 administrador -> Listar usuarios, cambiar información de usuarios
 
 Iniciar sesión devuelva la ID?
+
+Enviar 
