@@ -1,0 +1,104 @@
+IA - Ángel Calle Serrano
+
+IA
+Machine Learning
+Deep Learning
+
+Lo importante del Machine Learning es un dataset bueno. Puede ser desde un chatbot hasta una forma de optimizar el cemento.
+El Machine Learning analiza esos datos y te da unos resultados.
+
+Flujo de trabajo
+
+Idea -> Datos -> EDA (Analizar de datos) -> Modelo -> Probar -> Deploy
+
+Datos
+	Se necesita comprender los datos, que no estén sesgados, cantidad de datos, 
+	el formato de datos, qué representa cada muestra.
+EDA
+	Es fundamentar enender y preparar los datos. La calidad del dataset suele tener
+	más impacto es el resultaado que el propio algoritmo.
+	
+	Tareas típicas:
+		- Eliminar imágenes corruptas
+		- Corregir etiquetas
+		- Eliminar duplicados
+		- Balancear clases
+
+	Herramientas que se utilizan:
+		- Conteos
+		- Histogramas
+		- Grids de imagenes
+
+	Hace falta tokenizar los datos para que no cueste tantos tokens.
+
+Limpieza de datos
+	Tareas típicas:
+		- Eliminar imágenes corruptas
+		- Corregir etiquetas
+		- Eliminar duplicados
+		- Balancear clases
+	Herramientas:
+		- Generación de splits
+		- Estratificación
+			- Dividir los datos mantenimiento la misma proporción en train /test
+		- Evitar leakage
+			- Ocurre cuando información del conjunto de test se usa durante el entrenamiento.
+
+Visualizar
+	- A partir de algunas gráficas, habría que analizarlos, las pistas que nos da.	
+		Si el set de datos no hay coches antes del 2010, nos da una pista de que el dataset no es válido.
+
+Transformar los datos
+	- Consiste en convertir la información bruta en un formato estructurado y utilizable que los modelos
+	de aprendizaje automatico puedan prodcesar eficientemente.
+
+		- Imágenes
+			Resize
+			Normalizacion
+			Segmentaciones
+		- Audio
+			Resampling
+			Normalización
+			Espectrogramas
+			MFCC - Huella de calor
+			Segmentación temporal
+		- Texto
+			Tokenización
+		- Tabular
+			Escalado
+			Encoding
+
+Métricas
+	- Accuracy: Porcenteje total de aciertos
+	- Precisión: De lo que el modelo predice como positivos, ¿Cuántos acierta?
+	- Recall
+	- F1
+	- Top-K
+
+Tipos de algoritmos
+	Dependiendo de los tipos de tipos, cantidad, se usa uno u otro.
+		- Random Forest es bueno para pocos datos.
+		- LightGBM Classifier
+		- XFBoost
+
+Redes Neuronales (CNN)
+	Una neurona artificial es una función matemática que recibe valores, los combina y produce una salida.
+		- Recibe entradas
+		- Aplica pesos
+		- Suma todo
+		- Para por una funcion de activación
+	Red neuronal es el conjunto de neuronas artificiales que se comunican entre ellos, (matrices matemáticas)
+
+Tipos de redes neuronales
+	- MLP (redes densas)
+	- CNN (Convolutional NN)
+	- Transformers (Lo más actual)
+
+Transformers
+	Es un tipo de red neuronal que utiliza mecanismos de atención para aprender relaciones entre 
+	todas las partes de una entrada al mismo tiempo.
+		- Procesa toda la información en paralelo
+		- No depende del orden secuencial
+		- Usa atención en lugar de convoluciones o recurrencia.
+
+
