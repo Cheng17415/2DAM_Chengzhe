@@ -71,7 +71,7 @@ def pedir_no_vacio(mensaje):
             return valor
         print("El campo no puede estar vacio.")
         
-def pedir_contrasena(mensaje):
+def pedir_contrasena_registro(mensaje):
     while True:
         #Contrasena para que no se vea en la terminal
         contrasena = getpass.getpass(mensaje)
@@ -85,6 +85,8 @@ def pedir_contrasena(mensaje):
         
         return contrasena
 
+def pedir_contrasena(mensaje):
+        return getpass.getpass(mensaje)
 def hash_contrasena(contrasena):
     contrasena_bytes = contrasena.encode("utf-8")
     hashed = bcrypt.hashpw(contrasena_bytes, bcrypt.gensalt())

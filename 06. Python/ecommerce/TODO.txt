@@ -1,13 +1,28 @@
-1. acceder como invitado -> Solo tener acceso a listar productos
+1. Crear autorización
+			-invitado -> Solo tener acceso a listar productos, buscar productos por vendedor,
+			buscar productos por nombre
 
-usuario -> Añadir producto al carrito, decidir la cantidad.
-		Modificar datos propios, desactivar cuenta. Por Email
+			-usuario -> Añadir producto al carrito, decidir la cantidad.
+				Modificar datos propios, desactivar cuenta. Por Email
 
-vendedor -> Todo lo anterior + crear productos + listar sus productos
-		+ Dar de baja producto + modificar productos
+			-vendedor -> Todo lo anterior + crear productos + listar sus productos
+				+ Dar de baja producto + modificar productos
 
-administrador -> Listar usuarios, cambiar información de usuarios
+			-administrador -> Todo lo anterior + listar usuarios + 
+				cambiar información de usuarios
 
-Iniciar sesión devuelva la ID?
+2. CRUD de productos
+			- Crear productos
+			- Listar productos
+			- Listar productos propios
+			- Editar productos
+			- Editar productos propios
+			- Desactivar productos propios
+			- Desactivar productos
 
-Enviar 
+3. Lógica de carrito
+4. Lógica de envios
+
+5. Usuarios
+			- Editar información propia
+			- Desactivar cuenta propia

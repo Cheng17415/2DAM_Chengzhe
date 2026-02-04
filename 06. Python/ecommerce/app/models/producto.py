@@ -1,4 +1,5 @@
-from sqlalchemy import Column, Integer, String, DECIMAL, Boolean, TIMESTAMP
+from sqlalchemy import Column, Integer, String, DECIMAL, Boolean, TIMESTAMP, ForeignKey
+from sqlalchemy.orm import relationship
 from app.db.base import Base
 
 class Producto(Base):
@@ -11,11 +12,13 @@ class Producto(Base):
     stock = Column(Integer, nullable=False)
     activo = Column(Boolean, default=True)
     fecha_creacion = Column(TIMESTAMP)
+    usuario_id = Column(Integer, ForeignKey("usuario.usuario_id"))
+    usuario = relationship("Usuario")
 
     def __str__(self):
         return f"{self.producto_id}|{self.nombre}|{self.precio}"
 
-    def obtenerProducto(self) -> tuple[str, ...]:
+    def obtener_producto_completo(self) -> tuple[str, ...]:
         return (
             str(self.producto_id),
             str(self.nombre),
@@ -24,4 +27,14 @@ class Producto(Base):
             str(self.stock),
             str(self.activo),
             str(self.fecha_creacion),
+            str(self.usuario_id)
+        )
+    def obtener_producto(self) -> tuple[str, ...]:
+        return (
+            str(self.producto_id),
+            str(self.nombre),
+            str(self.descripcion or ""),
+            str(self.precio),
+            str(self.stock),
+            str(self.usuario.nombre)
         )

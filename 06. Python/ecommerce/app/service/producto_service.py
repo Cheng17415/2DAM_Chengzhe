@@ -9,6 +9,12 @@ def obtener_productos():
     finally:
         session.close()
 
+def obtener_productos_activos():
+    session = SessionLocal()
+    try:
+        return session.query(Producto).filter_by(activo = True).all()
+    finally:
+        session.close()
 
 def obtener_producto_id(producto_id):
     session = SessionLocal()

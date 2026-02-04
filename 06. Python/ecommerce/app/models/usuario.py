@@ -23,6 +23,7 @@ class Usuario(Base):
     
     def __str__(self):
         return f"{self.usuario_id}|{self.nombre}|{self.email}"
+    
     def obtenerUsuario(self) -> tuple[str, ...]:
         return (
         str(self.usuario_id),

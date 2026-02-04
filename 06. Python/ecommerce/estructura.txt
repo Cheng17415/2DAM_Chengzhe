@@ -99,7 +99,9 @@ CREATE TABLE producto (
     stock INT NOT NULL,
     activo BOOLEAN DEFAULT TRUE,
     fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CHECK (stock >= 0 AND precio >= 0)
+    CHECK (stock >= 0 AND precio >= 0),
+    usuario_id INT NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES usuario(usuario_id)
 );
 
 CREATE TABLE carrito (
@@ -177,13 +179,14 @@ INSERT INTO opciones_envio (dias, precio) VALUES
 (7, 0.00);
 
 INSERT INTO producto
-(nombre, descripcion, precio, stock, imagen_url)
+(nombre, descripcion, precio, stock, usuario_id)
 VALUES
-('Portátil Gaming', 'Portátil potente para gaming y desarrollo', 1299.99, 10),
+('Portátil Gaming', 'Portátil potente para gaming y desarrollo', 1299.99, 10, 4),
 
-('Ratón Inalámbrico', 'Ratón ergonómico con batería recargable', 29.99, 50),
+('Ratón Inalámbrico', 'Ratón ergonómico con batería recargable', 29.99, 50, 4),
 
-('Teclado Mecánico', 'Teclado mecánico RGB', 89.99, 30);
+('Teclado Mecánico', 'Teclado mecánico RGB', 89.99, 30, 4);
+
 INSERT INTO carrito (usuario_id, estado)
 VALUES
 (1, 'ACTIVO'),

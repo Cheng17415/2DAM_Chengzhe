@@ -6,7 +6,7 @@ from rich.table import Table
 
 from app.db.database import SessionLocal
 from app.models.producto import Producto
-from app.service.producto_service import obtener_productos
+from app.service.producto_service import obtener_productos, obtener_productos_activos
 import app.util.utileria as util
 
 
@@ -35,23 +35,39 @@ def _pedir_stock(mensaje: str) -> int:
         return stock
 
 
-def imprimir_productos():
+def imprimir_productos_admin():
     productos = obtener_productos()
     if not productos:
         print("No existen productos en la BBDD")
         return
 
     table = Table(title="Productos")
-    columnas = ["ID", "Nombre", "Descripcion", "Precio", "Stock", "Activo", "Fecha Creacion"]
+    columnas = ["ID", "Nombre", "Descripcion", "Precio", "Stock", "Activo", "Fecha Creacion", "ID Usuario"]
     for columna in columnas:
         table.add_column(columna)
 
     for producto in productos:
-        table.add_row(*producto.obtenerProducto())
+        table.add_row(*producto.obtener_producto_completo())
 
     console = Console()
     console.print(table)
 
+def imprimir_productos():
+    productos = obtener_productos_activos()
+    if not productos:
+        print("No existen productos en la BBDD")
+        return
+
+    table = Table(title="Productos")
+    columnas = ["ID", "Nombre", "Descripcion", "Precio", "Stock", "Distribuidor"]
+    for columna in columnas:
+        table.add_column(columna)
+
+    for producto in productos:
+        table.add_row(*producto.obtener_producto())
+
+    console = Console()
+    console.print(table)
 
 def crear_producto():
     nombre = util.pedir_no_vacio("Introduzca el nombre: ")
@@ -119,13 +135,13 @@ def editar_producto(
             return False
 
         if nombre is not None:
-            producto.nombre = nombre
+            producto.nombre = nombre  # type: ignore
         if descripcion is not None:
-            producto.descripcion = descripcion
+            producto.descripcion = descripcion # type: ignore
         if precio_valor is not None:
-            producto.precio = precio_valor
+            producto.precio = precio_valor # type: ignore
         if stock_valor is not None:
-            producto.stock = stock_valor
+            producto.stock = stock_valor # type: ignore
 
         session.commit()
         console.print("[green]Producto actualizado correctamente[/green]")
@@ -149,7 +165,7 @@ def desactivar_producto(producto_id: int):
             console.print("[red]Producto no encontrado[/red]")
             return False
 
-        producto.activo = False
+        producto.activo = False # type: ignore
         session.commit()
 
         console.print("[green]Producto desactivado correctamente[/green]")

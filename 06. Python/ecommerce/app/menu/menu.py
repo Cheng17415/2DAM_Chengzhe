@@ -4,6 +4,7 @@ import app.crud.usuario_CRUD as usuario_CRUD
 import app.crud.producto_CRUD as producto_CRUD
 from app.service.usuario_service import obtener_usu_id
 from app.service.producto_service import obtener_producto_id
+import app.service.auth_service as auth_service 
 from rich.console import Console
 from rich.panel import Panel
 from rich.align import Align
@@ -85,7 +86,7 @@ def menu_producto():
       case 1:
         producto_CRUD.crear_producto()
       case 2:
-        producto_CRUD.imprimir_productos()
+        producto_CRUD.imprimir_productos_admin()
       case 3:
         id = int(input("ID del producto a editar: "))
         producto = obtener_producto_id(id)
@@ -117,13 +118,32 @@ def menu_inicio_sesion():
     num_opcion = mostrar_menu(opciones, "MENU")
     match num_opcion:
       case 1:
-        usuario_CRUD.iniciar_sesion()
+        usuario = auth_service.iniciar_sesion_usuario()
+        if usuario:
+          ...
       case 2:
         usuario_CRUD.crear_usuario()
       case 3:
-        usuario_CRUD.iniciar_sesion_invitado()
+        usuario = auth_service.iniciar_sesion_invitado()
+        menu_invitado()
       case 0:
         console.print("[bold cyan]Saliendo del sistema[/bold cyan]")
         break
     if num_opcion != 0:
       input("Pulse enter para continuar...")
+      
+def menu_invitado():
+  opciones = ["Listar productos", "Buscar vendedor", "Buscar productos"]
+  while True:
+    num_opcion = mostrar_menu(opciones, "MENU PRODUCTOS")
+    match num_opcion:
+      case 1:
+        producto_CRUD.imprimir_productos()
+      case 2:
+        ...
+      case 3:
+        ...
+      case 0:
+        console.print("[bold cyan]Volviendo al menu anterior[/bold cyan]")
+        break
+    input("Pulse enter para continuar...")

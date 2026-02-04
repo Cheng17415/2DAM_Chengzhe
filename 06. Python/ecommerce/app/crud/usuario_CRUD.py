@@ -43,7 +43,7 @@ def crear_usuario():
   except Exception as e:
       console.print("[red]Error al introducir el rol. Usando Usuario por defecto[/red]")
       rol_id = 2
-  contrasena = util.pedir_contrasena("Introduzca la contrasena: ")
+  contrasena = util.pedir_contrasena_registro("Introduzca la contrasena: ")
   contrasena_hash = util.hash_contrasena(contrasena)
   usuario = Usuario(dni= dni, nombre = nombre, apellido = apellido,
                     direccion = direccion, codigo_postal = codigo_postal,
@@ -136,42 +136,3 @@ def desactivar_usuario(usuario_id: int):
         return False
     finally:
         session.close()
-
-def iniciar_sesion():
-    email = input("Introduzca su email: ")
-    usuario = obtener_usu_email(email)
-    console = Console()
-    
-    if not usuario:
-        console.print("[red]Usuario no encontrado[/red]")
-        return False
-    
-    if not usuario.activo:  # type: ignore
-        console.print("[red]Usuario desactivado. No se puede iniciar sesion[/red]")
-        return False
-    
-    contrasena = input("Introduzca su contrasena: ")
-    if verificar_contrasena(contrasena, usuario.password_hash):
-        console.print(f"[green]Bienvenido de nuevo {usuario.nombre}[/green]")
-    else:
-        console.print(f"[red]Contrasena incorrecta[/red]")
-        
-def iniciar_sesion_invitado():
-    console = Console()
-    try:
-        usuario = obtener_usu_email("invitado@invitado.com")
-        
-        if not usuario:
-            console.print("[red]Usuario no encontrado[/red]")
-            return False
-        
-        if not usuario.activo:  # type: ignore
-            console.print("[red]Usuario desactivado. No se puede iniciar sesion[/red]")
-            return False
-        
-        if verificar_contrasena("invitado", usuario.password_hash):
-            console.print(f"[green]Bienvenido de nuevo {usuario.nombre}[/green]")
-        else:
-            console.print(f"[red]Contrasena incorrecta[/red]")
-    except Exception:
-        console.print("[red]Ha habido un error[/red]")

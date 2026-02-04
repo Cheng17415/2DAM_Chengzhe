@@ -6,6 +6,10 @@ ecommerce/
 │   ├── main.py
 │   │
 │   │
+│   │
+│   │
+│   │
+│   │
 │   ├── db/                 # Base de datos
 │   │   ├── database.py
 │   │   ├── base.py
