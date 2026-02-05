@@ -16,4 +16,4 @@ async function connect() {
     }
 }
 
-export default connect;
+export default connect()
