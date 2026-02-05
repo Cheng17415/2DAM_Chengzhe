@@ -1,5 +1,3 @@
-Buscar vendedor debe devolver todos sus productos
-
 1. Crear autorización
 			-invitado -> Solo tener acceso a listar productos, buscar productos por vendedor,
 			buscar productos por nombre

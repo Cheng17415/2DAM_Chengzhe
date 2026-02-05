@@ -6,7 +6,7 @@ from rich.table import Table
 
 from app.db.database import SessionLocal
 from app.models.producto import Producto
-from app.service.producto_service import obtener_productos, obtener_productos_activos
+from app.service.producto_service import obtener_productos, obtener_productos_activos, buscar_productos_nombre
 import app.util.utileria as util
 
 
@@ -56,6 +56,24 @@ def imprimir_productos():
     productos = obtener_productos_activos()
     if not productos:
         print("No existen productos en la BBDD")
+        return
+
+    table = Table(title="Productos")
+    columnas = ["ID", "Nombre", "Descripcion", "Precio", "Stock", "Distribuidor"]
+    for columna in columnas:
+        table.add_column(columna)
+
+    for producto in productos:
+        table.add_row(*producto.obtener_producto())
+
+    console = Console()
+    console.print(table)
+
+def buscar_productos_por_nombre():
+    nombre = util.pedir_no_vacio("Introduzca el nombre del producto: ")
+    productos = buscar_productos_nombre(nombre)
+    if not productos:
+        print("No hay productos que coincidan con la busqueda")
         return
 
     table = Table(title="Productos")

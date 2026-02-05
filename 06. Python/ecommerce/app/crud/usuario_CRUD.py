@@ -1,4 +1,5 @@
 from app.models.usuario import Usuario
+from app.models.producto import Producto
 import app.util.utileria as util
 from app.db.database import SessionLocal
 from rich.console import Console
@@ -140,14 +141,34 @@ def buscar_por_vendedor():
     nombre_vendedor = input("Introduzca nombre del vendedor: ").strip()
     vendedores = obtener_vendedor_nombre(nombre_vendedor)
     if not vendedores:
-        print("No existen vendedores en la BBDD")
+        print("No hay vendedores")
         return
-    table = Table(title="Usuarios")
-    columnas = ["DNI", "Nombre","Apellido","Direccion" ,"Codigo Postal", "Telefono","Email"]
+    table = Table(title="Vendedores", show_lines=True, header_style="bold cyan")
+    columnas = ["DNI", "Nombre","Apellido","Direccion" ,"Codigo Postal", "Telefono","Email", "Productos"]
     for columna in columnas:
         table.add_column(columna)
+    vendedor_ids = [v.usuario_id for v in vendedores]
+    productos_por_vendedor: dict[int, list[Producto]] = {}
+    if vendedor_ids:
+        session = SessionLocal()
+        try:
+            productos = (
+                session.query(Producto)
+                .filter(Producto.usuario_id.in_(vendedor_ids))
+                .all()
+            )
+            for producto in productos:
+                productos_por_vendedor.setdefault(producto.usuario_id, []).append(producto) #type: ignore
+        finally:
+            session.close()
     for usuario in vendedores:
-        table.add_row(*usuario.obtener_vendedor())
-        
+        productos = productos_por_vendedor.get(usuario.usuario_id, []) #type: ignore
+        if productos:
+            productos_txt = "\n".join(
+                f"{p.producto_id} - {p.nombre} (precio: {p.precio}, stock: {p.stock})"
+                for p in productos)
+        else:
+            productos_txt = "Sin productos"
+        table.add_row(*usuario.obtener_vendedor(), productos_txt)
     console = Console()
     console.print(table)

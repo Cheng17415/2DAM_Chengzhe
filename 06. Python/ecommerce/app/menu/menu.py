@@ -134,14 +134,14 @@ def menu_inicio_sesion():
 def menu_invitado():
   opciones = ["Listar productos", "Buscar vendedor", "Buscar productos"]
   while True:
-    num_opcion = mostrar_menu(opciones, "MENU PRODUCTOS")
+    num_opcion = mostrar_menu(opciones, "MENU")
     match num_opcion:
       case 1:
         producto_CRUD.imprimir_productos()
       case 2:
         usuario_CRUD.buscar_por_vendedor()
       case 3:
-        ...
+        producto_CRUD.buscar_productos_por_nombre()
       case 0:
         console.print("[bold cyan]Volviendo al menu anterior[/bold cyan]")
         break
