@@ -2,6 +2,7 @@ import app.crud.usuario_CRUD as usuario_CRUD
 import app.crud.producto_CRUD as producto_CRUD
 from app.service.usuario_service import obtener_usu_id
 from app.service.producto_service import obtener_producto_id
+from app.service.rol_service import obtener_nombre_rol
 import app.service.auth_service as auth_service 
 from rich.console import Console
 from rich.panel import Panel
@@ -117,8 +118,18 @@ def menu_inicio_sesion():
     match num_opcion:
       case 1:
         usuario = auth_service.iniciar_sesion_usuario()
-        if usuario:
-          ...
+        if not usuario:
+          continue
+        
+        rol_nombre = usuario.rol.nombre
+        menu_func = MENUS_POR_ROL.get(rol_nombre)
+
+        if not menu_func:
+          console.print("[red]Rol sin menu asignado[/red]")
+          continue
+
+        menu_func()
+          
       case 2:
         usuario_CRUD.crear_usuario()
       case 3:
@@ -146,3 +157,21 @@ def menu_invitado():
         console.print("[bold cyan]Volviendo al menu anterior[/bold cyan]")
         break
     input("Pulse enter para continuar...")
+
+def menu_principal_usuario():
+    opciones = ["Ver productos", "Mi perfil", "Cerrar sesión"]
+    while True:
+        num_opcion = mostrar_menu(opciones, "MENU USUARIO")
+        match num_opcion:
+            case 1:
+                producto_CRUD.imprimir_productos()
+            case 0:
+                break
+        input("Pulse enter para continuar...")
+
+MENUS_POR_ROL = {
+    "Invitado": menu_invitado,
+    "Usuario": menu_principal_usuario,
+    # "Vendedor": menu_vendedor,
+    # "Desarrollador": menu_desarrollador
+}

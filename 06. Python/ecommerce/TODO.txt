@@ -1,13 +1,13 @@
 1. Crear autorización
-			-invitado -> Solo tener acceso a listar productos, buscar productos por vendedor,
+			-invitado -> Acceso a listar productos, buscar productos por vendedor,
 			buscar productos por nombre
 
-			-usuario -> Añadir producto al carrito, decidir la cantidad.
-				Modificar datos propios, desactivar cuenta. Por Email
+			-usuario -> Todo lo anterior + añadir producto al carrito,
+				Modificar datos propios, desactivar su cuenta
 
 			-vendedor -> Todo lo anterior + crear productos + listar sus productos
 				+ Dar de baja producto + modificar productos
-
+			
 			-administrador -> Todo lo anterior + listar usuarios + 
 				cambiar información de usuarios
 
