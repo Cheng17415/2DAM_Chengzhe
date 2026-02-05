@@ -10,7 +10,7 @@ from app.service.producto_service import obtener_productos, obtener_productos_ac
 import app.util.utileria as util
 
 
-def _pedir_precio(mensaje: str) -> Decimal:
+def pedir_precio(mensaje: str) -> Decimal:
     while True:
         valor = input(mensaje).strip().replace(",", ".")
         try:
@@ -25,7 +25,7 @@ def _pedir_precio(mensaje: str) -> Decimal:
         return precio
 
 
-def _pedir_stock(mensaje: str) -> int:
+def pedir_stock(mensaje: str) -> int:
     while True:
         valor = input(mensaje).strip()
         if not valor.isdigit():
@@ -72,8 +72,8 @@ def imprimir_productos():
 def crear_producto():
     nombre = util.pedir_no_vacio("Introduzca el nombre: ")
     descripcion = input("Introduzca la descripcion (Opcional): ")
-    precio = _pedir_precio("Introduzca el precio: ")
-    stock = _pedir_stock("Introduzca el stock: ")
+    precio = pedir_precio("Introduzca el precio: ")
+    stock = pedir_stock("Introduzca el stock: ")
 
     producto = Producto(
         nombre=nombre,

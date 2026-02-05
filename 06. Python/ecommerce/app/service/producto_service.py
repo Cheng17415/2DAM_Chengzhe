@@ -1,3 +1,5 @@
+from sqlalchemy.orm import joinedload
+
 from app.db.database import SessionLocal
 from app.models.producto import Producto
 
@@ -12,7 +14,12 @@ def obtener_productos():
 def obtener_productos_activos():
     session = SessionLocal()
     try:
-        return session.query(Producto).filter_by(activo = True).all()
+        return (
+            session.query(Producto)
+            .options(joinedload(Producto.usuario))
+            .filter_by(activo=True)
+            .all()
+        )
     finally:
         session.close()
 

@@ -29,13 +29,15 @@ ecommerce/
 │       ├── carrito.py
 │       └── pedido.py
 │   
-├── .env
+├── venv
 ├── requirements.txt
 └── README.md
 
+***
 Este proyecto está realizado dentro de un entorno virtual.
 Pasos para ejecutar el programa desde CMD
 1. Acceder a la carpeta principal ecommerce
-2. venv\Scripts\activate.bat
-3. pip install -r requirements.txt
-4. python .\app\main.py
+2. Crear el entorno virtual con 'python -m venv venv'
+2. Activa el entorno virtual con '.\venv\Scripts\activate'
+3. Instala las dependencias dentro del entorno con 'pip install -r requirements.txt'
+4. Ejecuta la app con 'python .\app\main.py'

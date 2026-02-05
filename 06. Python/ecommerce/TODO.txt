@@ -1,3 +1,5 @@
+Buscar vendedor debe devolver todos sus productos
+
 1. Crear autorización
 			-invitado -> Solo tener acceso a listar productos, buscar productos por vendedor,
 			buscar productos por nombre
@@ -12,13 +14,9 @@
 				cambiar información de usuarios
 
 2. CRUD de productos
-			- Crear productos
-			- Listar productos
 			- Listar productos propios
-			- Editar productos
 			- Editar productos propios
 			- Desactivar productos propios
-			- Desactivar productos
 
 3. Lógica de carrito
 4. Lógica de envios
@@ -26,3 +24,4 @@
 5. Usuarios
 			- Editar información propia
 			- Desactivar cuenta propia
+			

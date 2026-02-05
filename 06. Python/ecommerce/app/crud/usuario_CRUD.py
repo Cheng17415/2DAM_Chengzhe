@@ -4,8 +4,7 @@ from app.db.database import SessionLocal
 from rich.console import Console
 from rich.table import Table
 from datetime import datetime
-from app.service.usuario_service import obtener_usuarios, obtener_usu_email 
-from app.util.utileria import verificar_contrasena
+from app.service.usuario_service import obtener_usuarios, obtener_vendedor_nombre
 
 def imprimir_usuarios():
   usuarios = obtener_usuarios()
@@ -17,7 +16,7 @@ def imprimir_usuarios():
   for columna in columnas:
     table.add_column(columna)
   for usuario in usuarios:
-    table.add_row(*usuario.obtenerUsuario())
+    table.add_row(*usuario.obtener_usuario())
   console = Console()
   console.print(table)
 
@@ -136,3 +135,19 @@ def desactivar_usuario(usuario_id: int):
         return False
     finally:
         session.close()
+
+def buscar_por_vendedor():
+    nombre_vendedor = input("Introduzca nombre del vendedor: ").strip()
+    vendedores = obtener_vendedor_nombre(nombre_vendedor)
+    if not vendedores:
+        print("No existen vendedores en la BBDD")
+        return
+    table = Table(title="Usuarios")
+    columnas = ["DNI", "Nombre","Apellido","Direccion" ,"Codigo Postal", "Telefono","Email"]
+    for columna in columnas:
+        table.add_column(columna)
+    for usuario in vendedores:
+        table.add_row(*usuario.obtener_vendedor())
+        
+    console = Console()
+    console.print(table)

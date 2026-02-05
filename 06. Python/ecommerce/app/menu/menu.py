@@ -1,5 +1,3 @@
-
-
 import app.crud.usuario_CRUD as usuario_CRUD
 import app.crud.producto_CRUD as producto_CRUD
 from app.service.usuario_service import obtener_usu_id
@@ -125,7 +123,8 @@ def menu_inicio_sesion():
         usuario_CRUD.crear_usuario()
       case 3:
         usuario = auth_service.iniciar_sesion_invitado()
-        menu_invitado()
+        if usuario:
+          menu_invitado()
       case 0:
         console.print("[bold cyan]Saliendo del sistema[/bold cyan]")
         break
@@ -140,7 +139,7 @@ def menu_invitado():
       case 1:
         producto_CRUD.imprimir_productos()
       case 2:
-        ...
+        usuario_CRUD.buscar_por_vendedor()
       case 3:
         ...
       case 0:

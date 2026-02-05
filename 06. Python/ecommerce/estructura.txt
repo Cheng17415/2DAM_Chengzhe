@@ -1,65 +1,7 @@
 BBDD - MySQL
 
-Tabla Usuario:
-	- usuario_id INT AUTO_INCREMENT PRIMARY KEY
-	- dni VARCHAR(9) UNIQUE
-	- Nombre
-	- Apellido
-	- Direccion
-	- Codigo Postal
-	- Telefono
-	- Correo (UNIQUE)
-	- password_hash VARCHAR(255) [bcrypt o passlib]
-	- rol_id (FK)
-	- fecha_creacion
-	- activo (Boolean)
+Código para crear la estructura con datos en MySQL: 
 
-Tabla Rol:
-	- rol_id (PK)
-	- nombre (Invitado, Usuario, Vendedor, Desarrollador)
-	
-Tabla Producto:
-	- producto_ID (PK)
-	- nombre
-	- descripcion
-	- precio
-	- stock
-	- imagen_url (puede ser nulo)
-	- activo Boolean
-	- fecha_creacion
-
-Tabla Carrito:
-	- carrito_ID(PK)
-	- usuario_id (FK)
-	- Estado (Activo, Desactivo)
-	- Fecha_creacion
-	
-Tabla Producto_Carrito(M*N):
-	- carrito_ID(PK, FK)
-	- producto_ID(PK, FK)
-	- cantidad
-
-Tabla OpcionesEnvio:
-	- opciones_id (PK)
-	- dias INT
-	- precio
-
-Tabla Pedido:
-	- pedido_id (PK)
-	- usuario_id (FK)
-	- fecha
-	- total
-	- estado (Pendiente, Pagado, Enviado, Entregado)
-	- opcion_envio_id (FK)
-	
-Tabla Pedido_Detalle:
-	- pedido_id (PK, FK)
-	- producto_id (PK, FK)
-	- precio_unitario
-	- cantidad
-
-Código para crear la estructura con datos en MySQL
-	
 CREATE SCHEMA ecommerce;
 USE ecommerce;
 
@@ -169,26 +111,23 @@ VALUES
 '$2b$12$hashfalsoadmin', 4),
 
 ('96857432Q', 'Pepe', 'Hardware', 'Calle Hardware 5', '28021', '649994854',
-'pepe.hardware@hardware.es', '$2b$12$g35tBhdcV9EKnMnBG8akAet8A0dCwizkK7twIs9UkZtTs0aFCtyNK, 3);
+'pepe.hardware@hardware.es', '$2b$12$g35tBhdcV9EKnMnBG8akAet8A0dCwizkK7twIs9UkZtTs0aFCtyNK', 3);
 
 INSERT INTO usuario (nombre, apellido, email, password_hash, rol_id) VALUES
-('Invitado', 'Invitado', 'invitado@invitado.com', '$2a$12$m2Lp.51Gk2eowN4z5Cxz3.kZiMhcXee3onV81uKgMCJIEQ.DquXfy', 1)
+('Invitado', 'Invitado', 'invitado@invitado.com', '$2a$12$m2Lp.51Gk2eowN4z5Cxz3.kZiMhcXee3onV81uKgMCJIEQ.DquXfy', 1);
 INSERT INTO opciones_envio (dias, precio) VALUES
 (1, 9.99),
 (3, 4.99),
 (7, 0.00);
 
-INSERT INTO producto
-(nombre, descripcion, precio, stock, usuario_id)
-VALUES
+INSERT INTO producto (nombre, descripcion, precio, stock, usuario_id) VALUES
 ('Portátil Gaming', 'Portátil potente para gaming y desarrollo', 1299.99, 10, 4),
 
 ('Ratón Inalámbrico', 'Ratón ergonómico con batería recargable', 29.99, 50, 4),
 
 ('Teclado Mecánico', 'Teclado mecánico RGB', 89.99, 30, 4);
 
-INSERT INTO carrito (usuario_id, estado)
-VALUES
+INSERT INTO carrito (usuario_id, estado) VALUES
 (1, 'ACTIVO'),
 (2, 'ACTIVO');
 
@@ -197,20 +136,11 @@ INSERT INTO producto_carrito (carrito_id, producto_id, cantidad) VALUES
 (1, 2, 2),
 (2, 3, 1);
 
-INSERT INTO pedido
-(usuario_id, opcion_envio_id, total, estado)
-VALUES
+INSERT INTO pedido (usuario_id, opcion_envio_id, total, estado) VALUES
 (1, 2, 1359.97, 'PAGADO'),
 (2, 3, 89.99, 'PENDIENTE');
-x
 
-INSERT INTO pedido_detalle
-(pedido_id, producto_id, precio_unitario, cantidad)
-VALUES
+INSERT INTO pedido_detalle (pedido_id, producto_id, precio_unitario, cantidad) VALUES
 (1, 1, 1299.99, 1),
 (1, 2, 29.99, 2),
 (2, 3, 89.99, 1);
-
-
-
-
