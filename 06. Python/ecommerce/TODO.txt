@@ -11,15 +11,6 @@
 			-administrador -> Todo lo anterior + listar usuarios + 
 				cambiar información de usuarios
 
-2. CRUD de productos
-			- Listar productos propios
-			- Editar productos propios
-			- Desactivar productos propios
-
 3. Lógica de carrito
 4. Lógica de envios
-
-5. Usuarios
-			- Editar información propia
-			- Desactivar cuenta propia
 			

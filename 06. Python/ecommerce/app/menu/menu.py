@@ -178,31 +178,18 @@ def editar_datos_propios(usuario):
 
 def menu_principal_usuario(usuario):
     opciones = [
-        "Ver productos",
-        "Buscar vendedor",
-        "Buscar productos",
-        "Anadir producto al carrito",
-        "Modificar datos propios",
-        "Desactivar mi cuenta",
+        "Productos",
+        "Perfil",
         "Cerrar sesion",
     ]
     while True:
         num_opcion = mostrar_menu(opciones, "MENU USUARIO")
         match num_opcion:
             case 1:
-                producto_CRUD.imprimir_productos()
+                menu_usuario_productos(usuario)
             case 2:
-                usuario_CRUD.buscar_por_vendedor()
+                menu_usuario_perfil(usuario)
             case 3:
-                producto_CRUD.buscar_productos_por_nombre()
-            case 4:
-                carrito_CRUD.anadir_producto_al_carrito(usuario.usuario_id)
-            case 5:
-                editar_datos_propios(usuario)
-            case 6:
-                usuario_CRUD.desactivar_usuario(usuario.usuario_id)
-                break
-            case 7:
                 break
             case 0:
                 break
@@ -210,20 +197,35 @@ def menu_principal_usuario(usuario):
 
 def menu_vendedor(usuario):
     opciones = [
-        "Ver productos",
-        "Buscar vendedor",
-        "Buscar productos",
-        "Anadir producto al carrito",
-        "Modificar datos propios",
-        "Desactivar mi cuenta",
-        "Crear producto",
-        "Listar mis productos",
-        "Modificar producto",
-        "Dar de baja producto",
+        "Productos",
+        "Perfil",
+        "Gestion de mis productos",
         "Cerrar sesion",
     ]
     while True:
         num_opcion = mostrar_menu(opciones, "MENU VENDEDOR")
+        match num_opcion:
+            case 1:
+                menu_vendedor_productos(usuario)
+            case 2:
+                menu_vendedor_perfil(usuario)
+            case 3:
+                menu_vendedor_gestion_productos(usuario)
+            case 4:
+                break
+            case 0:
+                break
+        input("Pulse enter para continuar...")
+
+def menu_usuario_productos(usuario):
+    opciones = [
+        "Ver productos",
+        "Buscar vendedor",
+        "Buscar productos",
+        "Anadir producto al carrito",
+    ]
+    while True:
+        num_opcion = mostrar_menu(opciones, "MENU USUARIO - PRODUCTOS")
         match num_opcion:
             case 1:
                 producto_CRUD.imprimir_productos()
@@ -233,21 +235,84 @@ def menu_vendedor(usuario):
                 producto_CRUD.buscar_productos_por_nombre()
             case 4:
                 carrito_CRUD.anadir_producto_al_carrito(usuario.usuario_id)
-            case 5:
+            case 0:
+                break
+        input("Pulse enter para continuar...")
+
+def menu_usuario_perfil(usuario):
+    opciones = [
+        "Modificar datos propios",
+        "Desactivar mi cuenta",
+    ]
+    while True:
+        num_opcion = mostrar_menu(opciones, "MENU USUARIO - PERFIL")
+        match num_opcion:
+            case 1:
                 editar_datos_propios(usuario)
-            case 6:
+            case 2:
                 usuario_CRUD.desactivar_usuario(usuario.usuario_id)
                 break
-            case 7:
-                producto_CRUD.crear_producto(usuario.usuario_id)
-            case 8:
-                producto_CRUD.imprimir_productos_usuario(usuario.usuario_id)
-            case 9:
-                producto_CRUD.editar_producto_propietario(usuario.usuario_id)
-            case 10:
-                producto_CRUD.desactivar_producto_propietario(usuario.usuario_id)
-            case 11:
+            case 0:
                 break
+        input("Pulse enter para continuar...")
+
+def menu_vendedor_productos(usuario):
+    opciones = [
+        "Ver productos",
+        "Buscar vendedor",
+        "Buscar productos",
+        "Anadir producto al carrito",
+    ]
+    while True:
+        num_opcion = mostrar_menu(opciones, "MENU VENDEDOR - PRODUCTOS")
+        match num_opcion:
+            case 1:
+                producto_CRUD.imprimir_productos()
+            case 2:
+                usuario_CRUD.buscar_por_vendedor()
+            case 3:
+                producto_CRUD.buscar_productos_por_nombre()
+            case 4:
+                carrito_CRUD.anadir_producto_al_carrito(usuario.usuario_id)
+            case 0:
+                break
+        input("Pulse enter para continuar...")
+
+def menu_vendedor_perfil(usuario):
+    opciones = [
+        "Modificar datos propios",
+        "Desactivar mi cuenta",
+    ]
+    while True:
+        num_opcion = mostrar_menu(opciones, "MENU VENDEDOR - PERFIL")
+        match num_opcion:
+            case 1:
+                editar_datos_propios(usuario)
+            case 2:
+                usuario_CRUD.desactivar_usuario(usuario.usuario_id)
+                break
+            case 0:
+                break
+        input("Pulse enter para continuar...")
+
+def menu_vendedor_gestion_productos(usuario):
+    opciones = [
+        "Crear producto",
+        "Listar mis productos",
+        "Modificar producto",
+        "Dar de baja producto",
+    ]
+    while True:
+        num_opcion = mostrar_menu(opciones, "MENU VENDEDOR - GESTION PRODUCTOS")
+        match num_opcion:
+            case 1:
+                producto_CRUD.crear_producto(usuario.usuario_id)
+            case 2:
+                producto_CRUD.imprimir_productos_usuario(usuario.usuario_id)
+            case 3:
+                producto_CRUD.editar_producto_propietario(usuario.usuario_id)
+            case 4:
+                producto_CRUD.desactivar_producto_propietario(usuario.usuario_id)
             case 0:
                 break
         input("Pulse enter para continuar...")
@@ -315,8 +380,6 @@ def menu_administrador(usuario):
                     telefono,
                     email,
                 )
-            case 13:
-                break
             case 0:
                 break
         input("Pulse enter para continuar...")
