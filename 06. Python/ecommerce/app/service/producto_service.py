@@ -11,6 +11,16 @@ def obtener_productos():
     finally:
         session.close()
 
+def obtener_productos_usuario(usuario_id: int, incluir_inactivos: bool = True):
+    session = SessionLocal()
+    try:
+        query = session.query(Producto).filter_by(usuario_id=usuario_id)
+        if not incluir_inactivos:
+            query = query.filter_by(activo=True)
+        return query.all()
+    finally:
+        session.close()
+
 def obtener_productos_activos():
     session = SessionLocal()
     try:

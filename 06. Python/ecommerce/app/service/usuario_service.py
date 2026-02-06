@@ -1,3 +1,5 @@
+from sqlalchemy.orm import joinedload
+
 from app.db.database import SessionLocal
 from app.models.usuario import Usuario
 
@@ -30,7 +32,12 @@ def obtener_usu_id(usuario_id):
 def obtener_usu_email(email):
   session = SessionLocal()
   try:
-    return session.query(Usuario).filter_by(email=email).first()
+    return (
+      session.query(Usuario)
+      .options(joinedload(Usuario.rol))
+      .filter_by(email=email)
+      .first()
+    )
   finally:
     session.close()
 

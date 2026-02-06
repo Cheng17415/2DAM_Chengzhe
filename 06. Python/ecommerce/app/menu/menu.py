@@ -1,5 +1,6 @@
 import app.crud.usuario_CRUD as usuario_CRUD
 import app.crud.producto_CRUD as producto_CRUD
+import app.crud.carrito_CRUD as carrito_CRUD
 from app.service.usuario_service import obtener_usu_id
 from app.service.producto_service import obtener_producto_id
 from app.service.rol_service import obtener_nombre_rol
@@ -128,7 +129,7 @@ def menu_inicio_sesion():
           console.print("[red]Rol sin menu asignado[/red]")
           continue
 
-        menu_func()
+        menu_func(usuario)
           
       case 2:
         usuario_CRUD.crear_usuario()
@@ -142,7 +143,7 @@ def menu_inicio_sesion():
     if num_opcion != 0:
       input("Pulse enter para continuar...")
       
-def menu_invitado():
+def menu_invitado(usuario=None):
   opciones = ["Listar productos", "Buscar vendedor", "Buscar productos"]
   while True:
     num_opcion = mostrar_menu(opciones, "MENU")
@@ -158,13 +159,164 @@ def menu_invitado():
         break
     input("Pulse enter para continuar...")
 
-def menu_principal_usuario():
-    opciones = ["Ver productos", "Mi perfil", "Cerrar sesión"]
+def editar_datos_propios(usuario):
+  nombre = input(f"Nuevo nombre ({usuario.nombre}): ")
+  apellido = input(f"Nuevo apellido ({usuario.apellido}): ")
+  direccion = input(f"Nueva direccion ({usuario.direccion or 'Vacio'}): ")
+  codigo_postal = input(f"Nuevo codigo postal ({usuario.codigo_postal or 'Vacio'}): ")
+  telefono = input(f"Nuevo numero de telefono ({usuario.telefono or 'Vacio'}): ")
+  email = input(f"Nuevo email ({usuario.email}): ")
+  usuario_CRUD.editar_usuario(
+      usuario.usuario_id,
+      nombre,
+      apellido,
+      direccion,
+      codigo_postal,
+      telefono,
+      email,
+  )
+
+def menu_principal_usuario(usuario):
+    opciones = [
+        "Ver productos",
+        "Buscar vendedor",
+        "Buscar productos",
+        "Anadir producto al carrito",
+        "Modificar datos propios",
+        "Desactivar mi cuenta",
+        "Cerrar sesion",
+    ]
     while True:
         num_opcion = mostrar_menu(opciones, "MENU USUARIO")
         match num_opcion:
             case 1:
                 producto_CRUD.imprimir_productos()
+            case 2:
+                usuario_CRUD.buscar_por_vendedor()
+            case 3:
+                producto_CRUD.buscar_productos_por_nombre()
+            case 4:
+                carrito_CRUD.anadir_producto_al_carrito(usuario.usuario_id)
+            case 5:
+                editar_datos_propios(usuario)
+            case 6:
+                usuario_CRUD.desactivar_usuario(usuario.usuario_id)
+                break
+            case 7:
+                break
+            case 0:
+                break
+        input("Pulse enter para continuar...")
+
+def menu_vendedor(usuario):
+    opciones = [
+        "Ver productos",
+        "Buscar vendedor",
+        "Buscar productos",
+        "Anadir producto al carrito",
+        "Modificar datos propios",
+        "Desactivar mi cuenta",
+        "Crear producto",
+        "Listar mis productos",
+        "Modificar producto",
+        "Dar de baja producto",
+        "Cerrar sesion",
+    ]
+    while True:
+        num_opcion = mostrar_menu(opciones, "MENU VENDEDOR")
+        match num_opcion:
+            case 1:
+                producto_CRUD.imprimir_productos()
+            case 2:
+                usuario_CRUD.buscar_por_vendedor()
+            case 3:
+                producto_CRUD.buscar_productos_por_nombre()
+            case 4:
+                carrito_CRUD.anadir_producto_al_carrito(usuario.usuario_id)
+            case 5:
+                editar_datos_propios(usuario)
+            case 6:
+                usuario_CRUD.desactivar_usuario(usuario.usuario_id)
+                break
+            case 7:
+                producto_CRUD.crear_producto(usuario.usuario_id)
+            case 8:
+                producto_CRUD.imprimir_productos_usuario(usuario.usuario_id)
+            case 9:
+                producto_CRUD.editar_producto_propietario(usuario.usuario_id)
+            case 10:
+                producto_CRUD.desactivar_producto_propietario(usuario.usuario_id)
+            case 11:
+                break
+            case 0:
+                break
+        input("Pulse enter para continuar...")
+
+def menu_administrador(usuario):
+    opciones = [
+        "Ver productos",
+        "Buscar vendedor",
+        "Buscar productos",
+        "Anadir producto al carrito",
+        "Modificar datos propios",
+        "Desactivar mi cuenta",
+        "Crear producto",
+        "Listar mis productos",
+        "Modificar producto",
+        "Dar de baja producto",
+        "Listar usuarios",
+        "Cambiar informacion de usuarios",
+        "Cerrar sesion",
+    ]
+    while True:
+        num_opcion = mostrar_menu(opciones, "MENU ADMINISTRADOR")
+        match num_opcion:
+            case 1:
+                producto_CRUD.imprimir_productos()
+            case 2:
+                usuario_CRUD.buscar_por_vendedor()
+            case 3:
+                producto_CRUD.buscar_productos_por_nombre()
+            case 4:
+                carrito_CRUD.anadir_producto_al_carrito(usuario.usuario_id)
+            case 5:
+                editar_datos_propios(usuario)
+            case 6:
+                usuario_CRUD.desactivar_usuario(usuario.usuario_id)
+                break
+            case 7:
+                producto_CRUD.crear_producto(usuario.usuario_id)
+            case 8:
+                producto_CRUD.imprimir_productos_usuario(usuario.usuario_id)
+            case 9:
+                producto_CRUD.editar_producto_propietario(usuario.usuario_id)
+            case 10:
+                producto_CRUD.desactivar_producto_propietario(usuario.usuario_id)
+            case 11:
+                usuario_CRUD.imprimir_usuarios()
+            case 12:
+                id = int(input("ID del usuario a editar: "))
+                usuario_edit = obtener_usu_id(id)
+                if usuario_edit is None:
+                    print(f"No existe usuario con ID {id}")
+                    continue
+                nombre = input(f"Nuevo nombre ({usuario_edit.nombre}): ")
+                apellido = input(f"Nuevo apellido ({usuario_edit.apellido}): ")
+                direccion = input(f"Nueva direccion ({usuario_edit.direccion or 'Vacio'}): ")
+                codigo_postal = input(f"Nuevo codigo postal ({usuario_edit.codigo_postal or 'Vacio'}): ")
+                telefono = input(f"Nuevo numero de telefono ({usuario_edit.telefono or 'Vacio'}): ")
+                email = input(f"Nuevo email ({usuario_edit.email}): ")
+                usuario_CRUD.editar_usuario(
+                    id,
+                    nombre,
+                    apellido,
+                    direccion,
+                    codigo_postal,
+                    telefono,
+                    email,
+                )
+            case 13:
+                break
             case 0:
                 break
         input("Pulse enter para continuar...")
@@ -172,6 +324,6 @@ def menu_principal_usuario():
 MENUS_POR_ROL = {
     "Invitado": menu_invitado,
     "Usuario": menu_principal_usuario,
-    # "Vendedor": menu_vendedor,
-    # "Desarrollador": menu_desarrollador
+    "Vendedor": menu_vendedor,
+    "Administrador": menu_administrador,
 }

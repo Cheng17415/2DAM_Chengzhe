@@ -6,7 +6,13 @@ from rich.table import Table
 
 from app.db.database import SessionLocal
 from app.models.producto import Producto
-from app.service.producto_service import obtener_productos, obtener_productos_activos, buscar_productos_nombre
+from app.service.producto_service import (
+    obtener_productos,
+    obtener_productos_activos,
+    buscar_productos_nombre,
+    obtener_productos_usuario,
+    obtener_producto_id,
+)
 import app.util.utileria as util
 
 
@@ -87,7 +93,7 @@ def buscar_productos_por_nombre():
     console = Console()
     console.print(table)
 
-def crear_producto():
+def crear_producto(usuario_id: int | None = None):
     nombre = util.pedir_no_vacio("Introduzca el nombre: ")
     descripcion = input("Introduzca la descripcion (Opcional): ")
     precio = pedir_precio("Introduzca el precio: ")
@@ -100,6 +106,7 @@ def crear_producto():
         stock=stock,
         activo=True,
         fecha_creacion=datetime.now(),
+        usuario_id=usuario_id,
     )
 
     session = SessionLocal()
@@ -195,3 +202,66 @@ def desactivar_producto(producto_id: int):
         return False
     finally:
         session.close()
+
+def imprimir_productos_usuario(usuario_id: int):
+    productos = obtener_productos_usuario(usuario_id, incluir_inactivos=True)
+    if not productos:
+        print("No tienes productos registrados")
+        return
+
+    table = Table(title="Mis productos")
+    columnas = ["ID", "Nombre", "Descripcion", "Precio", "Stock", "Activo", "Fecha Creacion"]
+    for columna in columnas:
+        table.add_column(columna)
+
+    for producto in productos:
+        table.add_row(
+            str(producto.producto_id),
+            str(producto.nombre),
+            str(producto.descripcion or ""),
+            str(producto.precio),
+            str(producto.stock),
+            str(producto.activo),
+            str(producto.fecha_creacion),
+        )
+
+    console = Console()
+    console.print(table)
+
+def editar_producto_propietario(usuario_id: int):
+    try:
+        producto_id = int(input("ID del producto a editar: "))
+    except Exception:
+        print("ID no valido.")
+        return False
+
+    producto = obtener_producto_id(producto_id)
+    if not producto:
+        print(f"No existe producto con ID {producto_id}")
+        return False
+    if producto.usuario_id != usuario_id:
+        print("No tienes permiso para editar este producto.")
+        return False
+
+    nombre = input(f"Nuevo nombre ({producto.nombre}): ")
+    descripcion = input(f"Nueva descripcion ({producto.descripcion or 'Vacio'}): ")
+    precio = input(f"Nuevo precio ({producto.precio}): ")
+    stock = input(f"Nuevo stock ({producto.stock}): ")
+    return editar_producto(producto_id, nombre, descripcion, precio, stock)
+
+def desactivar_producto_propietario(usuario_id: int):
+    try:
+        producto_id = int(input("ID del producto a desactivar: "))
+    except Exception:
+        print("ID no valido.")
+        return False
+
+    producto = obtener_producto_id(producto_id)
+    if not producto:
+        print(f"No existe producto con ID {producto_id}")
+        return False
+    if producto.usuario_id != usuario_id:
+        print("No tienes permiso para desactivar este producto.")
+        return False
+
+    return desactivar_producto(producto_id)
