@@ -56,7 +56,9 @@ class Circulo(var radio: Double): FiguraGeometrica(radio){
 fun main(){
     //var figura = FiguraGeometrica(5.3)
     var lista: MutableList<FiguraGeometrica> = mutableListOf()
-    lista.add(Cuadrado(9.0),Rectangulo(5.0,4.0), Circulo(6.0))
+    lista.add(Cuadrado(9.0))
+    lista.add(Rectangulo(5.0,4.0))
+    lista.add(Circulo(6.0))
     var lista1: List<FiguraGeometrica> = listOf(Cuadrado(9.0),Rectangulo(5.0,4.0), Circulo(6.0))
     for (figura in lista1){
         println(figura)

@@ -11,5 +11,8 @@ fun main(){
     val v3: Float = (v1/v2).toFloat()
     val v4 = (v1/v2)
     println("$v3")
-    print(v4)
+    println(v4)
+
+    var doble: Double = 14.54
+    print(doble)
 }
