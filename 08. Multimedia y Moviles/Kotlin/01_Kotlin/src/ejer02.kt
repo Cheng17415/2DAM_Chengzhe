@@ -1,3 +1,5 @@
+import kotlin.reflect.typeOf
+
 fun main(){
     var peso1 : Float = 90.5f
     var peso2 : Float = 85.5f
@@ -11,5 +13,7 @@ fun main(){
     val v3: Float = (v1/v2).toFloat()
     val v4 = (v1/v2)
     println("$v3")
-    print(v4)
+    println(v4)
+    val salarioNeto: Double = (1700 - 150).toDouble()
+    println(salarioNeto)
 }
