@@ -1,6 +1,5 @@
 fun main(parametro: Array<String>) {
-    val sueldos: IntArray
-    sueldos = IntArray(5)
+    val sueldos: IntArray = IntArray(5)
     //carga de sus elementos por teclado
     for(i in 0 until sueldos.size) {
         print("Ingrese sueldo:")

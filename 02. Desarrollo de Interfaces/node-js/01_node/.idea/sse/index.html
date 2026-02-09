@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cliente SSE</title>
+</head>
+<body>
+<div id="mensaje"></div>
+
+<script>
+  const mensajeDiv = document.getElementById('mensaje');
+
+  const evtSource = new EventSource('http://localhost:3030');
+
+  evtSource.onmessage = function(event) {
+    const datos = JSON.parse(event.data);
+    mensajeDiv.innerHTML = 'Mensaje del servidor: ' + datos.mensaje;
+  };
+
+  evtSource.onerror = function(event) {
+    console.error('Error de SSE:', event);
+    evtSource.close();
+  };
+</script>
+</body>
+</html>

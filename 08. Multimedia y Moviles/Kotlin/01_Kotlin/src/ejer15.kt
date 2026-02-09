@@ -10,7 +10,7 @@ fun imprimir(matriz: IntArray){
     }
 }
 fun main(){
-    var sueldos: IntArray = IntArray(5)
+    val sueldos: IntArray = IntArray(5)
     rellenar(sueldos)
     imprimir(sueldos)
 }
