@@ -1,10 +1,10 @@
-/*object Matematica{
+package poo/*object Matematica{
     val PI = 3.1416
     fun aleatorio(minimo: Int, maximo: Int) = ((Math.random() * (maximo + 1 - minimo)) + minimo).toInt()
 }*/
 
 fun main(parametro: Array<String>) {
-    var mates = object {
+    val mates = object {
             val PI = 3.1416
             fun aleatorio(minimo: Int, maximo: Int) = ((Math.random() * (maximo + 1 - minimo)) + minimo).toInt()
 

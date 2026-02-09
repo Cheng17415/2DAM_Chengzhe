@@ -1,3 +1,5 @@
+package poo
+
 private class Alumno constructor(nombre : String, nota: Float){
     var nombre: String = nombre
     var nota: Float = nota

@@ -1,3 +1,5 @@
+package poo
+
 abstract class Operacion2(val valor1: Int, val valor2: Int) {
     protected var resultado: Int = 0
 

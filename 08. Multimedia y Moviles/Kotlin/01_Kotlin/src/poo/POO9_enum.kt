@@ -1,3 +1,5 @@
+package poo
+
 enum class TipoCarta{
     DIAMANTE,
     TREBOL,
@@ -8,7 +10,7 @@ enum class TipoCarta{
 class Carta(var tipo: TipoCarta, var valor: Int) {
 
     fun imprimir() {
-        println("Carta: $tipo y su valor es $valor")
+        println("OOP.Carta: $tipo y su valor es $valor")
     }
 }
 

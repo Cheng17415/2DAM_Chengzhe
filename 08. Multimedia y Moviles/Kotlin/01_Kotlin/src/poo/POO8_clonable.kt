@@ -1,3 +1,5 @@
+package poo
+
 class Producto(val nombre:String): Cloneable{
     var precio: Double = 12.00
     //Overloaded Constructor
@@ -6,7 +8,7 @@ class Producto(val nombre:String): Cloneable{
     }
 
     override fun toString(): String {
-        return "Producto(nombre='$nombre', precio=$precio, hashCode, ${hashCode()})"
+        return "OOP.Producto(nombre='$nombre', precio=$precio, hashCode, ${hashCode()})"
     }
 
     public override fun clone(): Producto{

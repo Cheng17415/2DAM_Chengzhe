@@ -1,7 +1,8 @@
-import java.util.Locale
+package poo
+
 import java.util.Locale.getDefault
 
-private class Persona2 constructor(nombre: String, edad: Int) {
+private class Persona2 (nombre: String, edad: Int) {
      var nombre: String = nombre
         set(valor){
             field = valor.uppercase(getDefault())
@@ -13,7 +14,6 @@ private class Persona2 constructor(nombre: String, edad: Int) {
         set(valor){
             field = if (valor >= 0 ) valor else 0
         }
-        get() { return field}
 
 
     fun imprimir() {

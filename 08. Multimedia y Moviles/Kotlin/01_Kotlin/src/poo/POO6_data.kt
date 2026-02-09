@@ -1,3 +1,5 @@
+package poo
+
 data class Articulo2(var codigo: Int, var descripcion: String, var precio: Float)
 
 fun main(p: Array<String>){

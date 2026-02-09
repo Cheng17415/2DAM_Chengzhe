@@ -1,3 +1,5 @@
+package poo
+
 import kotlin.math.pow
 
 abstract class FiguraGeometrica(protected val lado1: Double){
@@ -5,7 +7,7 @@ abstract class FiguraGeometrica(protected val lado1: Double){
     abstract fun calcularArea() :Double
     abstract fun calcularPerimetro(): Double
     override fun toString(): String {
-        return "FiguraGeometrica(lado1=$lado1)"
+        return "OOP.FiguraGeometrica(lado1=$lado1)"
     }
 }
 
@@ -19,7 +21,7 @@ class Cuadrado(lado1: Double): FiguraGeometrica(lado1){
     }
 
     override fun toString(): String {
-        return "Cuadrado(lado1=$lado1)"
+        return "OOP.Cuadrado(lado1=$lado1)"
     }
 
 }
@@ -33,7 +35,7 @@ class Rectangulo(lado1: Double, private val lado2: Double): FiguraGeometrica(lad
     }
 
     override fun toString(): String {
-        return "Rectangulo(lado1=$lado1, lado2=$lado2)"
+        return "OOP.Rectangulo(lado1=$lado1, lado2=$lado2)"
     }
 
 }
@@ -48,13 +50,13 @@ class Circulo(var radio: Double): FiguraGeometrica(radio){
     }
 
     override fun toString(): String {
-        return "Circulo(radio=$lado1)"
+        return "OOP.Circulo(radio=$lado1)"
     }
 
 }
 
 fun main(){
-    //var figura = FiguraGeometrica(5.3)
+    //var figura = OOP.FiguraGeometrica(5.3)
     var lista: MutableList<FiguraGeometrica> = mutableListOf()
     lista.add(Cuadrado(9.0))
     lista.add(Rectangulo(5.0,4.0))

@@ -1,3 +1,5 @@
+package poo
+
 open class Persona3(val nombre: String, val edad: Int) {
     open fun imprimir() {
         println("Nombre: $nombre")

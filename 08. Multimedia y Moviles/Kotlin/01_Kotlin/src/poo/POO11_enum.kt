@@ -1,3 +1,5 @@
+package poo
+
 enum class Paises (val habitantes: Int, val capital :String) {
     BRASIL (202450649, "Brasilia"),
     COLOMBIA (50364000, "Bogota"),

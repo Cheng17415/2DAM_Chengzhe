@@ -1,6 +1,7 @@
-//Libro ISBN String Titulo Autor Precio Privados Set y get, toString
-private class Libro constructor(private var ISBN: String, private var Titulo: String,
-                                private var Autor: String, private var Precio: Float
+package poo
+
+private class Libro constructor(private var ISBN: String, private var titulo: String,
+                                private var autor: String, private var precio: Float
 
 ){
 
@@ -11,27 +12,27 @@ private class Libro constructor(private var ISBN: String, private var Titulo: St
     fun getISBN(): String {
         return this.ISBN
     }
-    fun setTitulo(Titulo: String){
-        this.Titulo = Titulo
+    fun setTitulo(titulo: String){
+        this.titulo = titulo
     }
     fun getTitulo(): String {
-        return this.Titulo
+        return this.titulo
     }
-    fun setAutor(Autor: String){
-        this.Autor = Autor
+    fun setAutor(autor: String){
+        this.autor = autor
     }
     fun getAutor(): String{
-        return this.Autor
+        return this.autor
     }
-    fun setPrecio(Precio: Float){
-        this.Precio = Precio
+    fun setPrecio(precio: Float){
+        this.precio = precio
     }
     fun getPrecio(): Float{
-        return this.Precio
+        return this.precio
     }
 
     override fun toString(): String {
-        return "ISBN: $ISBN, Titulo: $Titulo, Autor: $Autor, Precio $Precio"
+        return "ISBN: $ISBN, Titulo: $titulo, Autor: $autor, Precio $precio"
     }
 
     override fun equals(other: Any?): Boolean {
@@ -40,19 +41,19 @@ private class Libro constructor(private var ISBN: String, private var Titulo: St
 
         other as Libro
 
-        if (Precio != other.Precio) return false
+        if (precio != other.precio) return false
         if (ISBN != other.ISBN) return false
-        if (Titulo != other.Titulo) return false
-        if (Autor != other.Autor) return false
+        if (titulo != other.titulo) return false
+        if (autor != other.autor) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        var result = Precio.hashCode()
+        var result = precio.hashCode()
         result = 31 * result + ISBN.hashCode()
-        result = 31 * result + Titulo.hashCode()
-        result = 31 * result + Autor.hashCode()
+        result = 31 * result + titulo.hashCode()
+        result = 31 * result + autor.hashCode()
         return result
     }
 }

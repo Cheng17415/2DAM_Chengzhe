@@ -59,6 +59,7 @@ fun letraANum(letra: Char): Int{
     }
     return abecedario.indexOf(letraMayus) + 1
 }
+
 fun numALetra(num: Int): Char{
     val abecedario: String = "ABCDEFGH"
     return abecedario[num - 1]

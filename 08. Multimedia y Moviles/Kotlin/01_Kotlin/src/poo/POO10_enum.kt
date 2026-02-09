@@ -1,3 +1,5 @@
+package poo
+
 enum class TipoOperacion (val tipo: String) {
     SUMA("+"),
     RESTA("-"),

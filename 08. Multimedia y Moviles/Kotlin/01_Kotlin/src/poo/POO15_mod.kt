@@ -1,3 +1,5 @@
+package poo
+
 open class Calculadora(val valor1: Double, val valor2: Double ){
     var resultado: Double = 0.0
     fun sumar() {
@@ -32,11 +34,11 @@ class CalculadoraCientifica(valor1: Double, valor2: Double): Calculadora(valor1,
 }
 
 fun main(parametro: Array<String>) {
-    println("Prueba de la clase Calculadora (suma de dos números)")
+    println("Prueba de la clase OOP.Calculadora (suma de dos números)")
     val calculadora1 = Calculadora(10.0, 2.0)
     calculadora1.sumar()
     calculadora1.imprimir()
-    println("Prueba de la clase Calculadora Cientrífica (suma de dos números y el cuadrado y la raiz del primero)")
+    println("Prueba de la clase OOP.Calculadora Cientrífica (suma de dos números y el cuadrado y la raiz del primero)")
     val calculadoraCientifica1 = CalculadoraCientifica(10.0, 2.0)
     calculadoraCientifica1.sumar()
     calculadoraCientifica1.imprimir()

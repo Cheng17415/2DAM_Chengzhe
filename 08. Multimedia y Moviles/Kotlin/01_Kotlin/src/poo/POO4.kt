@@ -1,3 +1,5 @@
+package poo
+
 private class Punto constructor(x: Int, y: Int){
     var x: Int = x
     var y: Int = y
