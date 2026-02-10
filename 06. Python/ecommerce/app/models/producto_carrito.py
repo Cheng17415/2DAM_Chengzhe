@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, ForeignKey
 from app.db.base import Base
 
-class ProductoCarrito(Base):
+class Producto_carrito(Base):
     __tablename__ = "producto_carrito"
 
     carrito_id = Column(Integer, ForeignKey("carrito.carrito_id"), primary_key=True)

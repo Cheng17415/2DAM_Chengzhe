@@ -5,7 +5,7 @@ from rich.console import Console
 from app.db.database import SessionLocal
 from app.models.carrito import Carrito
 from app.models.producto import Producto
-from app.models.producto_carrito import ProductoCarrito
+from app.models.producto_carrito import Producto_carrito
 import app.service.carrito_service as carrito_service
 
 
@@ -56,7 +56,7 @@ def anadir_producto_al_carrito(usuario_id: int):
             session.flush()
 
         linea = (
-            session.query(ProductoCarrito)
+            session.query(Producto_carrito)
             .filter_by(carrito_id=carrito.carrito_id, producto_id=producto_id)
             .first()
         )
@@ -64,7 +64,7 @@ def anadir_producto_al_carrito(usuario_id: int):
             linea.cantidad += cantidad  # type: ignore
         else:
             session.add(
-                ProductoCarrito(
+                Producto_carrito(
                     carrito_id=carrito.carrito_id,
                     producto_id=producto_id,
                     cantidad=cantidad,

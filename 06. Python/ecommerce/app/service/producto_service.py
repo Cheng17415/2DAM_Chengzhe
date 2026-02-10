@@ -24,16 +24,12 @@ def obtener_productos_usuario(usuario_id: int, incluir_inactivos: bool = True):
 def obtener_productos_activos():
     session = SessionLocal()
     try:
-        return (
-            session.query(Producto)
-            .options(joinedload(Producto.usuario))
-            .filter_by(activo=True)
-            .all()
-        )
+        return (session.query(Producto).options(joinedload(Producto.usuario))
+            .filter_by(activo=True).all())
     finally:
         session.close()
 
-def obtener_producto_id(producto_id):
+def obtener_producto_id(producto_id) -> Producto | None:
     session = SessionLocal()
     try:
         return session.query(Producto).filter_by(producto_id=producto_id).first()

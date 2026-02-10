@@ -15,3 +15,10 @@ class Pedido(Base):
 
     usuario = relationship("Usuario")
     envio = relationship("OpcionesEnvio")
+
+class EstadoPedido(Enum):
+    PENDIENTE = "PENDIENTE"
+    PAGADO = "PAGADO"
+    ENVIADO = "ENVIADO"
+    ENTREGADO = "ENTREGADO"
+    CANCELADO = "CANCELADO"
