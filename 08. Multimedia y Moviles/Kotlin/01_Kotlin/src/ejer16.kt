@@ -52,7 +52,7 @@ fun posicionesDisponibles(posi: String): MutableList<String> {
 }
 
 fun letraANum(letra: Char): Int{
-    val abecedario: String = "ABCDEFGH"
+    val abecedario: String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     val letraMayus = letra.uppercaseChar()
     if (letraMayus !in abecedario){
         return -1
@@ -61,6 +61,6 @@ fun letraANum(letra: Char): Int{
 }
 
 fun numALetra(num: Int): Char{
-    val abecedario: String = "ABCDEFGH"
+    val abecedario: String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     return abecedario[num - 1]
 }

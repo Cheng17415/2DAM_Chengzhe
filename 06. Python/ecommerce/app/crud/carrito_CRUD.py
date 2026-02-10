@@ -6,6 +6,7 @@ from app.db.database import SessionLocal
 from app.models.carrito import Carrito
 from app.models.producto import Producto
 from app.models.producto_carrito import ProductoCarrito
+import app.service.carrito_service as carrito_service
 
 
 def pedir_cantidad(mensaje: str) -> int:
@@ -50,11 +51,7 @@ def anadir_producto_al_carrito(usuario_id: int):
             .first()
         )
         if not carrito:
-            carrito = Carrito(
-                estado="ACTIVO",
-                fecha_creacion=datetime.now(),
-                usuario_id=usuario_id,
-            )
+            carrito = Carrito(estado="ACTIVO", fecha_creacion=datetime.now(), usuario_id=usuario_id)
             session.add(carrito)
             session.flush()
 
@@ -83,3 +80,17 @@ def anadir_producto_al_carrito(usuario_id: int):
         return False
     finally:
         session.close()
+
+def listar_productos_carrito(usuario_id: int):
+    console = Console()
+    carrito = carrito_service.obtener_carrito_por_usuarioID(usuario_id)
+
+    if not carrito:
+        console.print("[red]No tienes un carrito activo")
+        return False
+    #TODO Terminar de listar los productos del carrito
+
+
+
+def eliminar_carrito(usuario_id: int):
+    ...

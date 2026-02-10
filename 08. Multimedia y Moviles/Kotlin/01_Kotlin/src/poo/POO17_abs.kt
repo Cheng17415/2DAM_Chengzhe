@@ -1,6 +1,7 @@
 package poo
 
 import kotlin.math.pow
+import kotlin.math.sqrt
 
 abstract class FiguraGeometrica(protected val lado1: Double){
 

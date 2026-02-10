@@ -1,5 +1,7 @@
 package poo
 
+import kotlin.math.sqrt
+
 open class Calculadora(val valor1: Double, val valor2: Double ){
     var resultado: Double = 0.0
     fun sumar() {
@@ -29,7 +31,7 @@ class CalculadoraCientifica(valor1: Double, valor2: Double): Calculadora(valor1,
     }
 
     fun raiz() {
-        resultado = Math.sqrt(valor1)
+        resultado = sqrt(valor1)
     }
 }
 

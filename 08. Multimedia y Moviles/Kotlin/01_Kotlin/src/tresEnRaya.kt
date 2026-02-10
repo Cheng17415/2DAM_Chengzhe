@@ -78,7 +78,7 @@ fun comprobar(t: Boolean, m: Array<Array<String>>, ov: Array<IntArray>): Boolean
         c = 0
         for (j in 0 until ov[i].size){
             n =  ov[i][j]
-            fila = ((n-1)/(ov[i].size)).toInt()
+            fila = (n-1)/(ov[i].size)
             columna = (n-1)%ov[i].size
             if (m[fila][columna] == jugador) c++
         }

@@ -11,3 +11,7 @@ class Carrito(Base):
 
     usuario_id = Column(Integer, ForeignKey("usuario.usuario_id"))
     usuario = relationship("Usuario")
+
+class EstadoCarrito(Enum):
+    ACTIVO = "ACTIVO"
+    CERRADO = "CERRADO"
