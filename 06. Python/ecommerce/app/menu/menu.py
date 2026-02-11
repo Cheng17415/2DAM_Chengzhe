@@ -27,9 +27,12 @@ def mostrar_menu(opciones:list, titulo: str = "MENU") -> int:
 
   console.clear()
   console.print(panel)
-
-  opcion = int(console.input("[bold green]Seleccione una opcion: [/bold green]"))
-  return opcion
+  try:  
+    opcion = int(console.input("[bold green]Seleccione una opcion: [/bold green]"))
+    return opcion
+  except Exception as e:
+     console.log("[bold red]Opcion no valida[/bold red]")
+  return -1
 
 def menu_principal():
   opciones = ["Menu usuarios", "Menu productos"]
