@@ -1,9 +1,9 @@
 import app.crud.usuario_CRUD as usuario_CRUD
 import app.crud.producto_CRUD as producto_CRUD
 import app.crud.carrito_CRUD as carrito_CRUD
+import app.crud.pedidos_CRUD as pedidos_CRUD
 from app.service.usuario_service import obtener_usu_id
 from app.service.producto_service import obtener_producto_id
-from app.service.rol_service import obtener_nombre_rol
 import app.service.auth_service as auth_service 
 from rich.console import Console
 from rich.panel import Panel
@@ -159,26 +159,11 @@ def menu_invitado(usuario=None):
         break
     input("Pulse enter para continuar...")
 
-def editar_datos_propios(usuario):
-  nombre = input(f"Nuevo nombre ({usuario.nombre}): ")
-  apellido = input(f"Nuevo apellido ({usuario.apellido}): ")
-  direccion = input(f"Nueva direccion ({usuario.direccion or 'Vacio'}): ")
-  codigo_postal = input(f"Nuevo codigo postal ({usuario.codigo_postal or 'Vacio'}): ")
-  telefono = input(f"Nuevo numero de telefono ({usuario.telefono or 'Vacio'}): ")
-  email = input(f"Nuevo email ({usuario.email}): ")
-  usuario_CRUD.editar_usuario(
-      usuario.usuario_id,
-      nombre,
-      apellido,
-      direccion,
-      codigo_postal,
-      telefono,
-      email,
-  )
-
 def menu_principal_usuario(usuario):
     opciones = [
         "Productos",
+        "Mi carrito",
+        "Mis pedidos",
         "Perfil",
         "Cerrar sesion",
     ]
@@ -188,8 +173,29 @@ def menu_principal_usuario(usuario):
             case 1:
                 menu_usuario_productos(usuario)
             case 2:
-                menu_usuario_perfil(usuario)
+                menu_carrito(usuario)
             case 3:
+                pedidos_CRUD.visualizar_mis_pedidos(usuario.usuario_id)
+            case 4:
+                menu_usuario_perfil(usuario)
+            case 5:
+              break
+            case 0:
+                break
+        input("Pulse enter para continuar...")
+
+def menu_carrito(usuario):
+   opciones = [
+        "Listar productos del carrito",
+        "Procesar compra"
+    ]
+   while True:
+        num_opcion = mostrar_menu(opciones, "MENU USUARIO")
+        match num_opcion:
+            case 1:
+                carrito_CRUD.listar_productos_carrito(usuario.usuario_id)
+            case 2:
+                carrito_CRUD.procesar_compra(usuario.usuario_id)
                 break
             case 0:
                 break
@@ -198,7 +204,9 @@ def menu_principal_usuario(usuario):
 def menu_vendedor(usuario):
     opciones = [
         "Productos",
-        "Perfil",
+        "Mi carrito",
+        "Mis pedidos",
+        "Mi perfil",
         "Gestion de mis productos",
         "Cerrar sesion",
     ]
@@ -208,10 +216,14 @@ def menu_vendedor(usuario):
             case 1:
                 menu_vendedor_productos(usuario)
             case 2:
-                menu_vendedor_perfil(usuario)
+                menu_carrito(usuario)
             case 3:
-                menu_vendedor_gestion_productos(usuario)
+                pedidos_CRUD.visualizar_mis_pedidos(usuario.usuario_id)
             case 4:
+                menu_vendedor_perfil(usuario)
+            case 5:
+                menu_vendedor_gestion_productos(usuario)
+            case 6:
                 break
             case 0:
                 break
@@ -248,7 +260,7 @@ def menu_usuario_perfil(usuario):
         num_opcion = mostrar_menu(opciones, "MENU USUARIO - PERFIL")
         match num_opcion:
             case 1:
-                editar_datos_propios(usuario)
+                usuario_CRUD.editar_datos_usuario(usuario)
             case 2:
                 usuario_CRUD.desactivar_usuario(usuario.usuario_id)
                 break
@@ -287,7 +299,7 @@ def menu_vendedor_perfil(usuario):
         num_opcion = mostrar_menu(opciones, "MENU VENDEDOR - PERFIL")
         match num_opcion:
             case 1:
-                editar_datos_propios(usuario)
+                usuario_CRUD.editar_datos_usuario(usuario)
             case 2:
                 usuario_CRUD.desactivar_usuario(usuario.usuario_id)
                 break
@@ -319,67 +331,47 @@ def menu_vendedor_gestion_productos(usuario):
 
 def menu_administrador(usuario):
     opciones = [
-        "Ver productos",
-        "Buscar vendedor",
-        "Buscar productos",
-        "Anadir producto al carrito",
-        "Modificar datos propios",
-        "Desactivar mi cuenta",
-        "Crear producto",
-        "Listar mis productos",
-        "Modificar producto",
-        "Dar de baja producto",
-        "Listar usuarios",
-        "Cambiar informacion de usuarios",
+        "Productos",
+        "Mi carrito",
+        "Perfil",
+        "Gestion de mis productos",
+        "Gestion de usuarios",
         "Cerrar sesion",
     ]
     while True:
         num_opcion = mostrar_menu(opciones, "MENU ADMINISTRADOR")
         match num_opcion:
             case 1:
-                producto_CRUD.imprimir_productos()
+                menu_vendedor_productos(usuario)
             case 2:
-                usuario_CRUD.buscar_por_vendedor()
+                menu_carrito(usuario)
             case 3:
-                producto_CRUD.buscar_productos_por_nombre()
+                menu_vendedor_perfil(usuario)
             case 4:
-                carrito_CRUD.anadir_producto_al_carrito(usuario.usuario_id)
+                menu_vendedor_gestion_productos(usuario)
             case 5:
-                editar_datos_propios(usuario)
-            case 6:
-                usuario_CRUD.desactivar_usuario(usuario.usuario_id)
+                menu_administrador_usuarios()
+            case 0:
                 break
-            case 7:
-                producto_CRUD.crear_producto(usuario.usuario_id)
-            case 8:
-                producto_CRUD.imprimir_productos_usuario(usuario.usuario_id)
-            case 9:
-                producto_CRUD.editar_producto_propietario(usuario.usuario_id)
-            case 10:
-                producto_CRUD.desactivar_producto_propietario(usuario.usuario_id)
-            case 11:
+        input("Pulse enter para continuar...")
+
+def menu_administrador_usuarios():
+    opciones = [
+        "Listar usuarios",
+        "Cambiar informacion de usuarios",
+    ]
+    while True:
+        num_opcion = mostrar_menu(opciones, "MENU ADMINISTRADOR - USUARIOS")
+        match num_opcion:
+            case 1:
                 usuario_CRUD.imprimir_usuarios()
-            case 12:
+            case 2:
                 id = int(input("ID del usuario a editar: "))
                 usuario_edit = obtener_usu_id(id)
                 if usuario_edit is None:
                     print(f"No existe usuario con ID {id}")
                     continue
-                nombre = input(f"Nuevo nombre ({usuario_edit.nombre}): ")
-                apellido = input(f"Nuevo apellido ({usuario_edit.apellido}): ")
-                direccion = input(f"Nueva direccion ({usuario_edit.direccion or 'Vacio'}): ")
-                codigo_postal = input(f"Nuevo codigo postal ({usuario_edit.codigo_postal or 'Vacio'}): ")
-                telefono = input(f"Nuevo numero de telefono ({usuario_edit.telefono or 'Vacio'}): ")
-                email = input(f"Nuevo email ({usuario_edit.email}): ")
-                usuario_CRUD.editar_usuario(
-                    id,
-                    nombre,
-                    apellido,
-                    direccion,
-                    codigo_postal,
-                    telefono,
-                    email,
-                )
+                usuario_CRUD.editar_datos_usuario(usuario_edit)
             case 0:
                 break
         input("Pulse enter para continuar...")

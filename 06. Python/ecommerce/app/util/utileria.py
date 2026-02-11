@@ -55,9 +55,6 @@ def comprobarEmail(email: str) -> bool:
         session.close()
 
 def pedir_con_validacion(mensaje, funcion_validadora, mensaje_error):
-    '''1º arg es el mensaje inicial;
-    2º arg es la funcion utilizada para validar;
-    3º arg es el mensaje cuando no es exitoso la validacion'''
     while True:
         valor = input(mensaje).strip()
         if funcion_validadora(valor):

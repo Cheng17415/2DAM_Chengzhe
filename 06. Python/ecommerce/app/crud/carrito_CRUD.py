@@ -1,11 +1,5 @@
-from datetime import datetime
-
 from rich.console import Console
-
-from app.db.database import SessionLocal
-from app.models.carrito import Carrito
-from app.models.producto import Producto
-from app.models.producto_carrito import Producto_carrito
+from rich.table import Table
 import app.service.carrito_service as carrito_service
 
 
@@ -31,55 +25,11 @@ def anadir_producto_al_carrito(usuario_id: int):
         return False
 
     cantidad = pedir_cantidad("Cantidad: ")
+    ok, mensaje = carrito_service.anadir_producto_a_carrito(usuario_id, producto_id, cantidad)
+    color = "green" if ok else "red"
+    console.print(f"[{color}]{mensaje}[/{color}]")
+    return ok
 
-    session = SessionLocal()
-    try:
-        producto = session.query(Producto).filter_by(producto_id=producto_id).first()
-        if not producto:
-            console.print("[red]Producto no encontrado[/red]")
-            return False
-        if not producto.activo:
-            console.print("[red]El producto no esta activo[/red]")
-            return False
-        if producto.stock < cantidad:  # type: ignore
-            console.print("[red]No hay stock suficiente[/red]")
-            return False
-
-        carrito = (
-            session.query(Carrito)
-            .filter_by(usuario_id=usuario_id, estado="ACTIVO")
-            .first()
-        )
-        if not carrito:
-            carrito = Carrito(estado="ACTIVO", fecha_creacion=datetime.now(), usuario_id=usuario_id)
-            session.add(carrito)
-            session.flush()
-
-        linea = (
-            session.query(Producto_carrito)
-            .filter_by(carrito_id=carrito.carrito_id, producto_id=producto_id)
-            .first()
-        )
-        if linea:
-            linea.cantidad += cantidad  # type: ignore
-        else:
-            session.add(
-                Producto_carrito(
-                    carrito_id=carrito.carrito_id,
-                    producto_id=producto_id,
-                    cantidad=cantidad,
-                )
-            )
-
-        session.commit()
-        console.print("[green]Producto añadido al carrito[/green]")
-        return True
-    except Exception as e:
-        session.rollback()
-        console.print(f"[red]Error al añadir al carrito: {e}[/red]")
-        return False
-    finally:
-        session.close()
 
 def listar_productos_carrito(usuario_id: int):
     console = Console()
@@ -88,9 +38,56 @@ def listar_productos_carrito(usuario_id: int):
     if not carrito:
         console.print("[red]No tienes un carrito activo")
         return False
-    #TODO Terminar de listar los productos del carrito
+
+    productos = carrito_service.obtener_productos_por_usuarioID(usuario_id)
+    if not productos:
+        console.print("[yellow]No hay productos en el carrito[/yellow]")
+        return False
+
+    tabla = Table(title="Productos en tu carrito")
+    tabla.add_column("ID", justify="right")
+    tabla.add_column("Nombre")
+    tabla.add_column("Cantidad", justify="right")
+    tabla.add_column("Precio", justify="right")
+    tabla.add_column("Subtotal", justify="right")
+
+    total = 0.0
+    for producto, cantidad in productos:
+        precio = float(producto.precio)  # type: ignore
+        subtotal = precio * int(cantidad)
+        total += subtotal
+        tabla.add_row(
+            str(producto.producto_id),
+            str(producto.nombre),
+            str(cantidad),
+            f"{precio:.2f}",
+            f"{subtotal:.2f}",
+        )
+
+    console.print(tabla)
+    console.print(f"[bold]Total: {total:.2f}[/bold]")
+    return True
 
 
+def procesar_compra(usuario_id: int):
+    console = Console()
 
-def eliminar_carrito(usuario_id: int):
-    ...
+    opciones_envio = carrito_service.obtener_opciones_envio()
+    if not opciones_envio:
+        console.print("[red]No hay opciones de envio disponibles[/red]")
+        return False
+
+    console.print("[bold]Opciones de envio:[/bold]")
+    for opcion in opciones_envio:
+        console.print(f"{opcion.opciones_id}. {opcion.dias} dias - {opcion.precio}")
+
+    try:
+        opcion_envio_id = int(input("Seleccione la opcion de envio: "))
+    except ValueError:
+        console.print("[red]ID de envio no valido[/red]")
+        return False
+
+    ok, mensaje = carrito_service.procesar_compra(usuario_id, opcion_envio_id)
+    color = "green" if ok else "red"
+    console.print(f"[{color}]{mensaje}[/{color}]")
+    return ok

@@ -172,3 +172,20 @@ def buscar_por_vendedor():
         table.add_row(*usuario.obtener_vendedor(), productos_txt)
     console = Console()
     console.print(table)
+
+def editar_datos_usuario(usuario):
+  nombre = input(f"Nuevo nombre ({usuario.nombre}): ")
+  apellido = input(f"Nuevo apellido ({usuario.apellido}): ")
+  direccion = input(f"Nueva direccion ({usuario.direccion or 'Vacio'}): ")
+  codigo_postal = input(f"Nuevo codigo postal ({usuario.codigo_postal or 'Vacio'}): ")
+  telefono = input(f"Nuevo numero de telefono ({usuario.telefono or 'Vacio'}): ")
+  email = input(f"Nuevo email ({usuario.email}): ")
+  editar_usuario(
+      usuario.usuario_id,
+      nombre,
+      apellido,
+      direccion,
+      codigo_postal,
+      telefono,
+      email,
+  )
