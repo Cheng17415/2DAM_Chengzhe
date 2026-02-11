@@ -12,7 +12,7 @@ let listaNumeros: number[] = [1, 2, 3, 4, 5];
 let persona: { nombre: string, edad: number } = { nombre: "Luis", edad: 25 };
 console.log(persona.edad + " " + persona.nombre)
 
-//For each de posiciones
+//For each de indices
 for (const l in listaNumeros){
     console.log(listaNumeros[l]);
 }

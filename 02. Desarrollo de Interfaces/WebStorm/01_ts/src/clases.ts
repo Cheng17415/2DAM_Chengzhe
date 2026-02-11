@@ -19,6 +19,7 @@ export class Persona{
     return `${this.nombre} ${this.edad}`;
   }
 }
+
 export function sumar(a: number, b: number): number {
   return a + b; // Tipo inferido como number
 }
