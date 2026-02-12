@@ -4,7 +4,7 @@ const coche = new Car("Toyota", "Corolla");
 coche.mostrarDetalles();  // Salida: Marca: Toyota, Modelo: Corolla
 
 // el programa no puede usar marca directamente
-console.log(coche.marca);  // Error: Property 'marca' is protected and only accessible within class 'Vehiculo' and its subclasses.
+//console.log(coche.marca);  // Error: Property 'marca' is protected and only accessible within class 'Vehiculo' and its subclasses.
 
 // Uso de las variables estáticas
 let conf: Configuracion = new Configuracion("Quique");
