@@ -21,11 +21,11 @@ export class Car extends Vehicle {
 }
 
 export class Configuracion {
-  nombre :string
+  nombre: string
   static contador: number = 0
-  constructor(n: string) {
-  this.nombre = n;
-  Configuracion.contador ++;
+  constructor(nombre: string) {
+    this.nombre = nombre;
+    Configuracion.contador ++;
   }
   public imprimir():void{
     console.log(`Nombre: ${this.nombre}, Contador: ${Configuracion.contador}`)
