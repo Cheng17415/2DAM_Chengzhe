@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="nombres">
+        <item>FC Barcelona</item>
+        <item>Real Madrid CF</item>
+        <item>Manchester United FC</item>
+        <item>Juventus FC</item>
+        <item>Athletic Club</item>
+        <item>Celta de Vigo</item>
+        <item>Real Zaragoza</item>
+        <item>Deportivo de la Coruña</item>
+        <item>UD Las Palmas</item>
+        <item>PSG</item>
+    </string-array>
+
+    <string-array name="nombres_estadio">
+        <item>Camp Nou</item>
+        <item>Estadio Santiago Bernabéu</item>
+        <item>Old Trafford</item>
+        <item>Allianz Stadium</item>
+        <item>San Mamés</item>
+        <item>Estadio de Balaídos</item>
+        <item>La Romareda</item>
+        <item>Riazor</item>
+        <item>Estadio Gran Canaria</item>
+        <item>Parque de los Príncipes</item>
+    </string-array>
+
+    <integer-array name="aforo">
+        <item>99354</item>
+        <item>81044</item>
+        <item>76000</item>
+        <item>41500</item>
+        <item>53331</item>
+        <item>22803</item>
+        <item>33608</item>
+        <item>32490</item>
+        <item>32490</item>
+        <item>47929</item>
+    </integer-array>
+
+    <integer-array name="socios">
+        <item>143000</item> <!-- FC Barcelona -->
+        <item>95000</item>  <!-- Real Madrid -->
+        <item>150000</item> <!-- Manchester United -->
+        <item>29000</item>  <!-- Juventus -->
+        <item>44000</item>  <!-- Athletic Club -->
+        <item>21000</item>  <!-- Celta -->
+        <item>25000</item>  <!-- Zaragoza -->
+        <item>24000</item>  <!-- Deportivo -->
+        <item>23000</item>  <!-- Las Palmas -->
+        <item>40000</item>  <!-- PSG -->
+    </integer-array>
+
+    <integer-array name="fundacion">
+        <item>1899</item> <!-- FC Barcelona -->
+        <item>1902</item> <!-- Real Madrid -->
+        <item>1878</item> <!-- Manchester United -->
+        <item>1897</item> <!-- Juventus -->
+        <item>1898</item> <!-- Athletic Club -->
+        <item>1923</item> <!-- Celta -->
+        <item>1932</item> <!-- Zaragoza -->
+        <item>1906</item> <!-- Deportivo -->
+        <item>1949</item> <!-- Las Palmas -->
+        <item>1970</item> <!-- PSG -->
+    </integer-array>
+
+    <array name="fotos">
+        <item>@drawable/fc_barcelona</item>
+        <item>@drawable/real_madrid_cf</item>
+        <item>@drawable/man_united</item>
+        <item>@drawable/juventus_fc</item>
+        <item>@drawable/athletic_club</item>
+        <item>@drawable/rc_celta</item>
+        <item>@drawable/real_zaragoza</item>
+        <item>@drawable/rc_deportivo</item>
+        <item>@drawable/ud_las_palmas</item>
+        <item>@drawable/psg</item>
+    </array>
+
+    <string-array name="URLS">
+        <item>https://www.fcbarcelona.es/es/</item>
+        <item>https://www.realmadrid.com/es-ES</item>
+        <item>https://www.manutd.com/</item>
+        <item>https://www.juventus.com/en</item>
+        <item>https://www.athletic-club.eus/</item>
+        <item>https://rccelta.es/</item>
+        <item>https://www.realzaragoza.com/</item>
+        <item>https://www.rcdeportivo.es/</item>
+        <item>https://www.udlaspalmas.es/</item>
+        <item>https://www.psg.fr/es</item>
+    </string-array>
+</resources>

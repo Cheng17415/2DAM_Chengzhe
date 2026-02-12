@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">EquiposFutbol_RecyclerView</string>
+    <string name="texto_boton">Añadir</string>
+    <string name="place_holder">Nombre</string>
+    <string name="aforo">Aforo:</string>
+    <string name="socios">Nº Socios:</string>
+    <string name="fundacion">Fundado en:</string>
+    <string name="verMas">Ver más</string>
+    <string name="eliminar">Eliminar</string>
+</resources>
