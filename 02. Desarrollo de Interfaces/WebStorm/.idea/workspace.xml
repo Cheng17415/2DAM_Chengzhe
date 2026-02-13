@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdafba88-d42a-4965-bd4d-1051579f0de4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/WebStorm.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/prettier.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/01_ts/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/01_ts/.idea/WebStorm.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/01_ts/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/01_ts/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/01_ts/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/01_ts/.idea/prettier.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/01_ts/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/typescript/01_ts/src/claseNew.ts" beforeDir="false" afterPath="$PROJECT_DIR$/typescript/01_ts/src/claseNew.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/typescript/01_ts/src/ejer03.ts" beforeDir="false" afterPath="$PROJECT_DIR$/typescript/01_ts/src/ejer03.ts" afterDir="false" />
-    </list>
+    <list default="true" id="bdafba88-d42a-4965-bd4d-1051579f0de4" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,6 +24,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Node.js.01_index.mjs.executor": "Run",
     "Node.js.ejer01.ts.executor": "Run",
     "Node.js.ejer02.ts.executor": "Run",
     "Node.js.ejer03.ts.executor": "Run",
@@ -78,6 +64,7 @@
       <updated>1770851967936</updated>
       <workItem from="1770851969205" duration="4918000" />
       <workItem from="1770932723241" duration="1071000" />
+      <workItem from="1770969325440" duration="351000" />
     </task>
     <servers />
   </component>
