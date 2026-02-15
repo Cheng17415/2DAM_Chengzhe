@@ -2,6 +2,8 @@ import { access, copyFile, rename, unlink } from 'node:fs';
 
 const ruta = 'c://ejemplosNode//archivo.txt';
 
+//Como es una función asíncrona, necesita un callback.
+// Un callback es una función que se ejecuta al terminar la función principal.
 access(ruta, (err) => {
     if (err) {
         console.error('El archivo no existe');

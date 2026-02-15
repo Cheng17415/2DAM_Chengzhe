@@ -4,11 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdafba88-d42a-4965-bd4d-1051579f0de4" name="Changes" comment="" />
+    <list default="true" id="bdafba88-d42a-4965-bd4d-1051579f0de4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node-js/01_node/.idea/03_index.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/node-js/01_node/.idea/03_index.mjs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -25,17 +35,24 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Node.js.01_index.mjs.executor": "Run",
+    "Node.js.01_servidoresweb.mjs.executor": "Run",
+    "Node.js.02_servidoresweb.mjs.executor": "Run",
+    "Node.js.03_servidoresweb.mjs.executor": "Run",
+    "Node.js.05_servidoreswebexpress.mjs.executor": "Run",
+    "Node.js.07_index.mjs.executor": "Run",
     "Node.js.ejer01.ts.executor": "Run",
     "Node.js.ejer02.ts.executor": "Run",
     "Node.js.ejer03.ts.executor": "Run",
+    "Node.js.repaso1.ts.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "main",
     "javascript.preferred.runtime.type.id": "node",
     "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/Users/cheng/Desktop/2DAM_Chengzhe/02. Desarrollo de Interfaces/WebStorm",
+    "last_opened_file_path": "C:/Users/Windows/Desktop/2DAM_Chengzhe/02. Desarrollo de Interfaces/WebStorm",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -65,6 +82,10 @@
       <workItem from="1770851969205" duration="4918000" />
       <workItem from="1770932723241" duration="1071000" />
       <workItem from="1770969325440" duration="351000" />
+      <workItem from="1770990007611" duration="4902000" />
+      <workItem from="1771084214899" duration="833000" />
+      <workItem from="1771098960701" duration="4191000" />
+      <workItem from="1771160045614" duration="2158000" />
     </task>
     <servers />
   </component>
