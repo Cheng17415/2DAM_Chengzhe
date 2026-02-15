@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bdafba88-d42a-4965-bd4d-1051579f0de4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node-js/01_node/.idea/03_index.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/node-js/01_node/.idea/03_index.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/typescript/01_ts/src/repaso/repaso1.ts" beforeDir="false" afterPath="$PROJECT_DIR$/typescript/01_ts/src/repaso/repaso1.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +52,7 @@
     "git-widget-placeholder": "main",
     "javascript.preferred.runtime.type.id": "node",
     "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/Users/Windows/Desktop/2DAM_Chengzhe/02. Desarrollo de Interfaces/WebStorm",
+    "last_opened_file_path": "C:/Users/cheng/Desktop/2DAM_Chengzhe/02. Desarrollo de Interfaces/WebStorm",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -86,6 +86,8 @@
       <workItem from="1771084214899" duration="833000" />
       <workItem from="1771098960701" duration="4191000" />
       <workItem from="1771160045614" duration="2158000" />
+      <workItem from="1771181187355" duration="20000" />
+      <workItem from="1771181208749" duration="1342000" />
     </task>
     <servers />
   </component>
