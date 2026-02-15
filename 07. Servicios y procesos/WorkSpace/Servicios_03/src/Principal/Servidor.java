@@ -32,6 +32,8 @@ public class Servidor {
 	public static void main(String[] args){
 		Servidor servidor;
 		servidor=new Servidor();
+		System.out.println("Servidor encendido");
 		servidor.servir();
+		
 	}
 }

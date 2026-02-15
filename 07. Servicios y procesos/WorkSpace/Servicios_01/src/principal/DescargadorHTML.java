@@ -38,7 +38,7 @@ public class DescargadorHTML {
 				System.out.println(linea);
 			}
 		} catch(IOException e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
 		
 	}
