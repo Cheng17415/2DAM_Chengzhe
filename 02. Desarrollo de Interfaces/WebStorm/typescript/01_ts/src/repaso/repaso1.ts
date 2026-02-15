@@ -73,7 +73,20 @@ class Mesa implements Mueble{
 }
 function main(){
     let silla: Silla = new Silla("Silla 1", 14.66, "marron");
-    console.log(silla);
+    console.log(typeof silla);
+    console.log(silla.obtenerPrecio())
+
+    type empleado = {
+        nombre: string,
+        salario: number,
+        edad: number
+    }
+    let emp1: empleado = {
+        nombre: "Juan",
+        salario: 1244,
+        edad: 55
+    }
+    console.log(emp1)
 }
 
 main()
