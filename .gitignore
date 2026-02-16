@@ -4,3 +4,14 @@ __pycache__/
 node_modules/
 .idea/
 bin/
+
+# Java
+*.class
+/build/
+/target/
+
+# IDE
+*.iml
+
+# Logs
+*.log
