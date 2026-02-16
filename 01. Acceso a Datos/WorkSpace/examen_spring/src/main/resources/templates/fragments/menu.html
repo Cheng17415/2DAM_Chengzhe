@@ -1,5 +1,5 @@
 <nav th:fragment="menu-principal" class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand" th:href="@{/}">EmpleosApp</a>
+  <a class="navbar-brand" th:href="@{/}">Aplicacion de ventas</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,13 +7,10 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
-      <a class="nav-link" th:href="@{/solicitudes/indexPaginate}">Solicitudes</a>
+      <a class="nav-link" th:href="@{/clientes/index}">Clientes</a>
 	   </li>
 	   <li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
-	      <a class="nav-link" th:href="@{/vacantes/indexPaginate}">Vacantes</a>
-	   </li>
-	   <li class="nav-item" sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
-	      <a class="nav-link" th:href="@{/categorias/indexPaginate}">Categorías</a>
+	      <a class="nav-link" th:href="@{/pedidos/index}">Pedidos</a>
 	   </li>
 	   <li class="nav-item" sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
 	      <a class="nav-link" th:href="@{/usuarios/index}" >Usuarios</a>
