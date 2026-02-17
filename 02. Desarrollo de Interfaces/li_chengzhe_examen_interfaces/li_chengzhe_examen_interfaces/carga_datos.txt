@@ -1,0 +1,46 @@
+La base de datos se llama "fabrica"
+
+Fabricantes:
+
+Se accede a través de: localhost:3000/fabricante
+{
+    "nombre": "Pepe",
+    "nif_cif": "12345678Z",
+    "pais": "Espana", 
+    "sitio_web": "www.prueba.com"
+}
+{
+    "nombre": "Ernesto",
+    "nif_cif": "56473821G", 
+    "sitio_web": "www.enersto.com"
+}
+{
+    "nombre": "Pepe",
+    "nif_cif": "C7364532A",
+    "pais": "Francia"
+}
+
+Productos:
+
+Se accede a través de: localhost:3000/producto
+{
+    "nombre" : "Teclado",
+    "precio_venta" : 39.99,
+    "stock" : 40,
+    "id_fabricante" : 1,
+    "categoria" : "Tecnologia"
+}
+
+{
+    "nombre" : "Monitor",
+    "precio_venta" : 159.99,
+    "id_fabricante" : 1,
+    "categoria" : "Tecnologia"
+}
+
+{
+    "nombre" : "Mesa",
+    "precio_venta" : 200,
+    "stock" : 20,
+    "id_fabricante" : 1
+}

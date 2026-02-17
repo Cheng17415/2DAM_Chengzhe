@@ -1,19 +1,26 @@
 import { Sequelize } from "sequelize";
 import { sequelize }  from "../../db/db.config.js";
 
-export const Dept = sequelize.define('dept',
+export const Fabricante = sequelize.define('fabricante',
   {
-    deptno: {
+    id_fabricante: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
       primaryKey: true
     },
-    dname: {
+    nombre: {
       type: Sequelize.STRING,
       allowNull: false
     },
-    loc: {
+    nif_cif: {
       type: Sequelize.STRING,
+      unique: true
+    },
+    pais:{
+      type: Sequelize.STRING
+    },
+    sitio_web:{
+      type: Sequelize.STRING
     }
   },
   {
