@@ -35,13 +35,30 @@ class CCuentaCorriente (nombre: String, cuenta: String,
         this.transacciones++
     }
     override fun comisiones() {
-        var saldo = this.saldo - (this.importePorTrans * this.transacciones)
-        this.saldo = if (saldo < 0.0) 0.0 else saldo
+        this.saldo -= this.importePorTrans * this.transacciones
         this.transacciones = 0
+
+        /*TODO
+        *  val noExentas = if (transacciones > transExentas)
+            transacciones - transExentas
+        else 0
+
+        saldo -= noExentas * importePorTrans
+        transacciones = 0*/
     }
 
-    override fun intereses(): Double {
+    override fun intereses(){
         TODO("Not yet implemented")
-    }
+        /*var interesMensual = 0.0
 
+        if (saldo <= 3000) {
+            interesMensual = saldo * 0.005 / 12
+        } else {
+            val parte1 = 3000 * 0.005 / 12
+            val parte2 = (saldo - 3000) * (obtenerTipoDeInteres() / 100) / 12
+            interesMensual = parte1 + parte2
+        }
+
+        saldo += interesMensual*/
+    }
 }
