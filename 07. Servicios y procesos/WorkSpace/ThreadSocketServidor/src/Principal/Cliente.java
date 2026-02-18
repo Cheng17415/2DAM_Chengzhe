@@ -46,7 +46,7 @@ public class Cliente extends Thread {
 	
 	@Override
 	public void run() {
-		System.out.println("Iniciando comunicaci�n con el cliente");
+		System.out.println("Iniciando comunicacion con el cliente");
 		
 		// Env�a algunos mensajes al cliente en cuanto �ste se conecta
 		salida.println("/server Hola " + socket.getInetAddress().getHostName());

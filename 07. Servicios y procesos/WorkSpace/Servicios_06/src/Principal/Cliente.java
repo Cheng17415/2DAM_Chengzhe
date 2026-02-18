@@ -79,7 +79,7 @@ public class Cliente {
 			bufferSalida.writeUTF(cadena);
 			bufferSalida.flush();
 		} catch(IOException e) {
-			System.out.println("Error al envia los datos " + e.getMessage());
+			System.out.println("Error al enviar los datos " + e.getMessage());
 		}
 	}
 
