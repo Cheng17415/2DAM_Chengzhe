@@ -1,8 +1,8 @@
-class CCuentaCorriente (nombre: String, cuenta: String,
-                        saldo: Double, tipoDeInteres: Double,
-                        private var transacciones: Int,
-                        private var importePorTrans: Double,
-                        private var transExentas: Int): CCuenta(nombre, cuenta, saldo, tipoDeInteres) {
+open class CCuentaCorriente (nombre: String, cuenta: String,
+                             saldo: Double, tipoDeInteres: Double,
+                             private var transacciones: Int,
+                             private var importePorTrans: Double,
+                             private var transExentas: Int): CCuenta(nombre, cuenta, saldo, tipoDeInteres) {
 
     fun decrementarTransacciones(){ this.transacciones-- }
 
@@ -35,30 +35,25 @@ class CCuentaCorriente (nombre: String, cuenta: String,
         this.transacciones++
     }
     override fun comisiones() {
-        this.saldo -= this.importePorTrans * this.transacciones
-        this.transacciones = 0
-
-        /*TODO
-        *  val noExentas = if (transacciones > transExentas)
-            transacciones - transExentas
-        else 0
-
+        var noExentas = this.transacciones - this.transExentas
+        if (noExentas < 0) noExentas = 0
         saldo -= noExentas * importePorTrans
-        transacciones = 0*/
+        transacciones = 0
     }
 
     override fun intereses(){
-        TODO("Not yet implemented")
-        /*var interesMensual = 0.0
+        if(this.saldo <= 0) return
 
-        if (saldo <= 3000) {
-            interesMensual = saldo * 0.005 / 12
-        } else {
-            val parte1 = 3000 * 0.005 / 12
-            val parte2 = (saldo - 3000) * (obtenerTipoDeInteres() / 100) / 12
-            interesMensual = parte1 + parte2
+        val maximo = 3000
+        val interesMaximo = 0.005
+
+        if(this.saldo < maximo){
+            this.saldo += this.saldo * interesMaximo
+            return
         }
 
-        saldo += interesMensual*/
+        val restoDinero = this.saldo - maximo
+
+        this.saldo += maximo * interesMaximo + restoDinero * this.tipoDeInteres
     }
 }

@@ -8,21 +8,9 @@ class CCuentaAhorro(nombre: String, cuenta: String,
 
     fun obtenerCuotaManten(): Double{ return this.cuotaMantenimiento }
 
-    override fun comisiones() {
-        this.saldo -= cuotaMantenimiento
-    }
+    override fun comisiones() { this.saldo -= cuotaMantenimiento }
 
-    override fun intereses() {
-        TODO("Not yet implemented")
-        /*
-        * val interesMensual = saldo * (obtenerTipoDeInteres() / 100) / 12
-        saldo += interesMensual*/
-    }
+    override fun intereses(){ this.saldo += this.saldo * this.tipoDeInteres }
 
-}
 
-fun main(){
-    var cuenta = CCuentaAhorro("Cheng", "45454", 1500.0, 0.0, 20.5)
-    cuenta.ingreso(500.0)
-    println(cuenta.estado())
 }
