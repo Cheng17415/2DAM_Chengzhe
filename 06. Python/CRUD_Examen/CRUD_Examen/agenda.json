@@ -1,0 +1,26 @@
+{
+    "Z2257698T": {
+        "documento": "Z2257698T",
+        "nombre": "Sonia",
+        "apellido": "Cabrera",
+        "cp": "22456",
+        "provincia": "Huesca",
+        "ciudad": "Legazpi",
+        "direccion": "pro",
+        "telefono": "45646546",
+        "email": "email@email.com",
+        "categoria": "Trabajo"
+    },
+    "Y9803356BS": {
+        "documento": "Y9803356BS",
+        "nombre": "Aleyba",
+        "apellido": "Reodriguez",
+        "cp": "28045",
+        "provincia": "Madrid",
+        "ciudad": "",
+        "direccion": "",
+        "telefono": "",
+        "email": "",
+        "categoria": "Familia"
+    }
+}

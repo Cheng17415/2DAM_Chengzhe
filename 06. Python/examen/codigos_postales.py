@@ -1,0 +1,24 @@
+import os
+# Ruta del archivo de codigos_postales
+RUTA_ACTUAL = os.path.dirname(os.path.abspath(__file__))
+RUTA_CP = os.path.join(RUTA_ACTUAL, "base_datos/codigos_postales.txt")
+CPs = {}
+
+def obtenerCPs():
+    CPs.clear()
+    try:
+        with open(RUTA_CP, "r", encoding="latin-1") as f:
+            for linea in f:
+                partes = linea.strip().split(";")
+                CPs[int(partes[0])] = partes[1]
+    except FileNotFoundError:
+        print(f"Archivo '{RUTA_CP}' no encontrado.")
+
+def obtenerProvincia(CP):
+    CP = int(CP[:2])
+    return CPs.get(CP)
+
+def verificarCP(codigoPostal):
+    if len(codigoPostal) != 5 or not obtenerProvincia(codigoPostal): return False
+    return True
+obtenerCPs()

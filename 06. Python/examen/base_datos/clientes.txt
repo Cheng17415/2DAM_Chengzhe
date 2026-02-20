@@ -1,0 +1,3 @@
+X9059350H;Cheng;Li;643399123;chengzhe@gmail.com;28022;Sanidad;1234.5;Activo
+A123344Z;Pepe;Pepa;649283745;pepe@pepa.com;40233;Sanidad;1945.4;Baja
+M83475432A;prueba;prueba;693827123;prueba@prueba.com;26044;Administracion;1840.3;Activo
