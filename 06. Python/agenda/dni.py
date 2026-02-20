@@ -7,7 +7,7 @@ DNIs = {}
 def obtenerDNIs():
     DNIs.clear()
     try:
-        with open(FECHERO_DNI, "r", encoding="latin-1") as f:
+        with open(FECHERO_DNI, "r", encoding="utf-8") as f:
             for linea in f:
                 partes = linea.strip().split(";")
                 DNIs[int(partes[0])] = partes[1]
@@ -16,7 +16,7 @@ def obtenerDNIs():
 
 def guardar_cambios_dni():
     try:
-        with open(FECHERO_DNI, "w", encoding="latin-1") as f:
+        with open(FECHERO_DNI, "w", encoding="utf-8") as f:
             total_items = len(DNIs)
             for i, (k, v) in enumerate(DNIs.items()):
                 f.write(f"{k};{v}")
