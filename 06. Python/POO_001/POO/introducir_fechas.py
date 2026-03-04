@@ -17,7 +17,7 @@ while fecha.month == mes:
     fecha = fecha + sietediasmas
 '''
 #Introducido 1 año, para cada mes del año, el ultimo viernes de cada mes
-
+'''
 fecha2 = input("Dime un año (yyyy):")
 fecha2 = datetime.strptime(fecha2, "%Y")
 undiamas = timedelta(days=1)
@@ -37,3 +37,10 @@ while fecha2.year == anio:
 
     print(ultimoViernes)
     fecha2 = fecha2.replace(day = 1)
+'''
+#Introducir una fecha, devolver el calendario de ese mes
+import calendar
+locale.setlocale(locale.LC_ALL, 'es_ES')
+fecha3 = input('Introduzca una fecha (dd/mm/yyyy): ')
+fecha3 = datetime.strptime(fecha3, "%d/%m/%Y")
+print(calendar.month(fecha3.year, fecha3.month))
