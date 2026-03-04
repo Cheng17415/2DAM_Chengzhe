@@ -1,15 +1,15 @@
 from typing import List
 
 
-def findErrorNums(nums: List[int]) -> List[int]:
-    seen = set()
-    dupe = -1
-    for num in nums:
-        if num in seen:
-            dupe = num
-        seen.add(num)
-    missing = 
-    return [dupe,]
+def smallerNumbersThanCurrent(nums: List[int]):
+        sup = [i for i in range(1, len(nums) + 1)]
+        res = []
+        for s in sup:
+            if s not in nums:
+                res.append(s)
+        return res
 
 if __name__ == "__main__":
-    print(findErrorNums([3,2,2]))
+    a = [3,1,1,4,5,4]
+    print(smallerNumbersThanCurrent(a))
+    
