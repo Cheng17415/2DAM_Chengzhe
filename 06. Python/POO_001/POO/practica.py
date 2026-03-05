@@ -8,7 +8,7 @@ def findErrorNums(nums: List[int]) -> List[int]:
         if num in seen:
             dupe = num
         seen.add(num)
-    missing = 
+    missing =
     return [dupe,]
 
 if __name__ == "__main__":
